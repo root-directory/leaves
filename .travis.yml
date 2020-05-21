@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- '12'
+dist: trusty
+sudo: required
+branches:
+  only:
+  - master
+before_script:
+- npm install -g @angular/cli
+script:
+- ng lint
+- ng build --prod --base-href https://github.com/root-directory/leaves
+deploy:
+  provider: heroku
+  api_key:
+    secure: PEAS6I9PhJ+gU07JSN/Km0Zp4FRiSdZwLsDrbRK/ooKWROKwEF6lvr7oZgF9UNqvl7uD2s9n5G11aOE9tcGUFUcHeIDVI9gV1d4b3zE9+Ik42LdcHDUfYZhKl7Q0D6j2bMxIQLPSsY4GvRzhi0xariZhPv909yuVcfwCGPHpGidLhKgXxH4QIlG4Wo0S0J4i7fcq6Dx0do28fMtl8DK3v1K9aR1LzGHmtrWntyI7lk1n2/pw3AclAKttMtkqjuc2yfZtBKqQTk/o2uS+9/cJPOn056JoYe7K6H6kBZIy/Yh872EykRrO5heWWEZjAcUHAwYzL8daY1FXSctz6469uasER4QjqsbtuMExLvjZluystpue2pmW2DnR/ZDH8bvtMchGD23jVEpUii1J/XG40GvSX360/ct1kwv2k+s/iOLbvD3ZUq0DTNTjMGQeI2QQ60u6/WQ89T0k2zlk3Tk9YXdcAR+9NbeC0b26TOL5BmwMcOsaUBrNqjwEgkpXC1ohPfUrnTl2LSW+oFqftJCvqmP6rgzA+jhnDSTDeNP1QIBGjq2tyM3GFtWUXOtoNAamfevltww6jGZIcq1JRenv8iDL5Pvidu8JDPlzKWUDdfc13mSBE9i1io7dqmtI5x5iJPZFI7Bmnc6dOssBuDsg5ttZaLQhi8yl1SDYkXhuorw=
+dd:
