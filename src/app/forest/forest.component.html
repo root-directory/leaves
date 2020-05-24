@@ -7,16 +7,16 @@
   </a>
   <ul class="card" *ngFor="let plant of plants">
     <span>{{ plant.name | uppercase }}</span>
-    <a [routerLink]="['/forest']">
-      <img src="https://via.placeholder.com/150" />
+    <a [routerLink]="['/forest', plant.id, 'plant-overview']">
+      <img src="{{ plant.imgUrl }}" />
     </a>
     <div>
-     <a>
-      Delete
-     </a> 
-     <a>
-      Add Picture
-     </a> 
+      <a [routerLink]="['/forest']">
+        Delete
+      </a>
+      <a [routerLink]="['/forest', plant.id, 'upload']">
+        Add Picture
+      </a>
     </div>
   </ul>
 </div>
