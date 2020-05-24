@@ -5,12 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ForestComponent } from './forest/forest.component';
 import { HomeComponent } from './home/home.component';
+import { PlantOverviewComponent } from './plant-overview/plant-overview.component';
+import { PlantCareComponent } from './plant-care/plant-care.component';
+import { PlantGrowthComponent } from './plant-growth/plant-growth.component';
+import { PlantUploadComponent } from './plant-upload/plant-upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ForestComponent,
-    HomeComponent
+    HomeComponent,
+    PlantOverviewComponent,
+    PlantCareComponent,
+    PlantGrowthComponent,
+    PlantUploadComponent
   ],
   imports: [
     BrowserModule,
