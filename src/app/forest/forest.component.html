@@ -1,0 +1,22 @@
+<div class="content" role="main">
+  <div class="card-container">
+    <h2>{{ "forest" | uppercase }}</h2>
+  </div>
+  <a class="circle-link" [routerLink]="['/forest/new-plant']">
+    <span>{{ "New" | uppercase }}</span>
+  </a>
+  <ul class="card" *ngFor="let plant of plants">
+    <span>{{ plant.name | uppercase }}</span>
+    <a [routerLink]="['/forest', plant.id, 'plant-overview']">
+      <img src="{{ plant.imgUrl }}" />
+    </a>
+    <div>
+      <a [routerLink]="['/forest']">
+        Delete
+      </a>
+      <a [routerLink]="['/forest', plant.id, 'upload']">
+        Add Picture
+      </a>
+    </div>
+  </ul>
+</div>

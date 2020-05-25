@@ -133,6 +133,20 @@ svg.material-icons:not(:last-child) {
   margin-left: 60px;
 }
 
+svg#rocket {
+  width: 80px;
+  position: absolute;
+  left: -10px;
+  top: -24px;
+}
+
+svg#rocket-smoke {
+  height: calc(100vh - 95px);
+  position: absolute;
+  top: 10px;
+  right: 180px;
+  z-index: -10;
+}
 
 a,
 a:visited,

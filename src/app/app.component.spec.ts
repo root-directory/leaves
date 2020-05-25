@@ -23,13 +23,7 @@ describe('AppComponent', () => {
   it(`should have as title 'leaves'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('leaves');
+    expect(app.title).toEqual('Root Directory');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('leaves app is running!');
-  });
 });
