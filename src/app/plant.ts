@@ -3,4 +3,5 @@ export interface Plant {
   name: string;
   plantType: string;
   imgUrl: string;
+  plantImgs: string[];
 }

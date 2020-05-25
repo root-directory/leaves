@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {PLANTS} from '../mock-plants';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PlantService } from '../plant.service';

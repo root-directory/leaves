@@ -6,23 +6,29 @@ export const PLANTS: Plant[] = [
     name: 'Mater',
     plantType: 'Tomato',
     imgUrl: 'https://via.placeholder.com/150',
+    plantImgs: ['https://via.placeholder.com/150', 'https://via.placeholder.com/150', 'https://via.placeholder.com/150']
   },
   {
     id: 2,
     name: 'Pliskin',
     plantType: 'Snake',
     imgUrl: 'https://via.placeholder.com/150',
+    plantImgs: ['https://via.placeholder.com/150', 'https://via.placeholder.com/150']
   },
   {
     id: 3,
     name: 'Nemo',
     plantType: 'Goldfish',
     imgUrl: 'https://via.placeholder.com/150',
+    plantImgs: ['https://via.placeholder.com/150']
   },
   {
     id: 4,
     name: 'Hugo',
     plantType: 'Spider',
     imgUrl: 'https://via.placeholder.com/150',
+    plantImgs: ['https://via.placeholder.com/150', 'https://via.placeholder.com/150', 'https://via.placeholder.com/150', 'https://via.placeholder.com/150']
   },
 ];
+
+
