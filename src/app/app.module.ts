@@ -9,6 +9,7 @@ import { PlantOverviewComponent } from './plant-overview/plant-overview.componen
 import { PlantCareComponent } from './plant-care/plant-care.component';
 import { PlantGrowthComponent } from './plant-growth/plant-growth.component';
 import { PlantUploadComponent } from './plant-upload/plant-upload.component';
+import { PlantNewComponent } from './plant-new/plant-new.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PlantUploadComponent } from './plant-upload/plant-upload.component';
     PlantOverviewComponent,
     PlantCareComponent,
     PlantGrowthComponent,
-    PlantUploadComponent
+    PlantUploadComponent,
+    PlantNewComponent
   ],
   imports: [
     BrowserModule,

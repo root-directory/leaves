@@ -2,7 +2,7 @@
   <div class="card-container">
     <h2>{{ "forest" | uppercase }}</h2>
   </div>
-  <a class="circle-link" [routerLink]="['/forest/upload']">
+  <a class="circle-link" [routerLink]="['/forest/new-plant']">
     <span>{{ "New" | uppercase }}</span>
   </a>
   <ul class="card" *ngFor="let plant of plants">
