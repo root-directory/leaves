@@ -9,24 +9,35 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class PlantService {
   private plantsUrl = 'api/plants'; // URL to web api
-  private PLANTS:Plant[];
+  public result$:Observable<any> = null;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   constructor(private http: HttpClient) {}
   getPlants(): Observable<Plant[]> {
-    const result = this.http
-      .get<Plant[]>(this.plantsUrl)
-      .pipe(catchError(this.handleError<Plant[]>('getPlants', [])));
-    
-    return result;
+    // if(!this.result$){
+      this.result$ = this.http
+        .get<Plant[]>(this.plantsUrl)
+        .pipe(catchError(this.handleError<Plant[]>('getPlants', [])));
+      console.log('request made')
+    // }
+    return this.result$;
   }
 
   getPlant(id: number): Observable<Plant> {
-    const url = `${this.plantsUrl}/${id}`;
-    return this.http
-      .get<Plant>(url)
-      .pipe(catchError(this.handleError<Plant>(`getPlant id=${id}`)));
+   return this.result$.pipe(
+      map(plants => plants.find(plant => plant.id === id))
+    )
+    
+    // A request is made every time. Requiers the above code
+    // return this.getPlants().pipe(
+    //   map(plants => plants.find(plant => plant.id === id))
+    // )
+
+    // const url = `${this.plantsUrl}/${id}`;
+    // return this.http
+    //   .get<Plant>(url)
+    //   .pipe(catchError(this.handleError<Plant>(`getPlant id=${id}`)));
   }
 
   /** POST: add a new plant to the server */
