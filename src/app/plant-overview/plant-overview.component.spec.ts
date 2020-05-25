@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlantOverviewComponent } from './plant-overview.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PlantOverviewComponent', () => {
   let component: PlantOverviewComponent;
@@ -14,6 +15,14 @@ describe('PlantOverviewComponent', () => {
   }));
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes([
+        {path: '', component: PlantOverviewComponent}
+      ])],
+      providers: [{
+        useValue: {menu: [{label: 'care', path: '/forest/1/plant-overview'}]}
+      }]
+    });
     fixture = TestBed.createComponent(PlantOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

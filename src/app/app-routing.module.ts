@@ -10,13 +10,13 @@ import { PlantNewComponent } from './plant-new/plant-new.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent }, 
+  { path: '', component: HomeComponent },
   { path: 'forest', component: ForestComponent, pathMatch: 'full' },
   { path: 'forest/new-plant', component: PlantNewComponent, pathMatch: 'full'},
   { path: 'forest/:id/upload', component: PlantUploadComponent, pathMatch: 'full'},
   { path: 'forest/:id/plant-overview', component: PlantOverviewComponent, pathMatch: 'full'},
-  { path: 'forest/:id/plant-growth', component: PlantGrowthComponent, pathMatch:'full'},
-  { path: 'forest/:id/plant-care', component: PlantCareComponent, pathMatch:'full'}
+  { path: 'forest/:id/plant-growth', component: PlantGrowthComponent, pathMatch: 'full'},
+  { path: 'forest/:id/plant-care', component: PlantCareComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

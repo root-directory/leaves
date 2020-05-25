@@ -1,12 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlantGrowthComponent } from './plant-growth.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PlantGrowthComponent', () => {
   let component: PlantGrowthComponent;
   let fixture: ComponentFixture<PlantGrowthComponent>;
 
   beforeEach(async(() => {
+
     TestBed.configureTestingModule({
       declarations: [ PlantGrowthComponent ]
     })
@@ -14,6 +16,14 @@ describe('PlantGrowthComponent', () => {
   }));
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes([
+        {path: '', component: PlantGrowthComponent}
+      ])],
+      providers: [{
+        useValue: {menu: [{label: 'care', path: '/forest/1/plant-growth'}]}
+      }]
+    });
     fixture = TestBed.createComponent(PlantGrowthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

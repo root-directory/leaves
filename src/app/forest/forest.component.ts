@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PLANTS} from '../mock-plants';
 import { PlantService } from '../plant.service';
-import { Plant } from '../plant'
+import { Plant } from '../plant';
 
 
 
