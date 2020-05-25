@@ -11,12 +11,23 @@
       <img src="{{ plant.imgUrl }}" />
     </a>
     <div>
-      <a [routerLink]="['/forest']">
-        Delete
-      </a>
+      <button class="delete" title="delete plant"
+      (click)="delete(plant)">x</button>
       <a [routerLink]="['/forest', plant.id, 'upload']">
         Add Picture
       </a>
     </div>
   </ul>
+  <div>
+    <label>Plant name:
+      <input #plantName />
+    </label>
+    <label>Plant imgUrl:
+      <input #plantImgUrl />
+    </label>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(plantName.value, plantImgUrl.value); plantName.value=''; plantImgUrl.value=''">
+      add
+    </button>
+  </div>
 </div>
