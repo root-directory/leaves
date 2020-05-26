@@ -9,14 +9,13 @@
     <span>{{ plant.name | uppercase }}</span>
     <a [routerLink]="['/forest', plant.id, 'plant-overview']">
       <img src="{{ plant.imgUrl }}" />
+      <div class="button">
+        <button class="delete" title="delete plant"
+        (click)="delete(plant)">x</button>
+        <a [routerLink]="['/forest', plant.id, 'upload']">
+          <button class="delete">+</button>
+        </a>
+      </div>
     </a>
-    <div>
-      <a [routerLink]="['/forest']">
-        Delete
-      </a>
-      <a [routerLink]="['/forest', plant.id, 'upload']">
-        Add Picture
-      </a>
-    </div>
   </ul>
 </div>
