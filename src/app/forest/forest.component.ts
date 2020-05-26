@@ -19,7 +19,7 @@ export class ForestComponent implements OnInit {
     this.plantService.getPlants().subscribe((plants) => (this.plants = plants));
   }
 
-  add(name: string,imgUrl:string): void {
+  add(name: string, imgUrl: string): void {
     name = name.trim();
     if (!name) {
       return;
@@ -28,7 +28,7 @@ export class ForestComponent implements OnInit {
     if (!imgUrl) {
       return;
     }
-    this.plantService.addPlant({ name,imgUrl } as Plant).subscribe((plant) => {
+    this.plantService.addPlant({ name, imgUrl } as Plant).subscribe((plant) => {
       this.plants.push(plant);
     });
   }

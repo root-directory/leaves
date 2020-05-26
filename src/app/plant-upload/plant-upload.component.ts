@@ -20,7 +20,7 @@ export class PlantUploadComponent implements OnInit {
   }
 
 
-  add(name: string,imgUrl:string): void {
+  add(name: string, imgUrl: string): void {
     name = name.trim();
     if (!name) {
       return;
@@ -29,7 +29,7 @@ export class PlantUploadComponent implements OnInit {
     if (!imgUrl) {
       return;
     }
-    this.plantService.addPlant({ name,imgUrl } as Plant).subscribe((plant) => {
+    this.plantService.addPlant({ name, imgUrl } as Plant).subscribe((plant) => {
       this.plants.push(plant);
     });
   }
