@@ -208,11 +208,21 @@ button:hover {
 }
 
 button.delete {
-  background-color: gray !important;
+  background-color: #fafafa !important;
   color: white;
 }
 
 .button {
   display: flex;
+  justify-content: space-between;
+}
+
+.icons {
+  width: 30px;
+  height: 30px;
+  border: 1px black solid;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }

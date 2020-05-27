@@ -1,6 +1,23 @@
-<div *ngIf="plant" class="content" role="main" >
-  <div class="card-container">
-    <h2>Care</h2>
-    <button (click)="goBack()">Back</button>
+
+<div class="content">
+  <h2>Care</h2>
+  <div class="flex-row">
+    <label>Water amount(oz):</label>
+      <input class="input" #plantWatering />
   </div>
+  <div class="flex-row">
+    <label>House Temperature:</label>
+      <input class="input" #plantTemp />
+  </div>
+  <div class="flex-row">
+    <label>Potting:</label>
+      <input class="input" #plantPotting />
+  </div>
+  <div class="flex-row">
+    <label>Care Notes:</label>
+      <textarea class="input"rows="4" cols="50" #plantNotes> </textarea>
+  </div>
+<button class="add">Submit</button>
 </div>
+    <button (click)="goBack()">Back</button>
+
