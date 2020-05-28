@@ -5,7 +5,7 @@
   <a class="circle-link" [routerLink]="['/forest/new-plant']">
     <span>{{ "New" | uppercase }}</span>
   </a>
-  <ul class="card" *ngFor="let plant of plants">
+  <ul class="card" *ngFor="let plant of plants$|async">
     <span>{{ plant.name | uppercase }}</span>
     <a [routerLink]="['/forest', plant.id, 'plant-overview']">
       <img src="{{ plant.imgUrl }}" />
