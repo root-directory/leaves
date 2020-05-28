@@ -23,7 +23,7 @@ import { environment } from '../environments/environment';
 import { reducer } from '../Rx/plants.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PlantEffects } from '../Rx/plants.effects';
-import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index'
+import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
 @NgModule({
   declarations: [
     AppComponent,

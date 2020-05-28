@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import * as PlantActions from '../Rx/plants.actions'
+import * as PlantActions from '../Rx/plants.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -16,15 +16,15 @@ export class PlantService {
   };
   constructor(private http: HttpClient) {}
 
-  getPlants():Observable<Plant[]> {
-      return this.http.get<Plant[]>(this.plantsUrl)
+  getPlants(): Observable<Plant[]> {
+      return this.http.get<Plant[]>(this.plantsUrl);
   }
 
   getPlant(id: number): Observable<Plant> {
 
     return this.getPlants().pipe(
       map(plants => plants.find(plant => plant.id === id))
-    )
+    );
 
     // const url = `${this.plantsUrl}/${id}`;
     // return this.http
@@ -40,13 +40,16 @@ export class PlantService {
   }
 
   /** DELETE: delete the plant from the server */
-  deletePlant(plant: Plant | number): Observable<Plant> {
-    const id = typeof plant === 'number' ? plant : plant.id;
+  deletePlant(plant: Plant): Observable<{}> {
+    const id = plant.id;
     const url = `${this.plantsUrl}/${id}`;
 
-    return this.http.delete<Plant>(url, this.httpOptions).pipe(
-      catchError(this.handleError<Plant>('deletePlant'))
-    );
+    console.log('deletePlant API', plant);
+
+    // return this.http.delete<Plant>(url, this.httpOptions).pipe(
+    //   catchError(this.handleError<Plant>('deletePlant'))
+    // );
+    return this.http.delete<Plant>(url, this.httpOptions);
   }
 
   /**

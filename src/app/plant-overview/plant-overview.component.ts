@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Store,select } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
@@ -14,12 +14,12 @@ import * as PlantActions from '../../Rx/plants.actions';
 })
 export class PlantOverviewComponent implements OnInit {
   plant: Plant;
-  plants$: Observable<Plant[]> = this.store.select(state=>state.plants)
+  plants$: Observable<Plant[]> = this.store.select(state => state.plants);
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
     private location: Location,
-    private store: Store<{plants:Plant[]}>
+    private store: Store<{plants: Plant[]}>
   ) { }
 
   ngOnInit(): void {

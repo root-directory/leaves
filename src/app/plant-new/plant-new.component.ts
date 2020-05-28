@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-plant-new',
@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class PlantNewComponent implements OnInit {
   plants: Plant[];
-  selectedFile:File =null;
+  selectedFile: File = null;
   constructor(private plantService: PlantService, private http: HttpClient) {}
 
   ngOnInit() {
@@ -38,14 +38,14 @@ export class PlantNewComponent implements OnInit {
   }
 
   onFileSelected(event){
-    console.log(event)
-    this.selectedFile = <File>event.target.files[0];
+    console.log(event);
+    this.selectedFile = (event.target.files[0] as File);
   }
-  
+
   onUpload() {
     const fd = new FormData();
-    fd.append('image',this.selectedFile,this.selectedFile.name)
-    this.http.post('api/plants',fd).subscribe(res => console.log(res));
+    fd.append('image', this.selectedFile, this.selectedFile.name);
+    this.http.post('api/plants', fd).subscribe(res => console.log(res));
   }
 
 }
