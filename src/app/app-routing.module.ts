@@ -7,7 +7,7 @@ import { PlantOverviewComponent } from './plant-overview/plant-overview.componen
 import { PlantGrowthComponent } from './plant-growth/plant-growth.component';
 import { PlantCareComponent } from './plant-care/plant-care.component';
 import { PlantNewComponent } from './plant-new/plant-new.component';
-import { CareFormComponent } from './care-form/care-form.component'
+import { CareFormComponent } from './care-form/care-form.component';
 
 
 const routes: Routes = [

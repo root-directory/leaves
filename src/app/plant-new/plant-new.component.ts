@@ -6,7 +6,7 @@ import { Plant } from '../plant';
   selector: 'app-plant-new',
   templateUrl: './plant-new.component.html',
   styleUrls: ['./plant-new.component.scss'],
-  
+
 })
 export class PlantNewComponent implements OnInit {
   plants: Plant[];

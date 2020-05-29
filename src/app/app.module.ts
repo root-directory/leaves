@@ -28,7 +28,7 @@ import { CareFormComponent } from './care-form/care-form.component';
     PlantUploadComponent,
     PlantNewComponent,
     CareFormComponent,
-   
+
   ],
   imports: [
     BrowserModule,
