@@ -1,39 +1,34 @@
-<!-- 
-<form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()"> -->
+
+<form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
   <div class="content">
     <h2>Care</h2>
-    <div class="flex-row">
-      <label>Watering:</label>
-        <input class="input" #plantWatering />
+    <div class="care-div">
+      <div class="flex-row">
+        <label>Watering:</label>
+          <input class="input" #plantWatering />
+      </div>
+      <div class="flex-row">
+        <label for="water">Frequency:</label>
+    
+      <select name="water" id="water">
+        <option value="1">Once a week</option>
+        <option value="2">Twice a week</option>
+        <option value="3">Once a month</option>
+      </select>
+      </div>
+      <div class="flex-row">
+        <label>Notes:</label>
+          <input class="input" #plantNotes />
+      </div>
     </div>
-    <div class="flex-row">
-      <label for="water">Frequency:</label>
-  
-    <select name="water" id="water">
-      <option value="1">Once a week</option>
-      <option value="2">Twice a week</option>
-      <option value="3">Once a month</option>
-    </select>
-    </div>
-    <div class="flex-row">
-      <label>House Tempature:</label>
-        <input class="input" #plantTemp />
-    </div>
-    <div class="flex-row">
-      <label for="temp">Tempature:</label>
-  
-    <select name="temp" id="temp">
-      <option value="65">65°</option>
-      <option value="66">66°</option>
-      <option value="67">67°</option>
-    </select>
-    </div>
+
+  <div class="care-div">
     <div class="flex-row">
       <label>Soil:</label>
         <input class="input" #plantSoil />
     </div>
     <div class="flex-row">
-      <label for="soil">Frequency:</label>
+      <label for="soil">Type:</label>
   
     <select name="soil" id="soil">
       <option value="1">Once a week</option>
@@ -42,11 +37,18 @@
     </select>
     </div>
     <div class="flex-row">
+      <label>Notes:</label>
+        <input class="input" #plantNotes />
+    </div>
+  </div>
+  
+  <div class="care-div">
+    <div class="flex-row">
       <label>Sunlight:</label>
         <input class="input" #plantSunlight />
     </div>
     <div class="flex-row">
-      <label for="sunlight">Hours:</label>
+      <label for="sunlight">Duration:</label>
   
     <select name="sunlight" id="sunlight">
       <option value="1">1</option>
@@ -55,24 +57,23 @@
     </select>
     </div>
     <div class="flex-row">
-      <label>Location:</label>
-        <input class="input" #plantLocation />
-    </div>
-    <div class="flex-row">
-      <label for="location">State:</label>
+      <label for="sunlight">Direction:</label>
   
-    <select name="location" id="location">
-      <option value="california">California</option>
-      <option value="colorado">Colordo</option>
-      <option value="connecticut">Connecticut</option>
+    <select name="sunlight" id="sunlight">
+      <option value="West">West</option>
+      <option value="South">South</option>
+      <option value="North">North</option>
     </select>
     </div>
+  
     <div class="flex-row">
-      <label>Care Notes:</label>
-        <textarea class="input"rows="4" cols="50" #plantNotes> </textarea>
+      <label>Notes:</label>
+        <input class="input" #plantNotes />
     </div>
+
+  </div>
   <button class="add">Submit</button>
   </div>
       <!-- <button (click)="goBack()">Back</button> -->
-    <!-- </form> -->
+    </form>
   
