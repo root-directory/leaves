@@ -4,4 +4,8 @@ export interface Plant {
   plantType: string;
   imgUrl: string;
   plantImgs: string[];
+  plantWatering: number;
+  plantSoil: string;
+  plantSunlight: string;
+  plantNotes: string;
 }

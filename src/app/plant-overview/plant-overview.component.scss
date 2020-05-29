@@ -143,5 +143,23 @@ a:hover {
     margin-left: 72px;
   }
 
+  .icons {
+    width: 30px;
+    height: 30px;
+    border: 1px black solid;
+    border-radius: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .allIcons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 160px;
+    justify-content: space-evenly;
+  }
+
 }
 

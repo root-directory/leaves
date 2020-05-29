@@ -1,0 +1,83 @@
+
+<form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
+  <div class="content">
+    <h2>Care</h2>
+    <div class="care-div">
+      <div class="flex-row header">
+        <h2>Watering</h2>
+      </div>
+      <div class="flex-row">
+        <label for="water">Frequency:</label>
+        <select name="water" id="water">
+          <option value="1">Once a week</option>
+          <option value="2">Twice a week</option>
+          <option value="3">Once a month</option>
+        </select>
+      </div>
+      <div class="flex-row">
+        <label for="start">Last:</label>
+        <input type="date" id="start" name="water-start"
+           value="2020-07-22"
+           min="2020-01-01" max="2020-12-31">
+      </div>
+      <div class="flex-row">
+        <label>Notes:</label>
+          <input class="input" #plantNotes />
+      </div>
+    </div>
+
+  <div class="care-div">
+    <div class="flex-row header">
+      <h2>Soil</h2>
+    </div>
+    <div class="flex-row">
+      <label for="soil">Type:</label>
+      <select name="soil" id="soil">
+        <option value="1">Once a week</option>
+        <option value="2">Twice a week</option>
+        <option value="3">Once a month</option>
+      </select>
+    </div>
+    <div class="flex-row">
+      <label for="start">Last:</label>
+      <input type="date" id="start" name="water-start"
+         value="2020-07-22"
+         min="2020-01-01" max="2020-12-31">
+    </div>
+    <div class="flex-row">
+      <label>Notes:</label>
+        <input class="input" #plantNotes />
+    </div>
+  </div>
+  
+  <div class="care-div">
+    <div class="flex-row header">
+      <h2>Sunlight</h2>
+    </div>
+    <div class="flex-row">
+      <label for="sunlight">Duration:</label>
+      <select name="sunlight" id="sunlight">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+    <div class="flex-row">
+      <label for="sunlight">Direction:</label>
+      <select name="sunlight" id="sunlight">
+        <option value="West">West</option>
+        <option value="South">South</option>
+        <option value="North">North</option>
+      </select>
+    </div>
+    <div class="flex-row">
+      <label>Notes:</label>
+        <input class="input" #plantNotes />
+    </div>
+
+  </div>
+  <button class="add">Submit</button>
+  </div>
+      <!-- <button (click)="goBack()">Back</button> -->
+</form>
+  

@@ -9,13 +9,18 @@
     <span>{{ plant.name | uppercase }}</span>
     <a [routerLink]="['/forest', plant.id, 'plant-overview']">
       <img src="{{ plant.imgUrl }}" />
+    </a>
       <div class="button">
         <button class="delete" title="delete plant"
-        (click)="delete(plant)">x</button>
+        (click)="delete(plant)">
+          <img class="icons" src="assets/icons8-multiply-100.png">
+        </button>
         <a [routerLink]="['/forest', plant.id, 'upload']">
-          <button class="delete">+</button>
+          <button class="delete">
+            <img class="icons" src="assets/icons8-plus-math-100.png">
+          </button>
         </a>
       </div>
-    </a>
+    <!-- </a> -->
   </ul>
 </div>

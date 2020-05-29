@@ -26,6 +26,7 @@ p {
   flex: 1;
 }
 
+
 .content {
   display: flex;
   margin: 82px auto 32px;
@@ -33,6 +34,19 @@ p {
   max-width: 960px;
   flex-direction: column;
   align-items: center;
+}
+
+svg.material-icons {
+  height: 24px;
+  width: auto;
+}
+
+svg.material-icons:not(:last-child) {
+  margin-right: 8px;
+}
+
+.card svg.material-icons path {
+  fill: #888;
 }
 
 .card-container {
@@ -144,4 +158,56 @@ a:hover {
   }
 
 }
+
+
+button {
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  font-family: Arial;
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
+
+button.delete {
+  background-color: gray !important;
+  color: white;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px;
+}
+
+.allInputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin-top: 10px;
+  background-color: lightgray;
+  margin-bottom: 5px;
+  
+}
+
+.add {
+  margin-top: 15px;
+}
+
 
