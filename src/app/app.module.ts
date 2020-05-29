@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
+// import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
@@ -15,6 +15,7 @@ import { PlantCareComponent } from './plant-care/plant-care.component';
 import { PlantGrowthComponent } from './plant-growth/plant-growth.component';
 import { PlantUploadComponent } from './plant-upload/plant-upload.component';
 import { PlantNewComponent } from './plant-new/plant-new.component';
+import { CareFormComponent } from './care-form/care-form.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { PlantNewComponent } from './plant-new/plant-new.component';
     PlantGrowthComponent,
     PlantUploadComponent,
     PlantNewComponent,
+    CareFormComponent,
+    // ReactiveFormsModule
   ],
   imports: [
     BrowserModule,

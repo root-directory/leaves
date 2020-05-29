@@ -6,6 +6,8 @@ export interface Plant {
   plantImgs: string[];
   plantWatering: number;
   plantTemp: number;
-  plantPlotting: string;
+  plantSoil: string;
+  plantSunlight: string;
   plantNotes: string;
+  plantLocation: string;
 }
