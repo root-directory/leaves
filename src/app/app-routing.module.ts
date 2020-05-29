@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'forest/:id/plant-overview', component: PlantOverviewComponent, pathMatch: 'full'},
   { path: 'forest/:id/plant-growth', component: PlantGrowthComponent, pathMatch: 'full'},
   { path: 'forest/:id/plant-care', component: PlantCareComponent, pathMatch: 'full'},
-  { path: 'forest/care-form', component: CareFormComponent, pathMatch: 'full' }
+  { path: 'forest/:id/care-form', component: CareFormComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
