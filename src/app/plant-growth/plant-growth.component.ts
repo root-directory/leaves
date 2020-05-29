@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
+import { JournalEntry } from '../journalEntry';
 
 @Component({
   selector: 'app-plant-growth',
@@ -11,6 +12,7 @@ import { Plant } from '../types/plant';
 })
 export class PlantGrowthComponent implements OnInit {
   plant: Plant;
+  journalEntry:JournalEntry[];
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
@@ -18,7 +20,8 @@ export class PlantGrowthComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getPlant();
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.plantService.getJournal(id).subscribe(journalEntry=> this.journalEntry = journalEntry);
   }
 
   getPlant(): void {
