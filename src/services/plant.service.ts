@@ -14,6 +14,9 @@ export class PlantService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+  httpOptionsForm = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
   constructor(private http: HttpClient) {}
 
   getPlants(): Observable<Plant[]> {
@@ -34,6 +37,7 @@ export class PlantService {
 
   /** POST: add a new plant to the server */
   addPlant(plant: Plant): Observable<Plant> {
+    console.log(plant)
     return this.http
       .post<Plant>(this.plantsUrl, plant, this.httpOptions)
       .pipe(catchError(this.handleError<Plant>('addPlant')));
@@ -50,6 +54,13 @@ export class PlantService {
     //   catchError(this.handleError<Plant>('deletePlant'))
     // );
     return this.http.delete<Plant>(url, this.httpOptions);
+  }
+
+  uploadImage(fd){
+    return this.http.post<File>(this.plantsUrl,fd, {
+      reportProgress:true,
+      observe:'events'
+    })
   }
 
   /**
