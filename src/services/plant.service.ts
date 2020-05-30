@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Plant } from '../app/types/plant';
-import { JournalEntry } from '../app/journalEntry';
+import { JournalEntry,Journal } from '../app/journalEntry';
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,7 +12,7 @@ import * as PlantActions from '../Rx/plants.actions';
 })
 export class PlantService {
   private plantsUrl = 'api/plants'; // URL to web api
-  private journalUrl = 'api/journalEntry';
+  private journalUrl = 'api/journals';
   public result$: Observable<any> = null;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -31,13 +31,13 @@ export class PlantService {
       return this.result$;
   }
 
-  getJournal(id:number): Observable<JournalEntry[]> {
-   
+  getJournal(id:number): Observable<Journal> {
+    const url = `${this.journalUrl}/${id}`
+    console.log('Journal request made');
       return this.http
-        .get<JournalEntry[]>(this.journalUrl)
+        .get<Journal>(url)
         .pipe(
-          catchError(this.handleError<JournalEntry[]>('getJournal', [])));
-      console.log('Journal request made');
+          catchError(this.handleError<Journal>('getJournal', {id:null,journalEntries:[]})));
   
   }
 

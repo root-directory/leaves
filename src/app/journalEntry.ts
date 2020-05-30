@@ -3,8 +3,12 @@ export interface JournalEntry {
   plantID: string,
   eventType: string,
   timestamp: string,
-  info?: {
-    imageURL: string,
+  info: {
+    imgUrl?: string,
     notes: string
   }
+}
+export interface Journal {
+  id: number,
+  journalEntries:JournalEntry[]
 }

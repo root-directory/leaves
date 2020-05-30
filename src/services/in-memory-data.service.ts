@@ -51,31 +51,37 @@ export class InMemoryDataService implements InMemoryDbService {
       },
     ];
 
-    const journalEntry = [
+    const journals = [
       {
-        id: 2,
-        plantID: '98fdE38FDfe238',
-        eventType: 'image',
-        timestamp: '2020-05-28T20:22:51.215Z',
-        info: {
-          imageURL: 'https://via.placeholder.com/150',
-          notes:
-            'Phineas seems to be enjoying the extra sunlight in his new spot!',
-        },
-      },
-      {
-        id: 2,
-        plantID: '98fdE38FDfe238',
-        eventType: 'water',
-        timestamp: '2020-05-28T20:22:51.215Z',
-        info: {
-          notes:
-            'Only gave Phineas half as much water as usual today, since his soil still looked very damp.',
-        },
+        id: 1,
+        journalEntries: [
+          {
+            id: 2,
+            plantID: '98fdE38FDfe238',
+            eventType: 'image',
+            timestamp: '2020-05-28T20:22:51.215Z',
+            info: {
+              imgUrl: 'https://via.placeholder.com/150',
+              notes:
+                'Phineas seems to be enjoying the extra sunlight in his new spot!',
+            },
+          },
+          {
+            id: 5,
+            plantID: '98fdE38FDfe238',
+            eventType: 'water',
+            timestamp: '2020-05-28T20:22:51.215Z',
+            info: {
+              imgUrl: 'https://via.placeholder.com/150',
+              notes:
+                'Only gave Phineas half as much water as usual today, since his soil still looked very damp.',
+            },
+          },
+        ],
       },
     ];
 
-    return { plants, journalEntry };
+    return { plants, journals };
   }
 
   // Overrides the genId method to ensure that a hero always has an id.

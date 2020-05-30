@@ -12,7 +12,7 @@ import { JournalEntry } from '../journalEntry';
 })
 export class PlantGrowthComponent implements OnInit {
   plant: Plant;
-  journalEntry:JournalEntry[];
+  journalEntries:JournalEntry[];
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
@@ -21,7 +21,7 @@ export class PlantGrowthComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.plantService.getJournal(id).subscribe(journalEntry=> this.journalEntry = journalEntry);
+    this.plantService.getJournal(id).subscribe(journal=> {console.log(journal);return this.journalEntries = journal.journalEntries});
   }
 
   getPlant(): void {

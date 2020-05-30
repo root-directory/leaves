@@ -1,7 +1,11 @@
-<div *ngIf="journalEntry" class="content" role="main" >
+<div *ngIf="journalEntries" class="content" role="main" >
   <h2>Growth</h2>
-  <div *ngFor="let entry of journalEntry" class="card-container">
-    {{entry.info.notes}}
+  <div *ngFor="let entry of journalEntries" class="card-container">
+    <div *ngIf="entry.info.notes">
+      {{entry.info.notes}}
+    </div>
+    <div *ngIf="entry.info.imgUrl">
+      <img src="{{entry.info.imgUrl}}"/>
   </div>
   <button (click)="goBack()">Back</button>
 </div>
