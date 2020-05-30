@@ -51,19 +51,3 @@ export interface PlantsState {
   loading: boolean;
 }
 
-// export function reducer( state: PlantsState = initialState, action: PlantActions.Actions): PlantsState {
-//   switch (action.type) {
-//     case PlantActions.LOAD_PLANTS_SUCCESS: {
-//       const plants = action.payload;
-//       console.log('action payload',action.payload)
-//       let entities = plants
-//       return {
-//         ...state,
-//         loading: false,
-//         loaded: true,
-//         entities,
-//       };
-//     }
-//   }
-//   return state;
-// }
