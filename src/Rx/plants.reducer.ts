@@ -22,7 +22,7 @@ initialState,
   }),
   on(PlantActions.deletePlant, (state: PlantsState, {plant}) => {
     const id = plant.id;
-    const entities = state.entities.filter(plant => plant.id !== id);
+    const entities = state.entities.filter(entity => entity.id !== id);
     console.log('action plant', plant);
     return {
       ...state,
@@ -34,7 +34,7 @@ initialState,
   on(PlantActions.deletePlantSuccess, (state: PlantsState, {plant}) => {
     console.log('reducer', plant);
     const id = plant.id;
-    const entities = state.entities.filter(plant => plant.id !== id);
+    const entities = state.entities.filter(entity => entity.id !== id);
     console.log('action plant', plant);
     return {
       ...state,
