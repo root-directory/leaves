@@ -185,9 +185,9 @@ button.delete {
 }
 
 .input {
-  border: 1px solid black;
+  border: 1px solid lightgrey;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px;
+  box-shadow: 2px 2px 2px lightgrey;
 }
 
 .allInputs {
@@ -205,6 +205,11 @@ button.delete {
 
 .add {
   margin-top: 15px;
+  background-color: #bdde77;
+  border-radius: 100px;
+  border: 1px solid lightgrey;
+  font-family: 'Amatic SC', cursive;
+  color: #1976d2;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
@@ -212,3 +217,4 @@ button.delete {
 * {
   font-family: 'Amatic SC', cursive;
 }
+
