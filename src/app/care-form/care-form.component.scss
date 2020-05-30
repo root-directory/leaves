@@ -212,10 +212,11 @@ button.delete {
   background-color: lightgrey;
   margin-bottom: 15px;
   padding: 10px;
+  border-radius: 5px;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
 
-h2 {
+* {
   font-family: 'Amatic SC', cursive;
 }
