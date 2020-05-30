@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PlantService } from '../plant.service';
-import { Plant } from '../plant';
+import { PlantService } from '../../services/plant.service';
+import { Plant } from '../types/plant';
 
 @Component({
   selector: 'app-plant-upload',
@@ -33,5 +33,6 @@ export class PlantUploadComponent implements OnInit {
       this.plants.push(plant);
     });
   }
+
 
 }

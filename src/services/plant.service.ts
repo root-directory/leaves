@@ -1,38 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Plant } from './plant';
+import { Plant } from '../app/types/plant';
 import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import * as PlantActions from '../Rx/plants.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlantService {
   private plantsUrl = 'api/plants'; // URL to web api
-  public result$: Observable<any> = null;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   constructor(private http: HttpClient) {}
+
   getPlants(): Observable<Plant[]> {
-    // if(!this.result$){
-      this.result$ = this.http
-        .get<Plant[]>(this.plantsUrl)
-        .pipe(catchError(this.handleError<Plant[]>('getPlants', [])));
-      console.log('request made');
-    // }
-      return this.result$;
+      return this.http.get<Plant[]>(this.plantsUrl);
   }
 
   getPlant(id: number): Observable<Plant> {
-   return this.result$.pipe(
+
+    return this.getPlants().pipe(
       map(plants => plants.find(plant => plant.id === id))
     );
-
-    // A request is made every time. Requiers the above code
-    // return this.getPlants().pipe(
-    //   map(plants => plants.find(plant => plant.id === id))
-    // )
 
     // const url = `${this.plantsUrl}/${id}`;
     // return this.http
@@ -48,13 +40,16 @@ export class PlantService {
   }
 
   /** DELETE: delete the plant from the server */
-  deletePlant(plant: Plant | number): Observable<Plant> {
-    const id = typeof plant === 'number' ? plant : plant.id;
+  deletePlant(plant: Plant): Observable<{}> {
+    const id = plant.id;
     const url = `${this.plantsUrl}/${id}`;
 
-    return this.http.delete<Plant>(url, this.httpOptions).pipe(
-      catchError(this.handleError<Plant>('deletePlant'))
-    );
+    console.log('deletePlant API', plant);
+
+    // return this.http.delete<Plant>(url, this.httpOptions).pipe(
+    //   catchError(this.handleError<Plant>('deletePlant'))
+    // );
+    return this.http.delete<Plant>(url, this.httpOptions);
   }
 
   /**
