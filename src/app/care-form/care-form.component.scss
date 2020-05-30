@@ -185,9 +185,9 @@ button.delete {
 }
 
 .input {
-  border: 1px solid black;
+  border: 1px solid lightslategray;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px;
+  box-shadow: 2px 2px 2px lightslategray;
 }
 
 .allInputs {
@@ -200,12 +200,16 @@ button.delete {
   display: flex;
   justify-content: space-between;
   width: 300px;
-  margin-top: 10px;
   margin-bottom: 3px;
 }
 
 .add {
   margin-top: 15px;
+  background-color: #bdde77;
+  border-radius: 100px;
+  border: 1px solid lightgrey;
+  font-family: 'Amatic SC', cursive;
+  color: #1976d2;
 }
 
 .care-div {
