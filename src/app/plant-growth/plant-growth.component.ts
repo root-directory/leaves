@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
-import { JournalEntry } from '../journalEntry';
+import { JournalEntry } from '../types/journalEntry';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../Rx/rx.index';
 
 @Component({
   selector: 'app-plant-growth',
@@ -12,17 +15,20 @@ import { JournalEntry } from '../journalEntry';
 })
 export class PlantGrowthComponent implements OnInit {
   plant: Plant;
-  journalEntries:JournalEntry[];
+  journalEntries$:Observable<JournalEntry[]>;
   id:number;
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
-    private location: Location
+    private location: Location,
+    private store: Store<fromRoot.State>,
   ) { }
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.plantService.getJournal(this.id).subscribe(journal=> {console.log(journal);return this.journalEntries = journal.journalEntries});
+    this.store.dispatch({type: '[Journal] Load Journal',payload:this.id});
+    this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries)
+    // this.plantService.getJournal(this.id).subscribe(journal=> {console.log(journal);return this.journalEntries = journal.journalEntries});
   }
 
   getPlant(): void {

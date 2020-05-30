@@ -8,6 +8,7 @@ import { Plant } from '../app/types/plant';
 import { plantsFeatureKey } from './plants.reducer';
 import { deletePlantSuccess, deletePlantFail } from './plants.actions';
 import * as PlantActions from '../Rx/plants.actions';
+import { Journal } from 'src/app/types/journalEntry';
 
 @Injectable()
 export class PlantEffects {
@@ -32,6 +33,23 @@ export class PlantEffects {
       )
     )
   );
+  loadJournal$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType('[Journal] Load Journal'),
+      mergeMap(({payload}) =>
+        {
+          console.log('journalAction',payload)
+        return this.service.getJournal(payload).pipe(
+            map((journal: Journal) => ({
+              type: '[Journal] Load Journal Success',
+              payload: journal,
+            })),
+            catchError(() => of({type: '[Journal] Load Journal Fail'}))
+          );
+        }
+      )
+    )
+  );
   deletePlant$ = createEffect(() =>
     this.actions$.pipe(
       ofType('[Plants] Delete Plants'),
@@ -44,16 +62,6 @@ export class PlantEffects {
       })
     )
   );
-  // deletePlant$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType('[Plants] Delete Plants'),
-  //     mergeMap(action => {
-  //       console.log('deletePlantAction',action.plant)
-  //       return this.service.deletePlant(action.plant).subscribe(
-  //         () => deletePlantSuccess({plant:action.plant})
-  //       )
-  //     })
-  //   )
-  // );
+
 
 }

@@ -1,1 +1,25 @@
-<p>journal-form works!</p>
+<form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+  <div class="content">
+    <h2>Journal</h2>
+    <div class="care-div">
+      <div class="flex-row header">
+        <h2>Type of Journal Event</h2>
+      </div>
+      <div class="flex-row">
+        <label for="water">Frequency:</label>
+        <select name="water" id="water">
+          <option value="1">Watering</option>
+          <option value="2">Image checkin</option>
+          <option value="3">Repotting</option>
+          <option value="4">Change in Location</option>
+        </select>
+      </div>
+
+      <div class="flex-row">
+        <label>Notes:</label>
+        <input class="input" #plantNotes />
+      </div>
+    </div>
+    <button class="add">Submit</button>
+  </div>
+</form>

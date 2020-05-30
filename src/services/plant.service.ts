@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Plant } from '../app/types/plant';
-import { JournalEntry,Journal } from '../app/journalEntry';
+import { JournalEntry,Journal } from '../app/types/journalEntry';
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -33,12 +33,20 @@ export class PlantService {
 
   getJournal(id:number): Observable<Journal> {
     const url = `${this.journalUrl}/${id}`
-    console.log('Journal request made');
+    console.log('Journal request made',id,url);
       return this.http
         .get<Journal>(url)
-        .pipe(
-          catchError(this.handleError<Journal>('getJournal', {id:null,journalEntries:[]})));
-  
+
+      // return this.http
+      //   .get<Journal>(url)
+      //   .pipe(
+      //     catchError(this.handleError<Journal>('getJournal', {id:null,journalEntries:[]})));
+  }
+
+  addJournalEntry(journalEntry:JournalEntry):Observable<JournalEntry> {
+    return this.http.post<JournalEntry>(this.journalUrl,journalEntry,this.httpOptions).pipe(
+      catchError(this.handleError<JournalEntry>('addJournal'))
+    )
   }
 
   getPlant(id: number): Observable<Plant> {
