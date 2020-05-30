@@ -58,6 +58,15 @@ p {
   line-height: 24px;
 }
 
+.entry-type{
+  flex-grow:1;
+}
+.image-container{
+  overflow: hidden;
+  height:200px;
+  width:400px;
+}
+
 
 .card-container .card:not(:last-child) {
   margin-right: 0;

@@ -72,7 +72,6 @@ export class InMemoryDataService implements InMemoryDbService {
             eventType: 'water',
             timestamp: '2020-05-28T20:22:51.215Z',
             info: {
-              imgUrl: 'https://via.placeholder.com/150',
               notes:
                 'Only gave Phineas half as much water as usual today, since his soil still looked very damp.',
             },

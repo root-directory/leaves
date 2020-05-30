@@ -13,6 +13,7 @@ import { JournalEntry } from '../journalEntry';
 export class PlantGrowthComponent implements OnInit {
   plant: Plant;
   journalEntries:JournalEntry[];
+  id:number;
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
@@ -20,8 +21,8 @@ export class PlantGrowthComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.plantService.getJournal(id).subscribe(journal=> {console.log(journal);return this.journalEntries = journal.journalEntries});
+    this.id = +this.route.snapshot.paramMap.get('id');
+    this.plantService.getJournal(this.id).subscribe(journal=> {console.log(journal);return this.journalEntries = journal.journalEntries});
   }
 
   getPlant(): void {

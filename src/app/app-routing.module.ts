@@ -8,6 +8,7 @@ import { PlantGrowthComponent } from './plant-growth/plant-growth.component';
 import { PlantCareComponent } from './plant-care/plant-care.component';
 import { PlantNewComponent } from './plant-new/plant-new.component';
 import { CareFormComponent } from './care-form/care-form.component';
+import { JournalFormComponent } from './journal-form/journal-form.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,9 @@ const routes: Routes = [
   { path: 'forest/:id/plant-overview', component: PlantOverviewComponent, pathMatch: 'full'},
   { path: 'forest/:id/plant-growth', component: PlantGrowthComponent, pathMatch: 'full'},
   { path: 'forest/:id/plant-care', component: PlantCareComponent, pathMatch: 'full'},
-  { path: 'forest/:id/care-form', component: CareFormComponent, pathMatch: 'full' }
+  { path: 'forest/:id/care-form', component: CareFormComponent, pathMatch: 'full' },
+  { path: 'forest/:id/plant-growth/new', component: JournalFormComponent, pathMatch: 'full'},
+  { path: 'forest/:id/plant-care', component: PlantCareComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

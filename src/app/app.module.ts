@@ -16,6 +16,7 @@ import { PlantGrowthComponent } from './plant-growth/plant-growth.component';
 import { PlantUploadComponent } from './plant-upload/plant-upload.component';
 import { PlantNewComponent } from './plant-new/plant-new.component';
 import { CareFormComponent } from './care-form/care-form.component';
+import { JournalFormComponent } from './journal-form/journal-form.component';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -35,7 +36,7 @@ import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
     PlantUploadComponent,
     PlantNewComponent,
     CareFormComponent,
-
+    JournalFormComponent,
   ],
   imports: [
     BrowserModule,
