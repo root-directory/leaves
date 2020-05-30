@@ -1,10 +1,9 @@
 <div class="content" role="main">
-  <div class="card-container">
-    <h2>{{ "forest" | uppercase }}</h2>
-  </div>
+  <h2>{{ "forest" | uppercase }}</h2>
   <a class="circle-link" [routerLink]="['/forest/new-plant']">
     <span>{{ "New" | uppercase }}</span>
   </a>
+  <div class="container">
   <ul class="card" *ngFor="let plant of plants">
     <span>{{ plant.name | uppercase }}</span>
     <a [routerLink]="['/forest', plant.id, 'plant-overview']">
@@ -21,6 +20,6 @@
           </button>
         </a>
       </div>
-    <!-- </a> -->
   </ul>
+  </div>
 </div>
