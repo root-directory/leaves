@@ -288,3 +288,19 @@ svg#clouds {
     visibility: hidden;
   }
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
+
+* {
+  font-family: 'Amatic SC', cursive;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.card {
+  border-radius: 100px;
+  background-color: #bdde77;
+}
