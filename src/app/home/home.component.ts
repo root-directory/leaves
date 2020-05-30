@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 //FORM STUFF
-import { PlantService } from '../plant.service';
+import { PlantService } from '../../services/plant.service';
 
 @Component({
   selector: 'app-home',
