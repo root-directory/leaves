@@ -28,7 +28,10 @@ export class CareFormComponent implements OnInit {
     private location: Location,
     public formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    ) { 
+    ) {}
+    
+    
+    ngOnInit(): void {
       this.uploadForm = this.formBuilder.group({
           watering: this.formBuilder.group({
             frequency:[''],
@@ -46,14 +49,8 @@ export class CareFormComponent implements OnInit {
             notes:['']
           })
         })
-    }
 
-
-    ngOnInit(): void {
       this.getPlant();
-      this.uploadForm = this.formBuilder.group({
-        profile: ['']
-      });
 
       this.titleService.setTitle('Care Log')
     }
@@ -71,13 +68,13 @@ export class CareFormComponent implements OnInit {
     onFileSelect(event) {
       if (event.target.files.length > 0) {
         const file = event.target.files[0];
-        this.uploadForm.get('profile').setValue(file);
+        this.uploadForm.get('uploadForm').setValue(file);
       }
     }
 
     onSubmit() {
       const formData = new FormData();
-      formData.append('file', this.uploadForm.get('profile').value);
+      formData.append('file', this.uploadForm.get('uploadForm').value);
 
       this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
         (res) => console.log(res),
