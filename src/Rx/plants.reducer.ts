@@ -7,7 +7,7 @@ const initialState: PlantsState = {
   entities: [],
   loaded: false,
   loading: false,
-  journal:{id:null,journalEntries:[]},
+  journal: {id: null, journalEntries: []},
 };
 export const plantsFeatureKey = 'plants';
 export const reducer = createReducer(
@@ -59,6 +59,6 @@ export interface PlantsState {
   entities: Plant[];
   loaded: boolean;
   loading: boolean;
-  journal:Journal;
+  journal: Journal;
 }
 

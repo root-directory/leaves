@@ -15,6 +15,11 @@ export class PlantNewComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
+  uploadForm: FormGroup;
+
+  selectedFile: File = null;
+  name: string = null;
+
   ngOnInit() {
     this.uploadForm = this.formBuilder.group({
       name: [''],
@@ -22,13 +27,8 @@ export class PlantNewComponent implements OnInit {
     });
   }
 
-  uploadForm: FormGroup;
-
-  selectedFile: File = null;
-  name: string = null;
-
   onFileSelected(event) {
-    this.selectedFile = <File>event.target.files[0];
+    this.selectedFile = (event.target.files[0] as File);
     console.log(this.selectedFile);
   }
   onUpload() {
@@ -36,7 +36,7 @@ export class PlantNewComponent implements OnInit {
       image: this.selectedFile,
     });
     this.plantService.addPlant(this.uploadForm.value).subscribe((plant) => {
-      console.log(plant)
+      console.log(plant);
     });
   }
 }

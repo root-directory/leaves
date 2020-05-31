@@ -15,9 +15,9 @@ import * as fromRoot from '../../Rx/rx.index';
 })
 export class PlantGrowthComponent implements OnInit {
   plant: Plant;
-  journalEntries$:Observable<JournalEntry[]>;
-  id:number;
- 
+  journalEntries$: Observable<JournalEntry[]>;
+  id: number;
+
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
@@ -27,9 +27,10 @@ export class PlantGrowthComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.store.dispatch({type: '[Journal] Load Journal',payload:this.id});
-    this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries)
-    // this.plantService.getJournal(this.id).subscribe(journal=> {console.log(journal);return this.journalEntries = journal.journalEntries});
+    this.store.dispatch({type: '[Journal] Load Journal', payload: this.id});
+    this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries);
+    // this.plantService.getJournal(this.id).subscribe(journal=>
+    // {console.log(journal);return this.journalEntries = journal.journalEntries});
   }
 
   getPlant(): void {

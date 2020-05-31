@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-//FORM STUFF
+// FORM STUFF
 import { PlantService } from '../../services/plant.service';
 
 @Component({
@@ -9,22 +9,22 @@ import { PlantService } from '../../services/plant.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  constructor(private plantService: PlantService) { }
   userName = 'Cassie';
-  constructor(private plantService:PlantService) { }
+
+  selectedFile: File = null;
 
   ngOnInit(): void {
   }
-
-  selectedFile:File = null;
   onFileSelected(event) {
-    this.selectedFile = <File>event.target.files[0]
+    this.selectedFile = (event.target.files[0] as File);
   }
   onUpload() {
     const fd = new FormData();
-    fd.append('image',this.selectedFile,this.selectedFile.name);
+    fd.append('image', this.selectedFile, this.selectedFile.name);
     this.plantService.uploadImage(fd).subscribe(events => {
-      console.log(events)
-    })
+      console.log(events);
+    });
   }
 
 }

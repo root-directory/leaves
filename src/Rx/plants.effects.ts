@@ -38,8 +38,8 @@ export class PlantEffects {
       ofType('[Journal] Load Journal'),
       mergeMap(({payload}) =>
         {
-          console.log('journalAction',payload)
-        return this.service.getJournal(payload).pipe(
+          console.log('journalAction', payload);
+          return this.service.getJournal(payload).pipe(
             map((journal: Journal) => ({
               type: '[Journal] Load Journal Success',
               payload: journal,
