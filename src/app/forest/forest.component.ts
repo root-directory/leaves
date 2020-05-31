@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { PlantService } from '../plant.service';
-import { Plant } from '../plant';
+import { PlantService } from '../../services/plant.service';
+import { Plant } from '../types/plant';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as PlantActions from '../../Rx/plants.actions';
+import * as fromRoot from '../../Rx/rx.index';
+import { TitleService } from '../title.service'
+
 
 @Component({
   selector: 'app-forest',
@@ -8,34 +14,23 @@ import { Plant } from '../plant';
   styleUrls: ['./forest.component.scss'],
 })
 export class ForestComponent implements OnInit {
-  plants: Plant[];
-  constructor(private plantService: PlantService) {}
+  plants$: Observable<Plant[]>;
+
+  constructor(private plantService: PlantService, private store: Store<fromRoot.State>, private titleService: TitleService) {
+    this.plants$ = this.store.select(state => state.plants.entities);
+  }
 
   ngOnInit() {
-    this.getPlants();
-  }
-
-  getPlants(): void {
-    this.plantService.getPlants().subscribe((plants) => (this.plants = plants));
-  }
-
-  add(name: string, imgUrl: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
-    }
-    imgUrl = imgUrl.trim();
-    if (!imgUrl) {
-      return;
-    }
-    this.plantService.addPlant({ name, imgUrl } as Plant).subscribe((plant) => {
-      this.plants.push(plant);
-    });
+    this.store.dispatch({type: '[Plants] Load Plants'});
+    // this.getPlants();
+    this.titleService.setTitle('My Forest')
   }
 
   delete(plant: Plant): void {
-    this.plants = this.plants.filter(h => h !== plant);
-    this.plantService.deletePlant(plant).subscribe();
+    console.log('forest', plant);
+    // this.plants$ = this.plants$.filter(h => h !== plant);
+    this.store.dispatch(PlantActions.deletePlant({plant}));
+    // this.plantService.deletePlant(plant)
   }
 
 

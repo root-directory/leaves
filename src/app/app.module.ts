@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from '../services/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,6 +17,13 @@ import { PlantUploadComponent } from './plant-upload/plant-upload.component';
 import { PlantNewComponent } from './plant-new/plant-new.component';
 import { CareFormComponent } from './care-form/care-form.component';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { reducer } from '../Rx/plants.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { PlantEffects } from '../Rx/plants.effects';
+import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,9 +42,20 @@ import { CareFormComponent } from './care-form/care-form.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    EffectsModule.forRoot([PlantEffects]),
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),
+    StoreModule.forRoot(ROOT_REDUCERS, {
+      metaReducers,
+      runtimeChecks: {
+        // strictStateImmutability and strictActionImmutability are enabled by default
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+        strictActionWithinNgZone: true,
+      },
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],
   bootstrap: [AppComponent],

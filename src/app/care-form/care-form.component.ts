@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { PlantService } from '../plant.service';
-import { Plant } from '../plant';
+import { PlantService } from '../../services/plant.service';
+import { Plant } from '../types/plant';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { TitleService } from '../title.service'
 
 @Component({
   selector: 'app-care-form',
@@ -16,17 +17,36 @@ import { HttpClient } from '@angular/common/http';
 export class CareFormComponent implements OnInit {
 
 
-  SERVER_URL = 'http://localhost:4200/upload';
+  SERVER_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
   uploadForm: FormGroup;
 
   plant: Plant;
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
+    private titleService: TitleService,
     private location: Location,
-    private formBuilder: FormBuilder,
+    public formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    ) { }
+    ) { 
+      this.uploadForm = this.formBuilder.group({
+          watering: this.formBuilder.group({
+            frequency:[''],
+            last:[''],
+            notes:['']
+          }),
+          soil: this.formBuilder.group({
+            type:[''],
+            last:[''],
+            notes:['']
+          }),
+          sunlight: this.formBuilder.group({
+            duration:[''],
+            direction:[''],
+            notes:['']
+          })
+        })
+    }
 
 
     ngOnInit(): void {
@@ -34,6 +54,8 @@ export class CareFormComponent implements OnInit {
       this.uploadForm = this.formBuilder.group({
         profile: ['']
       });
+
+      this.titleService.setTitle('Care Log')
     }
 
     getPlant(): void {
