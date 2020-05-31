@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { PlantService } from 'src/services/plant.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,9 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class JournalFormComponent implements OnInit {
   uploadForm: FormGroup;
+
   constructor(
-    private route: ActivatedRoute,
-    private plantService: PlantService,
     private location: Location,
     private formBuilder: FormBuilder,
     private httpClient: HttpClient
@@ -22,19 +19,25 @@ export class JournalFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.uploadForm = this.formBuilder.group({
-      profile: ['']
+      eventType:[''],
+      info:this.formBuilder.group({
+        notes:[''],
+        imgUrl:['']
+      } )
+      
     });
   }
+  eventType:string = '';
+  notes:string = '';
 
   goBack(): void {
     this.location.back();
   }
 
   onSubmit() {
-    const formData = new FormData();
-    formData.append('file', this.uploadForm.get('profile').value);
-
-    this.httpClient.post<any>('api/journals', formData).subscribe(
+    
+    console.log(this.uploadForm)
+    this.httpClient.post<any>('api/journals', this.uploadForm.value).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
     );

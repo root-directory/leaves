@@ -21,6 +21,7 @@ export class PlantService {
   constructor(private http: HttpClient) {}
 
   getPlants(): Observable<Plant[]> {
+    console.log(this.plantsUrl)
       return this.http.get<Plant[]>(this.plantsUrl);
     // if(!this.result$){
       this.result$ = this.http
@@ -44,7 +45,9 @@ export class PlantService {
   }
 
   addJournalEntry(journalEntry:JournalEntry):Observable<JournalEntry> {
-    return this.http.post<JournalEntry>(this.journalUrl,journalEntry,this.httpOptions).pipe(
+
+    const url = `${this.journalUrl}/${1}/journalEntries`
+    return this.http.post<JournalEntry>(url,journalEntry,this.httpOptions).pipe(
       catchError(this.handleError<JournalEntry>('addJournal'))
     )
   }

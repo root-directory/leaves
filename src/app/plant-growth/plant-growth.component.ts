@@ -17,6 +17,7 @@ export class PlantGrowthComponent implements OnInit {
   plant: Plant;
   journalEntries$:Observable<JournalEntry[]>;
   id:number;
+ 
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
