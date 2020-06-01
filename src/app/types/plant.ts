@@ -1,5 +1,5 @@
 export interface Plant {
-  id: number;
+  id: string;
   name: string;
   plantType: string;
   imgUrl: string;
@@ -8,4 +8,7 @@ export interface Plant {
   plantSoil: string;
   plantSunlight: string;
   plantNotes: string;
+  imageURL?:string;
+  plantName?: string;
+  userId?:string;
 }

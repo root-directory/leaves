@@ -2,6 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlantOverviewComponent } from './plant-overview.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PlantService } from 'src/services/plant.service';
+
+class MockService { 
+getPlants(){
+  return [];
+}}
+
 
 describe('PlantOverviewComponent', () => {
   let component: PlantOverviewComponent;
@@ -15,6 +22,7 @@ describe('PlantOverviewComponent', () => {
   }));
 
   beforeEach(() => {
+ 
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([
         {path: '', component: PlantOverviewComponent}
@@ -29,6 +37,7 @@ describe('PlantOverviewComponent', () => {
   });
 
   it('should create', () => {
+    
     expect(component).toBeTruthy();
   });
 });

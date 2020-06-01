@@ -7,6 +7,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+img{
+  width:200px;
+  height:200px;
+  object-fit: cover;
+}
+
 $background-primary: #BDDE77;
 
 h1,

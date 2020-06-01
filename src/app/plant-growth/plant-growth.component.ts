@@ -22,7 +22,7 @@ export class PlantGrowthComponent implements OnInit {
   }
 
   getPlant(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     this.plantService.getPlant(id)
       .subscribe(plant => this.plant = plant);
   }

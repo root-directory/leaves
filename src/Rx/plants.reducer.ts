@@ -12,7 +12,8 @@ export const reducer = createReducer(
 initialState,
   on(PlantActions.loadPlants, (state) => state),
   on(PlantActions.loadPlantsSuccess, (state: PlantsState, { payload }) => {
-    const entities = payload;
+    const entities = payload.plants;
+    console.log(entities)
     return {
       ...state,
       loading: false,

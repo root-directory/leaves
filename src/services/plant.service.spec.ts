@@ -11,7 +11,7 @@ describe('PlantService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule,HttpClientTestingModule],
       providers: [PlantService],
     });
     httpClient = TestBed.inject(HttpClient);
@@ -42,7 +42,7 @@ describe('PlantService', () => {
       expect(plants.length).toBe(1);
       expect(plants).toEqual(dummyPosts);
     });
-    const request = httpTestingController.expectOne(`${plantService.PLANTS_URL}`);
+    const request = httpTestingController.expectOne(`${plantService.LIVE_URL}`);
     expect(request.request.method).toBe('GET');
     request.flush(dummyPosts);
   });

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
 import * as PlantActions from '../../Rx/plants.actions';
+import * as selectors from '../../Rx/plants.selector';
 
 @Component({
   selector: 'app-plant-overview',
@@ -29,9 +30,10 @@ export class PlantOverviewComponent implements OnInit {
   }
 
   getPlant(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.plantService.getPlant(id)
-      .subscribe(plant => this.plant = plant);
+    const id = this.route.snapshot.paramMap.get('id');
+    this.store.select(selectors.getItemById(id)).subscribe((plant)=>this.plant=plant)
+    // this.plantService.getPlant(id)
+    //   .subscribe(plant => this.plant = plant);
   }
 
 }

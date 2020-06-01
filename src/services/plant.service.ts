@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class PlantService {
   public PLANTS_URL = 'api/plants'; // URL to web api
   // private liveURL = 'https://cors-test.appspot.com/test'
-  private LIVE_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants'
+  public LIVE_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants'
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -21,7 +21,7 @@ export class PlantService {
       return this.http.get<Plant[]>(this.LIVE_URL,this.httpOptions);
   }
 
-  getPlant(id: number): Observable<Plant> {
+  getPlant(id: string): Observable<Plant> {
 
     return this.getPlants().pipe(
       map(plants => plants.find(plant => plant.id === id))

@@ -16,6 +16,7 @@ export class ForestComponent implements OnInit {
 
   constructor(private plantService: PlantService, private store: Store<fromRoot.State>) {
     this.plants$ = this.store.select(state => state.plants.entities);
+    console.log(this.plants$)
   }
 
   ngOnInit() {
