@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TitleService } from './title.service'
 
 @Component({
   selector: 'app-root',
@@ -7,14 +6,10 @@ import { TitleService } from './title.service'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = '';
   userName = 'Cassie';
 
-  constructor(private titleService: TitleService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.titleService.title.subscribe(title => {
-      this.title = title;
-    })
   }
 }

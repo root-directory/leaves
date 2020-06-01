@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class TitleService {
- 
   title = new BehaviorSubject('Root Directory');
 
   setTitle(title: string) {

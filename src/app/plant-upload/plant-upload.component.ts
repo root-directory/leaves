@@ -10,7 +10,8 @@ import { TitleService } from '../title.service'
 })
 export class PlantUploadComponent implements OnInit {
   plants: Plant[];
-  constructor(private plantService: PlantService, private titleService: TitleService) {}
+  
+  constructor(private plantService: PlantService, private titleService: TitleService) { }
 
   ngOnInit() {
     this.getPlants();
@@ -21,7 +22,6 @@ export class PlantUploadComponent implements OnInit {
   getPlants(): void {
     this.plantService.getPlants().subscribe((plants) => (this.plants = plants));
   }
-
 
   add(name: string, imgUrl: string): void {
     name = name.trim();
@@ -36,6 +36,4 @@ export class PlantUploadComponent implements OnInit {
       this.plants.push(plant);
     });
   }
-
-
 }

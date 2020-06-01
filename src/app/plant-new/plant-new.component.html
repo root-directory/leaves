@@ -3,13 +3,12 @@
   <h2>Upload</h2>
   <div class="flex-row">
     <label>Plant name:</label>
-      <input class="input" #plantName />
+    <input class="input" #plantName />
   </div>
   <div class="flex-row">
     <label>Plant imgUrl:</label>
-      <input class="input" #plantImgUrl />
+    <input class="input" #plantImgUrl />
   </div>
-  <!-- (click) passes input value to add() and then clears the input -->
   <button class="add" (click)="add(plantName.value, plantImgUrl.value); plantName.value=''; plantImgUrl.value=''">
     Add New Member
   </button>

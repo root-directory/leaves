@@ -13,14 +13,12 @@ import { TitleService } from '../title.service'
   styleUrls: ['./care-form.component.scss']
 })
 
-
 export class CareFormComponent implements OnInit {
-
-
   SERVER_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
   uploadForm: FormGroup;
 
   plant: Plant;
+
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
@@ -28,60 +26,61 @@ export class CareFormComponent implements OnInit {
     private location: Location,
     public formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    ) {}
-    
-    
-    ngOnInit(): void {
-      this.uploadForm = this.formBuilder.group({
-          watering: this.formBuilder.group({
-            frequency:[''],
-            last:[''],
-            notes:['']
-          }),
-          soil: this.formBuilder.group({
-            type:[''],
-            last:[''],
-            notes:['']
-          }),
-          sunlight: this.formBuilder.group({
-            duration:[''],
-            direction:[''],
-            notes:['']
-          })
+  ) { }
+
+  ngOnInit(): void {
+    this.uploadForm = this.formBuilder.group({
+      care: this.formBuilder.group({
+        watering: this.formBuilder.group({
+          frequency: [''],
+          last: [''],
+          notes: ['']
+        }),
+        soil: this.formBuilder.group({
+          type: [''],
+          last: [''],
+          notes: ['']
+        }),
+        sunlight: this.formBuilder.group({
+          duration: [''],
+          direction: [''],
+          notes: ['']
         })
+      })
+    })
 
-      this.getPlant();
+    this.getPlant();
 
-      this.titleService.setTitle('Care Log')
-    }
+    this.titleService.setTitle('Care Log')
+  }
 
-    getPlant(): void {
-      const id = +this.route.snapshot.paramMap.get('id');
-      this.plantService.getPlant(id)
+  getPlant(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.plantService.getPlant(id)
       .subscribe(plant => this.plant = plant);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.uploadForm.get('care').setValue(file);
     }
+  }
 
-    goBack(): void {
-      this.location.back();
-    }
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('file', this.uploadForm.get('care').value);
 
-    onFileSelect(event) {
-      if (event.target.files.length > 0) {
-        const file = event.target.files[0];
-        this.uploadForm.get('uploadForm').setValue(file);
-      }
-    }
+    this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
+  }
+}
 
-    onSubmit() {
-      const formData = new FormData();
-      formData.append('file', this.uploadForm.get('uploadForm').value);
-
-      this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
-        (res) => console.log(res),
-        (err) => console.log(err)
-        );
-      }
-
-    }
 
 

@@ -1,7 +1,7 @@
-<div *ngIf="plant" class="content" role="main" >
+<div *ngIf="plant" class="content" role="main">
   <h2>Growth</h2>
   <div *ngFor="let plantImg of plant.plantImgs" class="card-container">
-    <img src={{plantImg}}/>
+    <img src={{plantImg}} />
   </div>
   <button (click)="goBack()">Back</button>
 </div>

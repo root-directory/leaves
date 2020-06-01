@@ -11,14 +11,13 @@ import { TitleService } from '../title.service'
   styleUrls: ['./plant-care.component.scss']
 })
 export class PlantCareComponent implements OnInit {
-
   plant: Plant;
+
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
     private location: Location,
   ) { }
-
 
   ngOnInit(): void {
     this.getPlant();
@@ -33,7 +32,6 @@ export class PlantCareComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
 }
 
 

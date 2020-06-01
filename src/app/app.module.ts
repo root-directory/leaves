@@ -24,6 +24,7 @@ import { reducer } from '../Rx/plants.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PlantEffects } from '../Rx/plants.effects';
 import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
     PlantUploadComponent,
     PlantNewComponent,
     CareFormComponent,
+    HeaderComponent,
 
   ],
   imports: [
@@ -43,9 +45,9 @@ import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
     ReactiveFormsModule,
     HttpClientModule,
     EffectsModule.forRoot([PlantEffects]),
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-    }),
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+    //   dataEncapsulation: false,
+    // }),
     StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,
       runtimeChecks: {

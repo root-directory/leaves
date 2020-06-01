@@ -13,18 +13,17 @@ import { TitleService } from '../title.service'
 export class PlantNewComponent implements OnInit {
   plants: Plant[];
   selectedFile: File = null;
-  constructor(private plantService: PlantService, private http: HttpClient, private titleService: TitleService) {}
+  constructor(private plantService: PlantService, private http: HttpClient, private titleService: TitleService) { }
 
   ngOnInit() {
     this.getPlants();
-    
+
     this.titleService.setTitle('New member of the forest')
   }
 
   getPlants(): void {
     this.plantService.getPlants().subscribe((plants) => (this.plants = plants));
   }
-
 
   add(name: string, imgUrl: string): void {
     name = name.trim();
@@ -40,7 +39,7 @@ export class PlantNewComponent implements OnInit {
     });
   }
 
-  onFileSelected(event){
+  onFileSelected(event) {
     console.log(event);
     this.selectedFile = (event.target.files[0] as File);
   }
@@ -50,5 +49,4 @@ export class PlantNewComponent implements OnInit {
     fd.append('image', this.selectedFile, this.selectedFile.name);
     this.http.post('api/plants', fd).subscribe(res => console.log(res));
   }
-
 }

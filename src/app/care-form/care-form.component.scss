@@ -197,10 +197,10 @@ button.delete {
 }
 
 .flex-row {
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
+  padding-bottom: 5px;
   width: 300px;
-  margin-bottom: 3px;
 }
 
 .add {
@@ -214,8 +214,8 @@ button.delete {
 
 .care-div {
   background-color: lightgrey;
-  margin-bottom: 15px;
-  padding: 10px;
+  // margin-bottom: 15px;
+  // padding: 10px;
   border-radius: 5px;
 }
 
