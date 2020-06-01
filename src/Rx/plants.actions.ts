@@ -9,7 +9,7 @@ export const loadPlantsFail = createAction(
 );
 export const loadPlantsSuccess = createAction(
   '[Plants] Load Plants Success',
-  props<{ payload: Plant[] }>()
+  props<{ payload: {plants: Plant[]} }>()
 );
 export const deletePlant = createAction(
   '[Plants] Delete Plants',

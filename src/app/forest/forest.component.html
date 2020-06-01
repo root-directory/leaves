@@ -6,9 +6,9 @@
     <span>{{ "New" | uppercase }}</span>
   </a>
   <ul class="card" *ngFor="let plant of plants$|async">
-    <span>{{ plant.name | uppercase }}</span>
+    <span>{{ plant.plantName | uppercase }}</span>
     <a [routerLink]="['/forest', plant.id, 'plant-overview']">
-      <img src="{{ plant.imgUrl }}" />
+      <img src="{{ plant.imageURL }}" />
     </a>
       <div class="button">
         <button class="delete" title="delete plant"
