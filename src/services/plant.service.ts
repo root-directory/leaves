@@ -10,10 +10,6 @@ import * as PlantActions from '../Rx/plants.actions';
   providedIn: 'root',
 })
 export class PlantService {
-  public ROOT_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/';
-  public CARE_URL = 'care'
-  public PLANT_URL = 'plant'
-  
   private plantsUrl = 'api/plants'; // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -21,8 +17,7 @@ export class PlantService {
   constructor(private http: HttpClient) {}
 
   getPlants(): Observable<Plant[]> {
-    const URL = this.ROOT_URL + this.PLANT_URL;
-      return this.http.get<Plant[]>(URL);
+      return this.http.get<Plant[]>(this.plantsUrl);
   }
 
   getPlant(id: number): Observable<Plant> {
