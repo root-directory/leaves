@@ -7,6 +7,7 @@ import { Plant } from '../types/plant';
 import { JournalEntry } from '../types/journalEntry';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../Rx/rx.index';
+import { TitleService } from '../title.service';
 
 @Component({
   selector: 'app-plant-growth',
@@ -23,6 +24,7 @@ export class PlantGrowthComponent implements OnInit {
     private plantService: PlantService,
     private location: Location,
     private store: Store<fromRoot.State>,
+    private titleService: TitleService
   ) { }
 
   ngOnInit(): void {
@@ -31,12 +33,13 @@ export class PlantGrowthComponent implements OnInit {
     this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries);
     // this.plantService.getJournal(this.id).subscribe(journal=>
     // {console.log(journal);return this.journalEntries = journal.journalEntries});
+    this.titleService.setTitle(`${this.plant.plantName}'s growth`)
   }
 
   getPlant(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.plantService.getPlant(id)
-      .subscribe(plant => this.plant = plant);
+      .subscribe(plant => this.plant = plant)
   }
 
   goBack(): void {

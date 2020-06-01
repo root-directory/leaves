@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TitleService } from '../title.service'
+import * as selectors from '../../Rx/plants.selector';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-care-form',
@@ -14,10 +16,12 @@ import { TitleService } from '../title.service'
 })
 
 export class CareFormComponent implements OnInit {
-  SERVER_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
+  ROOT_SERVER_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
   uploadForm: FormGroup;
 
   plant: Plant;
+
+  id: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,9 +30,11 @@ export class CareFormComponent implements OnInit {
     private location: Location,
     public formBuilder: FormBuilder,
     private httpClient: HttpClient,
+    private store: Store<{ plants: Plant[] }>
   ) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
     this.uploadForm = this.formBuilder.group({
       care: this.formBuilder.group({
         watering: this.formBuilder.group({
@@ -55,30 +61,21 @@ export class CareFormComponent implements OnInit {
   }
 
   getPlant(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.plantService.getPlant(id)
-      .subscribe(plant => this.plant = plant);
+    this.store.select(selectors.getItemById(this.id)).subscribe((plant) =>
+      this.plant = plant)
   }
 
   goBack(): void {
     this.location.back();
   }
 
-  onFileSelect(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.uploadForm.get('care').setValue(file);
-    }
-  }
-
   onSubmit() {
-    const formData = new FormData();
-    formData.append('file', this.uploadForm.get('care').value);
-
-    this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
+    const URL = this.ROOT_SERVER_URL + '/' + this.id;
+    this.httpClient.patch<any>(URL, this.uploadForm.value).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
     );
+    // console.log(URL)
   }
 }
 

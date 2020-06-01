@@ -18,13 +18,13 @@ export class PlantNewComponent implements OnInit {
   uploadForm: FormGroup;
 
   name: string = null;
-  
+
   constructor(private plantService: PlantService, private http: HttpClient, private titleService: TitleService, private formBuilder: FormBuilder) { }
   
   
   
   ngOnInit() {
-    this.titleService.setTitle('New member of the forest')
+    this.titleService.setTitle('New member of the forest');
     this.uploadForm = this.formBuilder.group({
       name: [''],
       image: [null],
