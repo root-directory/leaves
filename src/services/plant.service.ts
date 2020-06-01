@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Plant } from '../app/types/plant';
 import { Observable, of } from 'rxjs';
-import { Store } from '@ngrx/store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import * as PlantActions from '../Rx/plants.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlantService {
-  private plantsUrl = 'api/plants'; // URL to web api
+  public PLANTS_URL = 'api/plants'; // URL to web api
+  // private liveURL = 'https://cors-test.appspot.com/test'
+  private LIVE_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants'
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   constructor(private http: HttpClient) {}
 
   getPlants(): Observable<Plant[]> {
-      return this.http.get<Plant[]>(this.plantsUrl);
+
+      return this.http.get<Plant[]>(this.LIVE_URL,this.httpOptions);
   }
 
   getPlant(id: number): Observable<Plant> {
@@ -35,14 +36,14 @@ export class PlantService {
   /** POST: add a new plant to the server */
   addPlant(plant: Plant): Observable<Plant> {
     return this.http
-      .post<Plant>(this.plantsUrl, plant, this.httpOptions)
+      .post<Plant>(this.PLANTS_URL, plant, this.httpOptions)
       .pipe(catchError(this.handleError<Plant>('addPlant')));
   }
 
   /** DELETE: delete the plant from the server */
   deletePlant(plant: Plant): Observable<{}> {
     const id = plant.id;
-    const url = `${this.plantsUrl}/${id}`;
+    const url = `${this.PLANTS_URL}/${id}`;
 
     console.log('deletePlant API', plant);
 

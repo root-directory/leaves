@@ -26,7 +26,7 @@ export class PlantEffects {
               type: '[Plants] Load Plants Success',
               payload: plants,
             })),
-            catchError(() => of({type: '[Plants] Load Plants Fail'}))
+            catchError((error) => {console.log(error); return of({type: '[Plants] Load Plants Fail'})})
           );
         }
       )
