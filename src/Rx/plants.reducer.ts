@@ -7,14 +7,15 @@ const initialState: PlantsState = {
   entities: [],
   loaded: false,
   loading: false,
-  journal: {id: null, journalEntries: []},
+  journal: [],
 };
 export const plantsFeatureKey = 'plants';
 export const reducer = createReducer(
 initialState,
   on(PlantActions.loadPlants, (state) => state),
-  on(PlantActions.loadPlantsSuccess, (state: PlantsState, { payload }) => {
-    const entities = payload;
+  on(PlantActions.loadPlantsSuccess, (state: PlantsState, { payload}) => {
+    console.log('LoadPlantReducer:',payload)
+    const entities = payload.plants;
     return {
       ...state,
       loading: false,
@@ -59,6 +60,6 @@ export interface PlantsState {
   entities: Plant[];
   loaded: boolean;
   loading: boolean;
-  journal: Journal;
+  journal: any;
 }
 

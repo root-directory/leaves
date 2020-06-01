@@ -1,12 +1,13 @@
-<div *ngIf="plant" class="content" role="main"  >
+<div *ngIf="plant" class="content" role="main">
   <div class="card-container">
-    <h2>{{ plant.name | uppercase }}</h2>
-    <img src="{{ plant.imgUrl }}" />
+    <h2>{{ plant.plantName | uppercase }}</h2>
+    
+    <img class= "main-image" src="{{ plant.imageURL }}" />
   </div>
   <div class="allIcons">
     <div>
       <a [routerLink]="['/forest', plant.id, 'plant-growth']">
-        <img class="icons" src="assets/icons8-plant-48.png"> Growth
+        <img class="icons" src="assets/icons8-plant-48.png" /> Growth
       </a>
     </div>
     <div>
@@ -14,29 +15,26 @@
         <img class="icons" src="assets/icons8-heart-64.png"> Care
       </a> -->
       <a [routerLink]="['/forest', plant.id, 'care-form']">
-        <img class="icons" src="assets/icons8-heart-64.png"> Care
+        <img class="icons" src="assets/icons8-heart-64.png" /> Care
       </a>
     </div>
     <div>
       <a [routerLink]="['/forest']">
-        <img class="icons" src="assets/icons8-photo-gallery-64.png"> Album
+        <img class="icons" src="assets/icons8-photo-gallery-64.png" /> Album
       </a>
     </div>
     <div>
-      <a >
-        <img class="icons" src="assets/icons8-water-64.png"> Watering
+      <a> <img class="icons" src="assets/icons8-water-64.png" /> Watering </a>
+    </div>
+    <div>
+      <a>
+        <img class="icons" src="assets/icons8-potted-plant-100.png" /> Potting
       </a>
     </div>
     <div>
-      <a >
-        <img class="icons" src="assets/icons8-potted-plant-100.png"> Potting
-      </a>
-    </div>
-    <div>
-      <a >
-        <img class="icons" src="assets/icons8-flow-chart-64.png"> Splitting
+      <a>
+        <img class="icons" src="assets/icons8-flow-chart-64.png" /> Splitting
       </a>
     </div>
   </div>
-
 </div>
