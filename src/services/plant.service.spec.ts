@@ -42,7 +42,7 @@ describe('PlantService', () => {
       expect(plants.length).toBe(1);
       expect(plants).toEqual(dummyPosts);
     });
-    const request = httpTestingController.expectOne(`${plantService.LIVE_URL}`);
+    const request = httpTestingController.expectOne(`${plantService.PLANTS_URL}`);
     expect(request.request.method).toBe('GET');
     request.flush(dummyPosts);
   });

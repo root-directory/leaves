@@ -1,17 +1,15 @@
 <p>plant-new works!</p>
 <div class="content allInputs">
   <h2>Upload</h2>
-  <div class="flex-row">
-    <label>Plant name:</label>
-      <input class="input" #plantName />
-  </div>
-  <div class="flex-row">
-    <label>Plant imgUrl:</label>
-      <input class="input" #plantImgUrl />
-  </div>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button class="add" (click)="add(plantName.value, plantImgUrl.value); plantName.value=''; plantImgUrl.value=''">
-    add
-  </button>
+  <form [formGroup]="uploadForm">
+    <div class="flex-row">
+      <label>Plant Url:</label>
+      <input type="file" (change)="onFileSelected($event)" />
+    </div>
+    <div class="flex-row">
+      <label>Plant Name:</label>
+      <input placeholder="Name" formControlName="name" />
+    </div>
+    <button type="submit" (click)="onUpload()">Upload</button>
+  </form>
 </div>
-<app-plant-care></app-plant-care>

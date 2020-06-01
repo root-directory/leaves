@@ -26,6 +26,7 @@ p {
   flex: 1;
 }
 
+
 .content {
   display: flex;
   margin: 82px auto 32px;
@@ -33,6 +34,19 @@ p {
   max-width: 960px;
   flex-direction: column;
   align-items: center;
+}
+
+svg.material-icons {
+  height: 24px;
+  width: auto;
+}
+
+svg.material-icons:not(:last-child) {
+  margin-right: 8px;
+}
+
+.card svg.material-icons path {
+  fill: #888;
 }
 
 .card-container {
@@ -56,15 +70,6 @@ p {
   align-items: center;
   transition: all 0.2s ease-in-out;
   line-height: 24px;
-}
-
-.entry-type{
-  flex-grow:1;
-}
-.image-container{
-  overflow: hidden;
-  height:200px;
-  width:200px;
 }
 
 
@@ -104,36 +109,6 @@ p {
   margin-left: 60px;
 }
 
-a,
-a:visited,
-a:hover {
-  color: #1976d2;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #125699;
-}
-
-.circle-link {
-  height: 40px;
-  width: 40px;
-  border-radius: 40px;
-  margin: 8px;
-  background-color: white;
-  border: 1px solid #eeeeee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: 1s ease-out;
-}
-
-.circle-link:hover {
-  transform: translateY(-0.25rem);
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-}
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
@@ -153,4 +128,60 @@ a:hover {
   }
 
 }
+
+
+button {
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  font-family: Arial;
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
+
+button.delete {
+  background-color: gray !important;
+  color: white;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px;
+}
+
+.allInputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
+.add {
+  margin-top: 15px;
+}
+
+.care-div {
+  background-color: lightgrey;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
 
