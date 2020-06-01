@@ -5,7 +5,6 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
-import * as PlantActions from '../../Rx/plants.actions';
 import * as selectors from '../../Rx/plants.selector';
 
 @Component({

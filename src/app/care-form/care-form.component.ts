@@ -15,14 +15,12 @@ import { HttpClient } from '@angular/common/http';
 
 export class CareFormComponent implements OnInit {
 
-
   SERVER_URL = 'http://localhost:4200/upload';
   uploadForm: FormGroup;
 
   plant: Plant;
   constructor(
     private route: ActivatedRoute,
-    private plantService: PlantService,
     private location: Location,
     private formBuilder: FormBuilder,
     private httpClient: HttpClient,
@@ -30,7 +28,6 @@ export class CareFormComponent implements OnInit {
 
 
     ngOnInit(): void {
-      this.getPlant();
       this.uploadForm = this.formBuilder.group({
         profile: ['']
       });
@@ -38,8 +35,6 @@ export class CareFormComponent implements OnInit {
 
     getPlant(): void {
       const id = this.route.snapshot.paramMap.get('id');
-      this.plantService.getPlant(id)
-      .subscribe(plant => this.plant = plant);
     }
 
     goBack(): void {
