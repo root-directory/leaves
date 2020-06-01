@@ -31,7 +31,7 @@ export class PlantOverviewComponent implements OnInit {
 
   getPlant(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.store.select(selectors.getItemById(id)).subscribe((plant)=>this.plant=plant)
+    this.store.select(selectors.getItemById(id)).subscribe((plant) => this.plant = plant);
   }
 
 }

@@ -12,7 +12,7 @@ import * as PlantActions from '../Rx/plants.actions';
 })
 export class PlantService {
   public ROOT_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/';
-  public PLANTS_URL = 'plants'
+  public PLANTS_URL = 'plants';
   private JOURNAL_URL = '/journal';
 
   private plantsUrl = 'api/plants'; // URL to web api
@@ -25,8 +25,8 @@ export class PlantService {
   constructor(private http: HttpClient) {}
 
   getPlants(): Observable<Plant[]> {
-    const URL =  this.ROOT_URL+this.PLANTS_URL
-    console.log('PlantURL:',URL);
+    const URL =  this.ROOT_URL + this.PLANTS_URL;
+    console.log('PlantURL:', URL);
     return this.http.get<Plant[]>(URL);
 
   }
@@ -37,19 +37,19 @@ export class PlantService {
         .get<Journal>(URL);
   }
 
-  addJournalEntry(journalEntry: JournalEntry,plantId: string): Observable<JournalEntry> {
+  addJournalEntry(journalEntry: JournalEntry, plantId: string): Observable<JournalEntry> {
 
     // const url = `${this.journalUrl}/${plantId}/journalEntries`;
     // return this.http.post<JournalEntry>(url, journalEntry, this.httpOptions).pipe(
     //   catchError(this.handleError<JournalEntry>('addJournal'))
     // );
-    const URL = this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL
-    console.log(URL)
-    return this.http.post<JournalEntry>(URL, journalEntry)
+    const URL = this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL;
+    console.log(URL);
+    return this.http.post<JournalEntry>(URL, journalEntry);
   }
 
   getPlant(id: number): Observable<Plant> {
-    
+
 
     return this.getPlants().pipe(
       map(plants => plants.find(plant => plant.id === id))

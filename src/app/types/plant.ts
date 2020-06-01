@@ -8,6 +8,6 @@ export interface Plant {
   plantSoil: string;
   plantSunlight: string;
   plantNotes: string;
-  imageURL?:string;
-  plantName?:string;
+  imageURL?: string;
+  plantName?: string;
 }
