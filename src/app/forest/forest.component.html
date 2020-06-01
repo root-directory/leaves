@@ -4,11 +4,11 @@
     <span>{{ "New" | uppercase }}</span>
   </a>
   <div class="container">
-    <ul class="card" *ngFor="let plant of plants$|async">
-      <span>{{ plant.name | uppercase }}</span>
-      <a [routerLink]="['/forest', plant.id, 'plant-overview']">
-        <img src="{{ plant.imgUrl }}" />
-      </a>
+  <ul class="card" *ngFor="let plant of plants$|async">
+    <span>{{ plant.plantName | uppercase }}</span>
+    <a [routerLink]="['/forest', plant.id, 'plant-overview']">
+      <img src="{{ plant.imageURL }}" />
+    </a>
       <div class="button">
         <button class="delete" title="delete plant" (click)="delete(plant)">
           <img class="icons" src="assets/icons8-multiply-100.png" />

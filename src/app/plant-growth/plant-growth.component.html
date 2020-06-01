@@ -1,7 +1,28 @@
-<div *ngIf="plant" class="content" role="main">
+<div *ngIf="journalEntries$" class="content" role="main">
   <h2>Growth</h2>
-  <div *ngFor="let plantImg of plant.plantImgs" class="card-container">
-    <img src={{plantImg}} />
+  <a [routerLink]="['/forest',id,'plant-growth','new']">
+    <span>{{ "New Journal Entry" | uppercase }}</span>
+  </a>
+  <div class="card-container">
+    <div *ngFor="let entry of journalEntries$|async" class="card">
+      <div *ngIf="entry.info.notes">
+        {{ entry.info.notes }}
+      </div>
+      <div class="entry-type">
+        <div class="image-container">
+          <ng-template
+            *ngIf="entry.info.imgUrl; then thenBlock; else elseBlock"
+          >
+          </ng-template>
+        </div>
+        <ng-template #thenBlock>
+          <img src="{{ entry.info.imgUrl }}" />
+        </ng-template>
+        <ng-template #elseBlock>
+          <img src="https://cdn.hswstatic.com/gif/water-life-crop.jpg" />
+        </ng-template>
+      </div>
+    </div>
   </div>
   <button (click)="goBack()">Back</button>
 </div>
