@@ -35,25 +35,25 @@ export class CareFormComponent implements OnInit {
 
   test = 'tesst';
   ngOnInit(): void {
-    this.getPlant();
     console.log(this.plant)
     this.id = this.route.snapshot.paramMap.get('id');
+    this.getPlant();
     this.uploadForm = this.formBuilder.group({
       care: this.formBuilder.group({
         watering: this.formBuilder.group({
-          frequency: [''],
-          last: [''],
-          notes: [this.plant.plantName]
+          frequency: [this.plant.care.watering.frequency],
+          last: [this.plant.care.watering.last],
+          notes: [this.plant.care.watering.notes]
         }),
         soil: this.formBuilder.group({
-          type: [''],
-          last: [''],
-          notes: ['']
+          type: [this.plant.care.soil.type],
+          last: [this.plant.care.soil.last],
+          notes: [this.plant.care.soil.notes]
         }),
         sunlight: this.formBuilder.group({
-          duration: [''],
-          direction: [''],
-          notes: ['']
+          duration: [this.plant.care.sunlight.duration],
+          direction: [this.plant.care.sunlight.direction],
+          notes: [this.plant.care.sunlight.notes]
         })
       })
     })
