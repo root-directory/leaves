@@ -10,4 +10,23 @@ export interface Plant {
   plantNotes: string;
   imageURL?: string;
   plantName?: string;
+  care?: {soil: Soil, watering: Watering, sunlight: Sunlight};
+}
+
+interface Soil {
+  type: string;
+  last: string;
+  notes: string;
+}
+
+interface Watering {
+  frequency: string;
+  last: string;
+  notes: string;
+}
+
+interface Sunlight {
+  duration: string;
+  direction: string;
+  notes: string;
 }

@@ -33,14 +33,17 @@ export class CareFormComponent implements OnInit {
     private store: Store<{ plants: Plant[] }>
   ) { }
 
+  test = 'tesst';
   ngOnInit(): void {
+    this.getPlant();
+    console.log(this.plant)
     this.id = this.route.snapshot.paramMap.get('id');
     this.uploadForm = this.formBuilder.group({
       care: this.formBuilder.group({
         watering: this.formBuilder.group({
           frequency: [''],
           last: [''],
-          notes: ['']
+          notes: [this.plant.plantName]
         }),
         soil: this.formBuilder.group({
           type: [''],
@@ -54,8 +57,6 @@ export class CareFormComponent implements OnInit {
         })
       })
     })
-
-    this.getPlant();
 
     this.titleService.setTitle('Care Log')
   }
@@ -75,7 +76,6 @@ export class CareFormComponent implements OnInit {
       (res) => console.log(res),
       (err) => console.log(err)
     );
-    // console.log(URL)
   }
 }
 
