@@ -37,7 +37,7 @@ export class PlantService {
         .get<Journal>(URL);
   }
 
-  addJournalEntry(journalEntry: JournalEntry, plantId: string): Observable<JournalEntry> {
+  addJournalEntry(journalEntry: any, plantId: string): Observable<JournalEntry> {
 
     // const url = `${this.journalUrl}/${plantId}/journalEntries`;
     // return this.http.post<JournalEntry>(url, journalEntry, this.httpOptions).pipe(
@@ -77,12 +77,12 @@ export class PlantService {
     return this.http.delete<Plant>(URL);
   }
 
-  uploadImage(fd){
-    return this.http.post<File>(this.plantsUrl, fd, {
-      reportProgress: true,
-      observe: 'events'
-    });
+
+
+  uploadImage(url: string, fd: any): Observable<any>{
+    return this.http.post(url, fd);
   }
+
 
   /**
    * Handle Http operation that failed.
