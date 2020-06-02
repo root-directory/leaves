@@ -22,17 +22,4 @@
     <button class="add">Submit</button>
   </div>
 </form>
-<form [formGroup]="imageUpload" enctype="multipart/form-data">
-  <div class="content">
-    <div class="care-div">
-      <div class="flex-row header">
-        <h2>Type of Journal Event</h2>
-      </div>
-      <div class="flex-row">
-        <label>Img:</label>
-        <input class="input" type="file"  (change)="onFileSelected($event)" />
-      </div>
-    </div>
-    <button class="add" (click)="onUpload()">Submit</button>
-  </div>
-</form>
+ 

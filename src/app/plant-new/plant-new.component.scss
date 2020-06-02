@@ -185,9 +185,9 @@ button.delete {
 }
 
 .input {
-  border: 1px solid lightgrey;
+  border: 1px solid lightslategray;
   border-radius: 5px;
-  box-shadow: 2px 2px 2px lightgrey;
+  box-shadow: 2px 2px 2px lightslategray;
 }
 
 .allInputs {
@@ -197,10 +197,10 @@ button.delete {
 }
 
 .flex-row {
-  display: flex;
-  justify-content: space-between;
-  width: 200px;
-  margin-top: 10px;
+  // display: flex;
+  // justify-content: space-between;
+  padding-bottom: 5px;
+  width: 300px;
 }
 
 .add {
@@ -212,9 +212,15 @@ button.delete {
   color: #1976d2;
 }
 
+.care-div {
+  background-color: lightgrey;
+  // margin-bottom: 15px;
+  // padding: 10px;
+  border-radius: 5px;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
 
 * {
   font-family: 'Amatic SC', cursive;
 }
-
