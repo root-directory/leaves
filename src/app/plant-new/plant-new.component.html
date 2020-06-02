@@ -1,8 +1,7 @@
-<p>plant-new works!</p>
 <div class="content allInputs">
   <h2>Upload</h2>
-  <form [formGroup]="uploadForm">
-    <div class="flex-row">
+<form [formGroup]="uploadForm">
+  <div class="flex-row">
       <label>Plant Url:</label>
       <input type="file" (change)="onFileSelected($event)" />
     </div>
@@ -13,3 +12,4 @@
     <button type="submit" (click)="onUpload()">Upload</button>
   </form>
 </div>
+<!-- <app-plant-care></app-plant-care> -->

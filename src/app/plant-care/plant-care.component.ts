@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
 import { ActivatedRoute } from '@angular/router';
-
+import { TitleService } from '../title.service';
 
 @Component({
   selector: 'app-plant-care',
@@ -11,14 +11,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./plant-care.component.scss']
 })
 export class PlantCareComponent implements OnInit {
-
   plant: Plant;
+
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
     private location: Location,
   ) { }
-
 
   ngOnInit(): void {
     this.getPlant();
@@ -33,7 +32,6 @@ export class PlantCareComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
 }
 
 

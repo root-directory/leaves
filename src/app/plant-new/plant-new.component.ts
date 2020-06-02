@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
 import { HttpClient } from '@angular/common/http';
+import { TitleService } from '../title.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -10,17 +11,23 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./plant-new.component.scss'],
 })
 export class PlantNewComponent implements OnInit {
-  constructor(
-    private plantService: PlantService,
-    private formBuilder: FormBuilder
-  ) {}
+  plants: Plant[];
+
+  selectedFile: File = null;
 
   uploadForm: FormGroup;
 
-  selectedFile: File = null;
   name: string = null;
 
+  constructor(
+    private plantService: PlantService,
+    private http: HttpClient,
+    private titleService: TitleService,
+    private formBuilder: FormBuilder
+  ) {}
+
   ngOnInit() {
+    this.titleService.setTitle('New member of the forest');
     this.uploadForm = this.formBuilder.group({
       name: [''],
       image: [null],
@@ -28,9 +35,10 @@ export class PlantNewComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    this.selectedFile = (event.target.files[0] as File);
+    this.selectedFile = event.target.files[0] as File;
     console.log(this.selectedFile);
   }
+
   onUpload() {
     this.uploadForm.patchValue({
       image: this.selectedFile,

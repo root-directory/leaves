@@ -10,7 +10,6 @@ import { PlantNewComponent } from './plant-new/plant-new.component';
 import { CareFormComponent } from './care-form/care-form.component';
 import { JournalFormComponent } from './journal-form/journal-form.component';
 
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'forest', component: ForestComponent, pathMatch: 'full' },

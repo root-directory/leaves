@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TitleService } from '../title.service';
+import * as selectors from '../../Rx/plants.selector';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-care-form',
@@ -12,57 +15,69 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./care-form.component.scss']
 })
 
-
 export class CareFormComponent implements OnInit {
-
-
-  SERVER_URL = 'http://localhost:4200/upload';
+  ROOT_SERVER_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
   uploadForm: FormGroup;
 
   plant: Plant;
+
+  id: string;
+
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
+    private titleService: TitleService,
     private location: Location,
-    private formBuilder: FormBuilder,
+    public formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    ) { }
+    private store: Store<{ plants: Plant[] }>
+  ) { }
 
+  test = 'tesst';
+  ngOnInit(): void {
+    console.log(this.plant);
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getPlant();
+    this.uploadForm = this.formBuilder.group({
+      care: this.formBuilder.group({
+        watering: this.formBuilder.group({
+          frequency: [this.plant.care.watering.frequency],
+          last: [this.plant.care.watering.last],
+          notes: [this.plant.care.watering.notes]
+        }),
+        soil: this.formBuilder.group({
+          type: [this.plant.care.soil.type],
+          last: [this.plant.care.soil.last],
+          notes: [this.plant.care.soil.notes]
+        }),
+        sunlight: this.formBuilder.group({
+          duration: [this.plant.care.sunlight.duration],
+          direction: [this.plant.care.sunlight.direction],
+          notes: [this.plant.care.sunlight.notes]
+        })
+      })
+    });
 
-    ngOnInit(): void {
-      this.getPlant();
-      this.uploadForm = this.formBuilder.group({
-        profile: ['']
-      });
-    }
+    this.titleService.setTitle('Care Log');
+  }
 
-    getPlant(): void {
-      const id = +this.route.snapshot.paramMap.get('id');
-      this.plantService.getPlant(id)
-      .subscribe(plant => this.plant = plant);
-    }
+  getPlant(): void {
+    this.store.select(selectors.getItemById(this.id)).subscribe((plant) =>
+      this.plant = plant);
+  }
 
-    goBack(): void {
-      this.location.back();
-    }
+  goBack(): void {
+    this.location.back();
+  }
 
-    onFileSelect(event) {
-      if (event.target.files.length > 0) {
-        const file = event.target.files[0];
-        this.uploadForm.get('profile').setValue(file);
-      }
-    }
+  onSubmit() {
+    const URL = this.ROOT_SERVER_URL + '/' + this.id;
+    this.httpClient.patch<any>(URL, this.uploadForm.value).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
+  }
+}
 
-    onSubmit() {
-      const formData = new FormData();
-      formData.append('file', this.uploadForm.get('profile').value);
-
-      this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
-        (res) => console.log(res),
-        (err) => console.log(err)
-        );
-      }
-
-    }
 
 

@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
+import { TitleService } from '../title.service';
 import * as PlantActions from '../../Rx/plants.actions';
 import * as selectors from '../../Rx/plants.selector';
 
@@ -19,19 +20,20 @@ export class PlantOverviewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
+    private titleService: TitleService,
     private location: Location,
-    private store: Store<{plants: Plant[]}>
+    private store: Store<{ plants: Plant[] }>
   ) { }
 
   ngOnInit(): void {
     this.getPlant();
-    // this.plants=this.store.pipe(select('plant'))
-    // this.store.dispatch(new PlantActions.LoadPlants())
   }
 
   getPlant(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.store.select(selectors.getItemById(id)).subscribe((plant) => this.plant = plant);
+      const id = this.route.snapshot.paramMap.get('id');
+      this.store.select(selectors.getItemById(id)).subscribe((plant) => {
+        this.plant = plant,
+        this.titleService.setTitle(`${this.plant.plantName} the ${this.plant.plantType} plant`);
+    });
   }
-
 }

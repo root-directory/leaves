@@ -154,3 +154,17 @@ a:hover {
 
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
+
+* {
+  font-family: 'Amatic SC', cursive;
+}
+
+button {
+  margin-top: 15px;
+  background-color: #bdde77;
+  border-radius: 100px;
+  border: 1px solid lightgrey;
+  font-family: 'Amatic SC', cursive;
+  color: #1976d2;
+}
