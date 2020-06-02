@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./plant-new.component.scss'],
 })
 export class PlantNewComponent implements OnInit {
-  ROOT_URL:string = "https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants"
+  ROOT_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
 
   plants: Plant[];
   selectedFile: File = null;
@@ -64,7 +64,7 @@ export class PlantNewComponent implements OnInit {
 
 
       const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
-      this.onSubmit('url')
+      this.onSubmit('url');
       this.http.post(URL, fd).subscribe((res: {photo_url: string}) => {
         console.log(res);
         this.onSubmit(res.photo_url);
@@ -73,17 +73,17 @@ export class PlantNewComponent implements OnInit {
       this.onSubmit(null);
     }
   }
-//https://cassie-test-bucket123.s3-us-west-1.amazonaws.com/1591064998231753.jpg
-  onSubmit(imageURL:string|null){
+// https://cassie-test-bucket123.s3-us-west-1.amazonaws.com/1591064998231753.jpg
+  onSubmit(imageURL: string|null){
     this.newPlantForm.patchValue({
       imageURL,
     });
-    console.log(this.newPlantForm)
+    console.log(this.newPlantForm);
 
     this.plantService.addPlant(this.newPlantForm.value).subscribe(
       (res) => console.log('Plant entry success', res),
       (err) => console.log(err)
-    )
+    );
 
   }
 
