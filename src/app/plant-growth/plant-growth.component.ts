@@ -33,7 +33,7 @@ export class PlantGrowthComponent implements OnInit {
     this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries);
     // this.plantService.getJournal(this.id).subscribe(journal=>
     // {console.log(journal);return this.journalEntries = journal.journalEntries});
-    this.titleService.setTitle(`${this.plant.plantName}'s growth`);
+    this.titleService.setTitle('My growth');
   }
 
   getPlant(): void {

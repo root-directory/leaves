@@ -1,7 +1,6 @@
 <div *ngIf="journalEntries$" class="content" role="main">
-  <h2>Growth</h2>
   <a [routerLink]="['/forest',id,'plant-growth','new']">
-    <span>{{ "New Journal Entry" | uppercase }}</span>
+    <span>-{{ "New Journal Entry" | uppercase }}-</span>
   </a>
   <div class="card-container">
     <div *ngFor="let entry of journalEntries$|async" class="card">

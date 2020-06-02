@@ -8,8 +8,8 @@
 }
 
 img{
-  width:200px;
-  height:200px;
+  width:150px;
+  height:150px;
   object-fit: cover;
 }
 
@@ -65,7 +65,7 @@ svg.material-icons:not(:last-child) {
 .card {
   border-radius: 4px;
   border: 1px solid #eee;
-  background-color: #fafafa;
+  background-color: lightgray;
   height: 400px;
   width: 120px;
   margin: 0 8px 16px;
@@ -119,7 +119,9 @@ svg.material-icons:not(:last-child) {
 a,
 a:visited,
 a:hover {
-  color: #1976d2;
+  // color: #1976d2;
+  font-weight: bold;
+  font-size: 15px;
   text-decoration: none;
 }
 
@@ -171,8 +173,9 @@ a:hover {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12), 1px 1px 2px rgba(0, 0, 0, 0.24);
   transition: 1s ease-out;
+  
 }
 
 .circle-link:hover {
@@ -204,7 +207,7 @@ button {
   background-color: #eee;
   border: none;
   padding: 5px 10px;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
   cursor: hand;
   font-family: Arial;
@@ -215,7 +218,7 @@ button:hover {
 }
 
 button.delete {
-  background-color: #fafafa !important;
+  background-color: lightgray !important;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -247,4 +250,9 @@ button.delete {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+span {
+  font-size: 15px;
+  font-weight: bold;
 }

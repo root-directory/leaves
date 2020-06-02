@@ -30,7 +30,7 @@ p {
 .content {
   display: flex;
   margin: 82px auto 32px;
-  padding: 0 16px;
+  padding: 0 10px;
   max-width: 960px;
   flex-direction: column;
   align-items: center;
@@ -184,21 +184,20 @@ button.delete {
   justify-content: space-between;
 }
 
-.input {
-  border: 1px solid lightslategray;
-  border-radius: 5px;
-  box-shadow: 2px 2px 2px lightslategray;
+.input,
+#start,
+select {
+  border: 1px solid rgb(135, 135, 135);
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px rgb(121, 121, 121);
+  width: 230px;
 }
 
-.allInputs {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
 .flex-row {
-  // display: flex;
-  // justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   padding-bottom: 5px;
   width: 300px;
 }
@@ -209,18 +208,52 @@ button.delete {
   border-radius: 100px;
   border: 1px solid lightgrey;
   font-family: 'Amatic SC', cursive;
-  color: #1976d2;
+  font-weight: bold;
+  box-shadow: 2px 2px 2px lightgray;
 }
 
 .care-div {
   background-color: lightgrey;
-  // margin-bottom: 15px;
-  // padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
+  padding: 5px
+}
+
+.all {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+
 * {
   font-family: 'Amatic SC', cursive;
+  font-size: 15px;
+}
+
+label,
+input {
+  font-family: 'Oswald', sans-serif;
+}
+
+select {
+  background-color: white;
+  width: 232px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.file {
+  width: 232px;
+  background-color: white;
+}
+
+.upload {
+  width: 300px;
+  padding-bottom: 5px;
+}
+
+h2 {
+  text-decoration: underline;
+  font-size: 20px;
 }

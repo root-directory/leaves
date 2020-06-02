@@ -45,9 +45,9 @@ p {
 .card {
   border-radius: 4px;
   border: 1px solid #eee;
-  background-color: #fafafa;
+  background-color: lightgray;
   height: 400px;
-  width: 200px;
+  width: 270px;
   margin: 0 8px 16px;
   padding: 16px;
   display: flex;
@@ -166,5 +166,7 @@ button {
   border-radius: 100px;
   border: 1px solid lightgrey;
   font-family: 'Amatic SC', cursive;
-  color: #1976d2;
+  font-weight: bold;
+  font-size: 15px;
+  box-shadow: 2px 2px 2px lightgray;
 }

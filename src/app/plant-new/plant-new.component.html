@@ -1,32 +1,34 @@
 <form [formGroup]="newPlantForm">
   <div class="content">
-    <h2>New Plant</h2>
-
-    <div class="care-div">
+    <div class="care-div upload all">
       <div class="flex-row header">
-        <h2>Plant</h2>
+        <h2>Image Upload</h2>
+        <label for="plantName">Plant Name:</label>
       </div>
-      <label for="plantName">Plant Name:</label>
-      <input formControlName="plantName" required minlength="4"/>
-          <div class="flex-row header">
-            <h2>Image Upload</h2>
-          </div>
-          <div class="flex-row">
-            <input
-              class="input"
-              type="file"
-              (change)="onFileSelected($event)"
-            />
+      <input class="input" formControlName="plantName" required minlength="4" />
+      <div class="flex-row header"></div>
+      <div class="flex-row">
+        <input
+          class="input file"
+          type="file"
+          (change)="onFileSelected($event)"
+        />
       </div>
     </div>
-    <div formGroupName="care" class="care-div">
+    <h2>Care log</h2>
+    <div formGroupName="care" class="care-div all">
       <div class="flex-row header">
         <h2>Watering</h2>
       </div>
       <div formGroupName="watering" class="flex-row">
+        <label for="water">Frequency:</label>
         <div>
-          <label for="water">Frequency:</label>
-          <select formControlName="frequency" name="water" id="water">
+          <select
+            class="input"
+            formControlName="frequency"
+            name="water"
+            id="water"
+          >
             <option value="1">Once a week</option>
             <option value="2">Twice a week</option>
             <option value="3">Once a month</option>
@@ -35,6 +37,7 @@
         <div class="flex-row">
           <label for="start">Last:</label>
           <input
+            class="input"
             formControlName="last"
             type="date"
             id="start"
@@ -55,9 +58,9 @@
           <h2>Soil</h2>
         </div>
         <div formGroupName="soil" class="flex-row">
+          <label for="soil">Type:</label>
           <div>
-            <label for="soil">Type:</label>
-            <select formControlName="type" name="soil" id="soil">
+            <select class="input" formControlName="type" name="soil" id="soil">
               <option value="1">Once a week</option>
               <option value="2">Twice a week</option>
               <option value="3">Once a month</option>
@@ -66,6 +69,7 @@
           <div class="flex-row">
             <label for="start">Last:</label>
             <input
+              class="input"
               formControlName="last"
               type="date"
               id="start"
@@ -87,17 +91,27 @@
           <h2>Sunlight</h2>
         </div>
         <div formGroupName="sunlight" class="flex-row">
+          <label for="sunlight">Duration:</label>
           <div>
-            <label for="sunlight">Duration:</label>
-            <select formControlName="duration" name="sunlight" id="sunlight">
+            <select
+              class="input"
+              formControlName="duration"
+              name="sunlight"
+              id="sunlight"
+            >
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
           </div>
+          <label for="sunlight">Direction:</label>
           <div class="flex-row">
-            <label for="sunlight">Direction:</label>
-            <select formControlName="direction" name="sunlight" id="sunlight">
+            <select
+              class="input"
+              formControlName="direction"
+              name="sunlight"
+              id="sunlight"
+            >
               <option value="West">West</option>
               <option value="South">South</option>
               <option value="North">North</option>
