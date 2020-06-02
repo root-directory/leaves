@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PlantService } from 'src/services/plant.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TitleService } from '../title.service';
 
 @Component({
   selector: 'app-journal-form',
@@ -16,6 +17,7 @@ export class JournalFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     public service: PlantService,
     private router: Router,
+    private titleService: TitleService,
     private activatedRoute: ActivatedRoute
   ) {}
   id: string;
@@ -25,7 +27,11 @@ export class JournalFormComponent implements OnInit {
   selectedFile = null;
 
   ngOnInit(): void {
+
+    this.titleService.setTitle('My journal');
+
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
+
     this.uploadForm = this.formBuilder.group({
       eventType: [''],
       info: this.formBuilder.group({

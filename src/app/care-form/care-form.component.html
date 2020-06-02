@@ -1,13 +1,12 @@
 <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
   <div class="content">
-    <h2>Care</h2>
     <div formGroupName="care" class="care-div">
       <div class="flex-row header">
         <h2>Watering</h2>
       </div>
       <div formGroupName="watering" class="flex-row">
+        <label for="water">Frequency:</label>
         <div>
-          <label for="water">Frequency:</label>
           <select formControlName="frequency" name="water" id="water">
             <option value="1">Once a week</option>
             <option value="2">Twice a week</option>
@@ -31,8 +30,8 @@
         </div>
         <div formGroupName="soil" class="flex-row">
 
+          <label for="soil">Type:</label>
           <div>
-            <label for="soil">Type:</label>
             <select formControlName="type" name="soil" id="soil">
               <option value="1">Once a week</option>
               <option value="2">Twice a week</option>
@@ -56,16 +55,16 @@
           <h2>Sunlight</h2>
         </div>
         <div formGroupName="sunlight" class="flex-row">
+          <label for="sunlight">Duration:</label>
           <div>
-            <label for="sunlight">Duration:</label>
             <select formControlName="duration" name="sunlight" id="sunlight">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
           </div>
+          <label for="sunlight">Direction:</label>
           <div class="flex-row">
-            <label for="sunlight">Direction:</label>
             <select formControlName="direction" name="sunlight" id="sunlight">
               <option value="West">West</option>
               <option value="South">South</option>

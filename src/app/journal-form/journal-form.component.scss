@@ -30,7 +30,7 @@ p {
 .content {
   display: flex;
   margin: 82px auto 32px;
-  padding: 0 16px;
+  padding: 0 10px;
   max-width: 960px;
   flex-direction: column;
   align-items: center;
@@ -109,6 +109,36 @@ svg.material-icons:not(:last-child) {
   margin-left: 60px;
 }
 
+a,
+a:visited,
+a:hover {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #125699;
+}
+
+.circle-link {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  margin: 8px;
+  background-color: white;
+  border: 1px solid #eeeeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: 1s ease-out;
+}
+
+.circle-link:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
@@ -155,33 +185,58 @@ button.delete {
 }
 
 .input {
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 3px 3px 3px;
+  border: 1px solid rgb(135, 135, 135);
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px rgb(121, 121, 121);
+  width: 230px;
 }
 
-.allInputs {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
 .flex-row {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  padding-bottom: 5px;
   width: 300px;
-  margin-top: 10px;
-  margin-bottom: 3px;
 }
 
 .add {
   margin-top: 15px;
+  background-color: #bdde77;
+  border-radius: 100px;
+  border: 1px solid lightgrey;
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  box-shadow: 2px 2px 2px lightgray;
 }
 
 .care-div {
   background-color: lightgrey;
-  margin-bottom: 15px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+
+* {
+  font-family: 'Amatic SC', cursive;
+  font-size: 15px;
+}
+
+label,
+input {
+  font-family: 'Oswald', sans-serif;
+  width: 150px;
+}
+
+select {
+  background-color: white;
+  font-family: 'Oswald', sans-serif;
 }
 
 
+h2 {
+  font-size: 20px;
+}

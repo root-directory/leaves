@@ -1,5 +1,5 @@
 <div class="content allInputs">
-  <h2>Update</h2>
+<div class="div">
   <div class="flex-row">
     <label>Plant name:</label>
     <input class="input" #plantName />
@@ -8,6 +8,7 @@
     <label>Plant imgUrl:</label>
     <input class="input" #plantImgUrl />
   </div>
+</div>
   <button class="add" (click)="add(plantName.value, plantImgUrl.value); plantName.value=''; plantImgUrl.value=''">
     Update Member
   </button>

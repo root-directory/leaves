@@ -184,12 +184,6 @@ button.delete {
   justify-content: space-between;
 }
 
-.input {
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  box-shadow: 2px 2px 2px lightgrey;
-}
-
 .allInputs {
   display: flex;
   flex-direction: column;
@@ -204,16 +198,46 @@ button.delete {
 }
 
 .add {
-  margin-top: 10px;
+  font-size: 15px;
+  margin-top: 20px;
   border-radius: 100px;
   border: 1px solid lightgray;
-  color: #1976d2;
+  font-weight: bold;
   background-color: #bdde77;
   font-family: 'Amatic SC', cursive;
+  box-shadow: 2px 2px 2px lightgray;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
 
 * {
   font-family: 'Amatic SC', cursive;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+
+label,
+input {
+  font-family: 'Oswald', sans-serif;
+}
+
+input {
+  width: 100px;
+  border: 1px solid rgb(135, 135, 135);
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px rgb(121, 121, 121);
+}
+
+label {
+  font-size: 15px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.div {
+  border-radius: 3px;
+  background-color: lightgray;
+  padding: 10px;
 }
