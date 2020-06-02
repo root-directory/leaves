@@ -32,6 +32,7 @@ export class PlantOverviewComponent implements OnInit {
   getPlant(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.store.select(selectors.getItemById(id)).subscribe((plant) => this.plant = plant);
+    console.log('test to check I can access plant id:',this.plant.id)
   }
 
 }
