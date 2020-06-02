@@ -16,11 +16,10 @@ import { Store, select } from '@ngrx/store';
 })
 
 export class CareFormComponent implements OnInit {
+
   ROOT_SERVER_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
   uploadForm: FormGroup;
-
   plant: Plant;
-
   id: string;
 
   constructor(
@@ -33,7 +32,6 @@ export class CareFormComponent implements OnInit {
     private store: Store<{ plants: Plant[] }>
   ) { }
 
-  test = 'tesst';
   ngOnInit(): void {
     console.log(this.plant);
     this.id = this.route.snapshot.paramMap.get('id');
