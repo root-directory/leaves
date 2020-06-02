@@ -19,7 +19,6 @@
         <input class="input" formControlName="notes" />
       </div>
     </div>
-    <button class="add">Submit</button>
   </div>
 </form>
 <form [formGroup]="imageUpload" enctype="multipart/form-data">
@@ -30,7 +29,7 @@
       </div>
       <div class="flex-row">
         <label>Img:</label>
-        <input class="input" type="file"  (change)="onFileSelected($event)" />
+        <input class="input" type="file" id="file" (change)="onFileSelected($event)" />
       </div>
     </div>
     <button class="add" (click)="onUpload()">Submit</button>
