@@ -88,7 +88,7 @@ export class InMemoryDataService implements InMemoryDbService {
   // the method below returns the initial number (11).
   // if the heroes array is not empty, the method below returns the highest
   // hero id + 1.
-  genId<T extends Plant | JournalEntry>(myTable: T[]): number {
-    return myTable.length > 0 ? Math.max(...myTable.map((t) => t.id)) + 1 : 11;
+  genId<T extends Plant | JournalEntry>(myTable: T[]): string {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   }
 }
