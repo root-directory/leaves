@@ -79,8 +79,8 @@ export class PlantService {
 
 
 
-  uploadImage(url:string,fd:any):Observable<any>{
-    return this.http.post(url, fd)
+  uploadImage(url: string, fd: any): Observable<any>{
+    return this.http.post(url, fd);
   }
 
 

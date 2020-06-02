@@ -6,12 +6,12 @@ import { PlantService } from 'src/services/plant.service';
 import { PlantServiceMock } from 'src/services/plant.service.mock';
 import { Store } from '@ngrx/store';
 import { TestStore } from 'src/Rx/testStore';
-import {PlantsState} from '../../Rx/plants.reducer'
+import {PlantsState} from '../../Rx/plants.reducer';
 
 describe('PlantGrowthComponent', () => {
   let component: PlantGrowthComponent;
   let fixture: ComponentFixture<PlantGrowthComponent>;
-  let store: TestStore<PlantsState>
+  let store: TestStore<PlantsState>;
 
   beforeEach(async(() => {
 
@@ -26,14 +26,14 @@ describe('PlantGrowthComponent', () => {
     ]
     }).compileComponents();
 
-   
+
   }));
   beforeEach(inject([Store], (testStore: TestStore<PlantsState>) => {
     fixture = TestBed.createComponent(PlantGrowthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     store = testStore;
-                           // save store reference for use in tests                                  
+                           // save store reference for use in tests
     store.setState({
         entities: [
           {
@@ -66,8 +66,8 @@ describe('PlantGrowthComponent', () => {
         journal: []
       },
    ); // set default state
-  
-  
+
+
   }));
 
   xit('should create', () => {

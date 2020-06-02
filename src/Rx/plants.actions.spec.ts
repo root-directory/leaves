@@ -27,24 +27,24 @@ describe('loadPlants', () => {
       plantType: 'Common Fern',
       userId: '5ed2a8ad338bcf64692b07ac'
     }
-  ]
-  const mockPlant:Plant = mockPlants[0]
+  ];
+  const mockPlant: Plant = mockPlants[0];
   it('load plants action', () => {
     expect(fromPlant.loadPlants().type).toBe('[Plants] Load Plants');
   });
   it('load plants success', () => {
-    expect(fromPlant.loadPlantsSuccess({payload:{plants:mockPlants}}).type).toBe('[Plants] Load Plants Success');
+    expect(fromPlant.loadPlantsSuccess({payload: {plants: mockPlants}}).type).toBe('[Plants] Load Plants Success');
   });
   it('load plants fail', () => {
-    expect(fromPlant.loadPlantsFail({payload:mockPlants}).type).toBe('[Plants] Load Plants Fail');
+    expect(fromPlant.loadPlantsFail({payload: mockPlants}).type).toBe('[Plants] Load Plants Fail');
   });
   it('delete plants action', () => {
-    expect(fromPlant.deletePlant({plant:mockPlant}).type).toBe('[Plants] Delete Plants');
+    expect(fromPlant.deletePlant({plant: mockPlant}).type).toBe('[Plants] Delete Plants');
   });
   it('delete plants success', () => {
-    expect(fromPlant.deletePlantSuccess({plant:mockPlant}).type).toBe('[Plants] Delete Plants Success');
+    expect(fromPlant.deletePlantSuccess({plant: mockPlant}).type).toBe('[Plants] Delete Plants Success');
   });
   it('delete plants fail', () => {
-    expect(fromPlant.deletePlantFail({error:'this'}).type).toBe('[Plants] Delete Plants Fail');
+    expect(fromPlant.deletePlantFail({error: 'this'}).type).toBe('[Plants] Delete Plants Fail');
   });
 });

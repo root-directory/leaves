@@ -10,7 +10,7 @@ export class PlantServiceMock {
       {
         care: {
           notes:
-            "I'm upset that you don't have pH so... I guess I'll write it here.",
+            'I\'m upset that you don\'t have pH so... I guess I\'ll write it here.',
           soil: {
             last: '2020-05-28T20:22:51.215Z',
             notes: 'Sand is best for this type',

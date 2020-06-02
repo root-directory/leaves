@@ -7,7 +7,7 @@ export interface Plant {
   plantNotes?: string;
   imageURL?: string;
   plantName?: string;
-  userId?:string;
+  userId?: string;
   care?: {soil: Soil, watering: Watering, sunlight: Sunlight};
 }
 
