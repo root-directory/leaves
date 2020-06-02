@@ -9,7 +9,4 @@ export class AppComponent {
   userName = 'Cassie';
 
   constructor() {}
-
-  ngOnInit() {
-  }
 }

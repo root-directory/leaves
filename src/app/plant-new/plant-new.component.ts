@@ -19,9 +19,12 @@ export class PlantNewComponent implements OnInit {
 
   name: string = null;
 
-  constructor(private plantService: PlantService, private http: HttpClient, private titleService: TitleService, private formBuilder: FormBuilder) { }
-
-
+  constructor(
+    private plantService: PlantService,
+    private http: HttpClient,
+    private titleService: TitleService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.titleService.setTitle('New member of the forest');
@@ -32,7 +35,7 @@ export class PlantNewComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    this.selectedFile = (event.target.files[0] as File);
+    this.selectedFile = event.target.files[0] as File;
     console.log(this.selectedFile);
   }
 
