@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
+import { TitleService } from '../title.service';
 
 @Component({
   selector: 'app-plant-upload',
@@ -9,16 +10,18 @@ import { Plant } from '../types/plant';
 })
 export class PlantUploadComponent implements OnInit {
   plants: Plant[];
-  constructor(private plantService: PlantService) {}
+
+  constructor(private plantService: PlantService, private titleService: TitleService) { }
 
   ngOnInit() {
     this.getPlants();
+
+    this.titleService.setTitle('New photo of me');
   }
 
   getPlants(): void {
     this.plantService.getPlants().subscribe((plants) => (this.plants = plants));
   }
-
 
   add(name: string, imgUrl: string): void {
     name = name.trim();
@@ -33,6 +36,4 @@ export class PlantUploadComponent implements OnInit {
       this.plants.push(plant);
     });
   }
-
-
 }

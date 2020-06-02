@@ -25,6 +25,7 @@ import { reducer } from '../Rx/plants.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PlantEffects } from '../Rx/plants.effects';
 import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
     PlantUploadComponent,
     PlantNewComponent,
     CareFormComponent,
+    HeaderComponent,
     JournalFormComponent,
   ],
   imports: [

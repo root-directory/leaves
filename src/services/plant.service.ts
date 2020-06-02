@@ -63,23 +63,18 @@ export class PlantService {
 
   /** POST: add a new plant to the server */
   addPlant(plant: Plant): Observable<Plant> {
-    console.log(plant);
+    const URL = this.ROOT_URL + this.PLANTS_URL;
+
     return this.http
-      .post<Plant>(this.plantsUrl, plant, this.httpOptions)
-      .pipe(catchError(this.handleError<Plant>('addPlant')));
+      .post<Plant>(URL, plant);
   }
 
   /** DELETE: delete the plant from the server */
-  deletePlant(plant: Plant): Observable<{}> {
-    const id = plant.id;
-    const url = `${this.plantsUrl}/${id}`;
+  deletePlant({plant}: any): Observable<{}> {
+    console.log('deletePlant API', plant.id);
+    const URL =  this.ROOT_URL + this.PLANTS_URL + '/' + plant.id;
 
-    console.log('deletePlant API', plant);
-
-    // return this.http.delete<Plant>(url, this.httpOptions).pipe(
-    //   catchError(this.handleError<Plant>('deletePlant'))
-    // );
-    return this.http.delete<Plant>(url, this.httpOptions);
+    return this.http.delete<Plant>(URL);
   }
 
 

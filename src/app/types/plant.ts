@@ -28,3 +28,21 @@ interface Sunlight {
   direction: string;
   notes: string;
 }
+
+interface Soil {
+  type: string;
+  last: string;
+  notes: string;
+}
+
+interface Watering {
+  frequency: string;
+  last: string;
+  notes: string;
+}
+
+interface Sunlight {
+  duration: string;
+  direction: string;
+  notes: string;
+}

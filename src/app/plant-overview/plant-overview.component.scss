@@ -131,6 +131,11 @@ a:hover {
   transform: translateY(-0.25rem);
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
+
+* {
+  font-family: 'Amatic SC', cursive;
+}
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
@@ -150,9 +155,9 @@ a:hover {
   }
 
   .icons {
-    width: 30px;
-    height: 30px;
-    border: 1px black solid;
+    width: 40px;
+    height: 40px;
+    border: 1px lightgray solid;
     border-radius: 100px;
     display: flex;
     flex-direction: column;
@@ -163,9 +168,12 @@ a:hover {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    width: 160px;
+    width: 167px;
     justify-content: space-evenly;
   }
+}
 
+.plant {
+  margin-bottom: 10px;
 }
 

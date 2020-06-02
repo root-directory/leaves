@@ -8,6 +8,7 @@ import { PlantService } from '../../services/plant.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
   constructor(private plantService: PlantService) { }
   userName = 'Cassie';
