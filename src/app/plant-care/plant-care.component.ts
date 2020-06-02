@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
 import { ActivatedRoute } from '@angular/router';
-import { TitleService } from '../title.service'
+import { TitleService } from '../title.service';
 
 @Component({
   selector: 'app-plant-care',

@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as PlantActions from '../../Rx/plants.actions';
 import * as fromRoot from '../../Rx/rx.index';
-import { TitleService } from '../title.service'
+import { TitleService } from '../title.service';
 
 @Component({
   selector: 'app-forest',
@@ -23,7 +23,7 @@ export class ForestComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch({ type: '[Plants] Load Plants' });
     // this.getPlants();
-    this.titleService.setTitle('My Forest')
+    this.titleService.setTitle('My Forest');
   }
 
   delete(plant: Plant): void {

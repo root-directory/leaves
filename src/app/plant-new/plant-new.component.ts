@@ -14,15 +14,15 @@ export class PlantNewComponent implements OnInit {
   plants: Plant[];
 
   selectedFile: File = null;
-  
+
   uploadForm: FormGroup;
 
   name: string = null;
 
   constructor(private plantService: PlantService, private http: HttpClient, private titleService: TitleService, private formBuilder: FormBuilder) { }
-  
-  
-  
+
+
+
   ngOnInit() {
     this.titleService.setTitle('New member of the forest');
     this.uploadForm = this.formBuilder.group({

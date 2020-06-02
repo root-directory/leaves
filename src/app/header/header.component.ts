@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.title.subscribe((title) => {
-      this.title = title
-    })
-  };
+      this.title = title;
+    });
+  }
 }

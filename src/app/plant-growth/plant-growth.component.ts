@@ -33,13 +33,13 @@ export class PlantGrowthComponent implements OnInit {
     this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries);
     // this.plantService.getJournal(this.id).subscribe(journal=>
     // {console.log(journal);return this.journalEntries = journal.journalEntries});
-    this.titleService.setTitle(`${this.plant.plantName}'s growth`)
+    this.titleService.setTitle(`${this.plant.plantName}'s growth`);
   }
 
   getPlant(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.plantService.getPlant(id)
-      .subscribe(plant => this.plant = plant)
+      .subscribe(plant => this.plant = plant);
   }
 
   goBack(): void {

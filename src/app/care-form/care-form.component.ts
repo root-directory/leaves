@@ -5,7 +5,7 @@ import { Plant } from '../types/plant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TitleService } from '../title.service'
+import { TitleService } from '../title.service';
 import * as selectors from '../../Rx/plants.selector';
 import { Store, select } from '@ngrx/store';
 
@@ -35,7 +35,7 @@ export class CareFormComponent implements OnInit {
 
   test = 'tesst';
   ngOnInit(): void {
-    console.log(this.plant)
+    console.log(this.plant);
     this.id = this.route.snapshot.paramMap.get('id');
     this.getPlant();
     this.uploadForm = this.formBuilder.group({
@@ -56,14 +56,14 @@ export class CareFormComponent implements OnInit {
           notes: [this.plant.care.sunlight.notes]
         })
       })
-    })
+    });
 
-    this.titleService.setTitle('Care Log')
+    this.titleService.setTitle('Care Log');
   }
 
   getPlant(): void {
     this.store.select(selectors.getItemById(this.id)).subscribe((plant) =>
-      this.plant = plant)
+      this.plant = plant);
   }
 
   goBack(): void {

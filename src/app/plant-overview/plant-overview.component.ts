@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
-import { TitleService } from '../title.service'
+import { TitleService } from '../title.service';
 import * as PlantActions from '../../Rx/plants.actions';
 import * as selectors from '../../Rx/plants.selector';
 
@@ -33,7 +33,7 @@ export class PlantOverviewComponent implements OnInit {
       const id = this.route.snapshot.paramMap.get('id');
       this.store.select(selectors.getItemById(id)).subscribe((plant) => {
         this.plant = plant,
-        this.titleService.setTitle(`${this.plant.plantName} the ${this.plant.plantType} plant`)
+        this.titleService.setTitle(`${this.plant.plantName} the ${this.plant.plantType} plant`);
     });
   }
 }
