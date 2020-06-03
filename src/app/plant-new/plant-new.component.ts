@@ -4,6 +4,7 @@ import { Plant } from '../types/plant';
 import { HttpClient } from '@angular/common/http';
 import { TitleService } from '../title.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-plant-new',
@@ -29,8 +30,9 @@ export class PlantNewComponent implements OnInit {
     this.titleService.setTitle('New member of the forest');
 
     this.newPlantForm = this.formBuilder.group({
-      plantName: [''],
+      plantName: ['', [Validators.required, Validators.minLength(4)]],
       imageURL: [null],
+      plantType:[''],
       care: this.formBuilder.group({
         watering: this.formBuilder.group({
           frequency: [''],
@@ -61,7 +63,7 @@ export class PlantNewComponent implements OnInit {
     if (this.selectedFile) {
       const fd = new FormData();
       fd.append('file', this.selectedFile, this.selectedFile.name);
-
+      console.log(fd)
 
       const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
       this.onSubmit('url');
