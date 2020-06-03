@@ -4,6 +4,8 @@ import { Plant } from '../types/plant';
 import { HttpClient } from '@angular/common/http';
 import { TitleService } from '../title.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {  Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-plant-new',
@@ -22,7 +24,9 @@ export class PlantNewComponent implements OnInit {
     private plantService: PlantService,
     private http: HttpClient,
     private titleService: TitleService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private location: Location,
   ) {}
 
   ngOnInit() {
@@ -52,6 +56,10 @@ export class PlantNewComponent implements OnInit {
     });
   }
 
+  goBack(): void {
+    this.location.back();
+  }
+
   onFileSelected(event) {
     this.selectedFile = event.target.files[0] as File;
     console.log(this.selectedFile);
@@ -65,7 +73,6 @@ export class PlantNewComponent implements OnInit {
 
       const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
       this.http.post(URL, fd).subscribe((res: {photo_url: string}) => {
-        console.log(res);
         this.onSubmit(res.photo_url);
       });
     }else {
@@ -79,7 +86,9 @@ export class PlantNewComponent implements OnInit {
     });
 
     this.plantService.addPlant(this.newPlantForm.value).subscribe(
-      (res) => console.log('Plant entry success', res),
+      (res) => {console.log('Plant entry success', res);
+                this.router.navigate(['/forest']);
+    },
       (err) => console.log(err)
     );
   }
