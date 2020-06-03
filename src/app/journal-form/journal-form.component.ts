@@ -34,15 +34,15 @@ export class JournalFormComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.uploadForm = this.formBuilder.group({
-      eventType: ['',[Validators.required]],
-      image:[null,[Validators.required]],
+      eventType: ['', [Validators.required]],
+      image: [null, [Validators.required]],
       info: this.formBuilder.group({
         notes: [''],
         imgUrl: [''],
         file: [null],
       }),
     });
-  
+
   }
 
   goBack(): void {
