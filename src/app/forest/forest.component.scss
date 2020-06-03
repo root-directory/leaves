@@ -66,7 +66,7 @@ svg.material-icons:not(:last-child) {
   border-radius: 4px;
   border: 1px solid #eee;
   background-color: lightgray;
-  height: 400px;
+  height: 150px;
   width: 120px;
   margin: 0 8px 16px;
   padding: 16px;
@@ -77,6 +77,7 @@ svg.material-icons:not(:last-child) {
   transition: all 0.2s ease-in-out;
   line-height: 24px;
   border-radius: 5px;
+  margin-top: 15px
 }
 
 
@@ -192,7 +193,7 @@ a:hover {
   }
 
   .card:not(.highlight-card) {
-    height: 200px;
+    height: 150px;
     margin: 8px 0;
   }
 
@@ -206,7 +207,6 @@ a:hover {
 button {
   background-color: #eee;
   border: none;
-  padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
   cursor: hand;
@@ -220,20 +220,23 @@ button:hover {
 button.delete {
   background-color: lightgray !important;
   color: white;
-  display: flex;
-  justify-content: space-between;
-  margin-left: 25px;
-  margin-right: 25px;
+  margin-left: 62px;
+  padding: 0px;
 }
 
 .button {
   display: flex;
   justify-content: space-between;
+  text-align: center;
+}
+
+.name {
+  padding-right: 5px;
 }
 
 .icons {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
