@@ -80,8 +80,8 @@ export class CareFormComponent implements OnInit {
   onSubmit() {
     this.service.postCareForm(this.id, this.uploadForm.value).subscribe(
       (res) => {
-        console.log(res)
-        this.store.dispatch(updateCare({plant:res}))
+        console.log(res);
+        this.store.dispatch(updateCare({plant: res}));
       },
       (err) => console.log(err)
     );

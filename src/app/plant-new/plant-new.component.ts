@@ -31,8 +31,9 @@ export class PlantNewComponent implements OnInit {
 
     this.newPlantForm = this.formBuilder.group({
       plantName: ['', [Validators.required, Validators.minLength(4)]],
-      imageURL: [null],
-      plantType:[''],
+      plantType: [''],
+      imageURL: [''],
+      image: [null, [Validators.required]],
       care: this.formBuilder.group({
         watering: this.formBuilder.group({
           frequency: [''],
@@ -63,10 +64,9 @@ export class PlantNewComponent implements OnInit {
     if (this.selectedFile) {
       const fd = new FormData();
       fd.append('file', this.selectedFile, this.selectedFile.name);
-      console.log(fd)
 
       const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
-      this.onSubmit('url');
+
       this.http.post(URL, fd).subscribe((res: {photo_url: string}) => {
         console.log(res);
         this.onSubmit(res.photo_url);
@@ -75,12 +75,12 @@ export class PlantNewComponent implements OnInit {
       this.onSubmit(null);
     }
   }
-// https://cassie-test-bucket123.s3-us-west-1.amazonaws.com/1591064998231753.jpg
+
   onSubmit(imageURL: string|null){
     this.newPlantForm.patchValue({
+      image: null,
       imageURL,
     });
-    console.log(this.newPlantForm);
 
     this.plantService.addPlant(this.newPlantForm.value).subscribe(
       (res) => console.log('Plant entry success', res),
@@ -88,7 +88,5 @@ export class PlantNewComponent implements OnInit {
     );
 
   }
-
-
 
 }

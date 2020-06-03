@@ -51,16 +51,16 @@ initialState,
     };
   }),
   on(PlantActions.updateCare, (state: PlantsState, {plant}) => {
-    
-    console.log('plant:',plant)
+
+    console.log('plant:', plant);
     const id = plant.id;
     const entities = state.entities.filter(entity => entity.id !== id);
-    console.log('entities:',entities)
+    console.log('entities:', entities);
     return {
       ...state,
       loaded: true,
       loading: false,
-      entities:[...entities,plant]
+      entities: [...entities, plant]
     };
   })
 );

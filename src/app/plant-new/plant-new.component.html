@@ -2,16 +2,25 @@
   <div class="content">
     <div class="care-div upload all">
       <div class="flex-row header">
-        <h2>Image Upload</h2>
+        <h2>General Information</h2>
         <label for="plantName">Plant Name:</label>
       </div>
       <input class="input" formControlName="plantName" required minlength="4" />
-      <div class="flex-row header"></div>
+      <div class="flex-row header">
+        <label for="plantName">Plant Type:</label>
+      </div>
+      <input class="input" formControlName="plantType" />
+
       <div class="flex-row">
+            <div class="flex-row header">
+              <label for="plantName">Plant Image:</label>
+            </div>
         <input
           class="input file"
           type="file"
           (change)="onFileSelected($event)"
+          required
+          formControlName="image"
         />
       </div>
     </div>
@@ -124,6 +133,9 @@
         </div>
       </div>
     </div>
-    <button class="add" (click)="upload()">Submit</button>
+    <div *ngIf="newPlantForm.valid">
+
+      <button class="add" (click)="upload()">Submit</button>
+    </div>
   </div>
 </form>
