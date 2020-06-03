@@ -18,6 +18,7 @@ export class PlantGrowthComponent implements OnInit {
   plant: Plant;
   journalEntries$: Observable<JournalEntry[]>;
   id: string;
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -31,8 +32,6 @@ export class PlantGrowthComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.store.dispatch({type: '[Journal] Load Journal', payload: this.id});
     this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries);
-    // this.plantService.getJournal(this.id).subscribe(journal=>
-    // {console.log(journal);return this.journalEntries = journal.journalEntries});
     this.titleService.setTitle('My growth');
   }
 
