@@ -20,7 +20,8 @@
         </div>
         <div class="flex-row">
           <label>Notes:</label>
-          <input formControlName="notes" class="input" #plantNotes />
+          <input formControlName="notes" class="input" #plantNotes 
+         />
         </div>
       </div>
 
@@ -78,6 +79,9 @@
         </div>
       </div>
     </div>
-    <button class="add">Submit</button>
+    <div *ngIf= "changed">
+      <button class="add">Submit Changes</button>
+
+    </div>
   </div>
 </form>

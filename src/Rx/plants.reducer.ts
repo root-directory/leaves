@@ -14,7 +14,6 @@ export const reducer = createReducer(
 initialState,
   on(PlantActions.loadPlants, (state) => state),
   on(PlantActions.loadPlantsSuccess, (state: PlantsState, { payload}) => {
-    console.log('LoadPlantReducer:', payload);
     const entities = payload.plants;
     return {
       ...state,
@@ -34,7 +33,6 @@ initialState,
   on(PlantActions.deletePlant, (state: PlantsState, {plant}) => {
     const id = plant.id;
     const entities = state.entities.filter(entity => entity.id !== id);
-    console.log('action plant', plant);
     return {
       ...state,
       loaded: true,
@@ -43,15 +41,26 @@ initialState,
     };
   }),
   on(PlantActions.deletePlantSuccess, (state: PlantsState, {plant}) => {
-    console.log('reducer', plant);
     const id = plant.id;
     const entities = state.entities.filter(entity => entity.id !== id);
-    console.log('action plant', plant);
     return {
       ...state,
       loaded: true,
       loading: false,
       entities
+    };
+  }),
+  on(PlantActions.updateCare, (state: PlantsState, {plant}) => {
+    
+    console.log('plant:',plant)
+    const id = plant.id;
+    const entities = state.entities.filter(entity => entity.id !== id);
+    console.log('entities:',entities)
+    return {
+      ...state,
+      loaded: true,
+      loading: false,
+      entities:[...entities,plant]
     };
   })
 );
