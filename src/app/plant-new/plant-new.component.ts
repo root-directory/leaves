@@ -4,7 +4,8 @@ import { Plant } from '../types/plant';
 import { HttpClient } from '@angular/common/http';
 import { TitleService } from '../title.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import {  Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-plant-new',
@@ -25,7 +26,7 @@ export class PlantNewComponent implements OnInit {
     private titleService: TitleService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private location: Location,
   ) {}
 
   ngOnInit() {
@@ -53,6 +54,10 @@ export class PlantNewComponent implements OnInit {
       })
 
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   onFileSelected(event) {
