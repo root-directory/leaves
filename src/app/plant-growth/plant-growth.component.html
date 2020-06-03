@@ -1,11 +1,16 @@
 <div *ngIf="journalEntries$" class="content" role="main">
-  <a [routerLink]="['/forest',id,'plant-growth','new']">
+  <div *ngIf="alert">
+    <div class = "{{color}} alert">
+      {{alert}}
+    </div>
+  </div>
+  <a [routerLink]="['/forest', id, 'plant-growth', 'new']">
     <span>-{{ "New Journal Entry" | uppercase }}-</span>
   </a>
   <div class="card-container">
-    <div *ngFor="let entry of journalEntries$|async" class="card">
-      <div *ngIf="entry.info.notes">
-        {{ entry.info.notes }}
+    <div *ngFor="let entry of journalEntries$ | async" class="card {{entry.entryType}}">
+      <div *ngIf="entry.entryType">
+        {{ entry.entryType }}
       </div>
       <div class="entry-type">
         <div class="image-container">
@@ -20,6 +25,9 @@
         <ng-template #elseBlock>
           <img src="https://cdn.hswstatic.com/gif/water-life-crop.jpg" />
         </ng-template>
+      </div>
+      <div *ngIf="entry.info.notes">
+        {{ entry.info.notes }}
       </div>
     </div>
   </div>
