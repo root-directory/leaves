@@ -21,7 +21,7 @@ export class CareFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private plantService: PlantService,
+    public service: PlantService,
     private titleService: TitleService,
     private location: Location,
     public formBuilder: FormBuilder,
@@ -52,10 +52,12 @@ export class CareFormComponent implements OnInit {
       })
     });
 
+
     this.titleService.setTitle('Care Log');
   }
 
   getPlant(): void {
+
     this.store.select(selectors.getItemById(this.id)).subscribe((plant) =>
       this.plant = plant);
   }
@@ -65,7 +67,7 @@ export class CareFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.plantService.postCareForm(this.id, this.uploadForm.value)
+    this.service.postCareForm(this.id, this.uploadForm.value)
     .subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
