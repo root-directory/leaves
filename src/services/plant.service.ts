@@ -15,7 +15,7 @@ export class PlantService {
   public PLANTS_URL = 'plants';
   private JOURNAL_URL = '/journal';
   public ROOT_SERVER_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
-  
+
 
   private plantsUrl = 'api/plants'; // URL to web api
   private journalUrl = 'api/journals';
@@ -33,8 +33,8 @@ export class PlantService {
   }
 
   postCareForm(id: string, data: any) {
-    const URL = this.ROOT_SERVER_URL + '/' + id; 
-    return this.http.patch<any>(URL, data)
+    const URL = this.ROOT_SERVER_URL + '/' + id;
+    return this.http.patch<any>(URL, data);
   }
 
   getJournal(plantId: string): Observable<Journal> {

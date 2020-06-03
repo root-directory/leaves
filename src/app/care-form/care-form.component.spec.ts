@@ -13,7 +13,7 @@ import {PlantsState} from '../../Rx/plants.reducer';
 describe('CareFormComponent', () => {
   let component: CareFormComponent;
   let fixture: ComponentFixture<CareFormComponent>;
-  let store: TestStore<PlantsState>
+  let store: TestStore<PlantsState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -85,12 +85,12 @@ describe('CareFormComponent', () => {
    ); // set default state
   }));
 
-   it('should create', () => {
+  it('should create', () => {
      expect(component).toBeTruthy();
      expect(component).toBeDefined();
    });
 
-   it('should contain Type of Care Event', () => {
+  it('should contain Type of Care Event', () => {
     const titleElement: HTMLElement = fixture.nativeElement;
     expect(titleElement.textContent).toContain('Watering');
   });
@@ -116,4 +116,4 @@ describe('CareFormComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 });
-  
+

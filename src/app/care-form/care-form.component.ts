@@ -35,19 +35,19 @@ export class CareFormComponent implements OnInit {
     this.uploadForm = this.formBuilder.group({
       care: this.formBuilder.group({
         watering: this.formBuilder.group({
-          frequency: [this.plant?this.plant.care.watering.frequency:''],
-          last: [this.plant?this.plant.care.watering.last:''],
-          notes: [this.plant?this.plant.care.watering.notes:'']
+          frequency: [this.plant ? this.plant.care.watering.frequency : ''],
+          last: [this.plant ? this.plant.care.watering.last : ''],
+          notes: [this.plant ? this.plant.care.watering.notes : '']
         }),
         soil: this.formBuilder.group({
-          type: [this.plant?this.plant.care.soil.type:''],
-          last: [this.plant?this.plant.care.soil.last:''],
-          notes: [this.plant?this.plant.care.soil.notes:'']
+          type: [this.plant ? this.plant.care.soil.type : ''],
+          last: [this.plant ? this.plant.care.soil.last : ''],
+          notes: [this.plant ? this.plant.care.soil.notes : '']
         }),
         sunlight: this.formBuilder.group({
-          duration: [this.plant?this.plant.care.sunlight.duration:''],
-          direction: [this.plant?this.plant.care.sunlight.direction:''],
-          notes: [this.plant?this.plant.care.sunlight.notes:'']
+          duration: [this.plant ? this.plant.care.sunlight.duration : ''],
+          direction: [this.plant ? this.plant.care.sunlight.direction : ''],
+          notes: [this.plant ? this.plant.care.sunlight.notes : '']
         })
       })
     });
@@ -72,7 +72,7 @@ export class CareFormComponent implements OnInit {
     );
   }
 
-  
+
 }
 
 
