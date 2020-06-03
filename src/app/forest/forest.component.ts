@@ -22,14 +22,10 @@ export class ForestComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch({ type: '[Plants] Load Plants' });
-    // this.getPlants();
     this.titleService.setTitle('My Forest');
   }
 
   delete(plant: Plant): void {
-    console.log('forest', plant);
-    // this.plants$ = this.plants$.filter(h => h !== plant);
     this.store.dispatch(PlantActions.deletePlant({ plant }));
-    // this.plantService.deletePlant(plant)
   }
 }
