@@ -47,7 +47,7 @@ p {
   border: 1px solid #eee;
   background-color: lightgray;
   height: 400px;
-  width: 270px;
+  width: 240px;
   margin: 0 8px 16px;
   padding: 16px;
   display: flex;
@@ -138,11 +138,6 @@ a:hover {
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
 
-  .card-container > *:not(.circle-link) ,
-  .terminal {
-    width: 100%;
-  }
-
   .card:not(.highlight-card) {
     height: 200px;
     margin: 8px 0;
@@ -169,4 +164,10 @@ button {
   font-weight: bold;
   font-size: 15px;
   box-shadow: 2px 2px 2px lightgray;
+}
+
+img {
+  width:250px;
+  height:270px;
+  object-fit: cover;
 }
