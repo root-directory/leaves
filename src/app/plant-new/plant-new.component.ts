@@ -84,10 +84,10 @@ export class PlantNewComponent implements OnInit {
     this.newPlantForm.patchValue({
       imageURL,
     });
-    
+
     this.plantService.addPlant(this.newPlantForm.value).subscribe(
-      (res) => {console.log('Plant entry success', res)
-      this.router.navigate(['/forest']);
+      (res) => {console.log('Plant entry success', res);
+                this.router.navigate(['/forest']);
     },
       (err) => console.log(err)
     );
