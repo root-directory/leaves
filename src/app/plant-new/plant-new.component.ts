@@ -64,7 +64,6 @@ export class PlantNewComponent implements OnInit {
 
 
       const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
-      this.onSubmit('url');
       this.http.post(URL, fd).subscribe((res: {photo_url: string}) => {
         console.log(res);
         this.onSubmit(res.photo_url);
@@ -73,20 +72,15 @@ export class PlantNewComponent implements OnInit {
       this.onSubmit(null);
     }
   }
-// https://cassie-test-bucket123.s3-us-west-1.amazonaws.com/1591064998231753.jpg
+
   onSubmit(imageURL: string|null){
     this.newPlantForm.patchValue({
       imageURL,
     });
-    console.log(this.newPlantForm);
 
     this.plantService.addPlant(this.newPlantForm.value).subscribe(
       (res) => console.log('Plant entry success', res),
       (err) => console.log(err)
     );
-
   }
-
-
-
 }
