@@ -116,6 +116,4 @@ describe('JournalFormComponent', () => {
 
     // fixture.whenStable().then(() => expect(something).toEqual('something'));
   });
-
-
 });
