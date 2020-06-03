@@ -61,10 +61,7 @@ export class PlantNewComponent implements OnInit {
     if (this.selectedFile) {
       const fd = new FormData();
       fd.append('file', this.selectedFile, this.selectedFile.name);
-
-
       const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
-      this.onSubmit('url');
       this.http.post(URL, fd).subscribe((res: {photo_url: string}) => {
         console.log(res);
         this.onSubmit(res.photo_url);
