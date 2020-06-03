@@ -12,9 +12,9 @@
       <input class="input" formControlName="plantType" />
 
       <div class="flex-row">
-            <div class="flex-row header">
-              <label for="plantName">Plant Image:</label>
-            </div>
+        <div class="flex-row header">
+          <label for="plantName">Plant Image:</label>
+        </div>
         <input
           class="input file"
           type="file"
@@ -133,9 +133,12 @@
         </div>
       </div>
     </div>
-    <div *ngIf="newPlantForm.valid">
 
-      <button class="add" (click)="upload()">Submit</button>
+    <div class="buttons">
+      <button class="add" (click)="goBack()">Back</button>
+      <div *ngIf="newPlantForm.valid">
+        <button class="add" (click)="upload()">Submit</button>
+      </div>
     </div>
   </div>
 </form>

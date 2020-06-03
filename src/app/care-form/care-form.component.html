@@ -79,9 +79,11 @@
         </div>
       </div>
     </div>
-    <div *ngIf= "changed">
-      <button class="add">Submit Changes</button>
-
+    <div>
+      <button class="add" (click)="goBack()">Back</button>
+        <div *ngIf= "changed">
+          <button class="add">Submit Changes</button>
+        </div>
     </div>
   </div>
 </form>

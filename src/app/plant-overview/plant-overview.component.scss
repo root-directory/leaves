@@ -167,7 +167,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 2px 2px 2px lightgray;
+
 }
 
 .allIcons {
@@ -176,6 +176,7 @@ a:hover {
   flex-direction: row;
   width: 167px;
   justify-content: space-evenly;
+  text-align: center;
 }
 
 .plant {
@@ -183,5 +184,5 @@ a:hover {
 }
 
 a {
-  text-align: center;
+  margin-left: 5px;
 }

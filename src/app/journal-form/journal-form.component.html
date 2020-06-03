@@ -35,8 +35,11 @@
         <input class="input" formControlName="notes" />
       </div>
     </div>
-    <div *ngIf="uploadForm.valid">
-      <button class="add" (click)="upload()">Submit</button>
+    <div>
+      <button class="add" (click)="goBack()">Back</button>
+        <div *ngIf="uploadForm.valid">
+          <button class="add" (click)="upload()">Submit</button>
+        </div>
     </div>
   </div>
 </form>
