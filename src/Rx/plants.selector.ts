@@ -5,6 +5,7 @@ export const getItemById = (id) => createSelector(selectItems, (allItems) => {
   if (allItems) {
     console.log('selector items:', allItems);
     console.log('selector id:', id);
+    console.log(allItems)
     return allItems.find(item => {
       return item.id === id;
     });
