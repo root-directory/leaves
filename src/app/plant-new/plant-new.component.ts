@@ -57,7 +57,6 @@ export class PlantNewComponent implements OnInit {
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0] as File;
-    console.log(this.selectedFile);
   }
 
   upload() {
