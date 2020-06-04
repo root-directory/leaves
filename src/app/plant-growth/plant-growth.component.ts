@@ -10,6 +10,7 @@ import * as fromRoot from '../../Rx/rx.index';
 import { TitleService } from '../title.service';
 import * as selectors from '../../Rx/plants.selector';
 
+
 @Component({
   selector: 'app-plant-growth',
   templateUrl: './plant-growth.component.html',
@@ -20,6 +21,7 @@ export class PlantGrowthComponent implements OnInit {
   journalEntries$: Observable<JournalEntry[]>;
   id: string;
   lastWateredEntry;
+  journalTest;
   timeSinceWatered;
   alert: string;
   color: string;
@@ -36,7 +38,8 @@ export class PlantGrowthComponent implements OnInit {
     this.store.dispatch({type: '[Journal] Load Journal', payload: this.id});
     this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries);
     this.store.select(state => state.plants.journal.journalEntries).subscribe(
-      res => this.lastWateredEntry = res
+      res => {this.lastWateredEntry = res; }
+
     );
 
     this.getPlant();

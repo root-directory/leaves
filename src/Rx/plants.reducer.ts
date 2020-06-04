@@ -24,7 +24,8 @@ initialState,
   }),
   on(PlantActions.loadJournal, (state) => state),
   on(PlantActions.loadJournalSuccess, (state: PlantsState, { payload }) => {
-    const journal = payload;
+    const entries = payload.journalEntries;
+    const journal = {journalEntries: entries};
     return {
       ...state,
       journal

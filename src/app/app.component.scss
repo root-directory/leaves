@@ -284,11 +284,13 @@ footer{
   background-color: #bdde77;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 10vh;
   display: flex;
   align-items: center;
+  justify-content: center;
+
 }
 
 main{
-  min-height: 100vh;
+  min-height: 90vh;
 }
