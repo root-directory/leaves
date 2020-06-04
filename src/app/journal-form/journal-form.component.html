@@ -6,7 +6,13 @@
       </div>
       <div class="flex-row">
         <label for="water">Journal Entry Type:</label>
-        <select class="input" name="water" id="water" formControlName="eventType">
+        <select
+          class="input"
+          name="water"
+          id="water"
+          formControlName="entryType"
+          required
+        >
           <option value="water">Watering</option>
           <option value="image">Image</option>
           <option value="repotting">Repotting</option>
@@ -14,28 +20,26 @@
         </select>
       </div>
 
+      <div class="flex-row">
+        <label>Image Update:</label>
+        <input
+          class="input"
+          type="file"
+          id="file"
+          (change)="onFileSelected($event)"
+          formControlName="image"
+        />
+      </div>
       <div class="flex-row" formGroupName="info">
         <label>Notes:</label>
         <input class="input" formControlName="notes" />
       </div>
     </div>
-  </div>
-</form>
-<form [formGroup]="imageUpload" enctype="multipart/form-data">
-  <div class="content">
-    <div class="care-div">
-      <div class="flex-row header">
-        <h2>Type of Journal Event</h2>
-      </div>
-      <div class="flex-row">
-        <label>Img:</label>
-        <input class="input" type="file" id="file" (change)="onFileSelected($event)" />
-      </div>
-    </div>
     <div>
       <button class="add" (click)="goBack()">Back</button>
-      <button class="add" (click)="onUpload()">Submit</button>
+        <div *ngIf="uploadForm.valid">
+          <button class="add" (click)="upload()">Submit</button>
+        </div>
     </div>
   </div>
 </form>
- 

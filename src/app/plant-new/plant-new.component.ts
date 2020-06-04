@@ -4,6 +4,7 @@ import { Plant } from '../types/plant';
 import { HttpClient } from '@angular/common/http';
 import { TitleService } from '../title.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {Validators} from '@angular/forms';
 import {  Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -33,8 +34,10 @@ export class PlantNewComponent implements OnInit {
     this.titleService.setTitle('New member of the forest');
 
     this.newPlantForm = this.formBuilder.group({
-      plantName: [''],
-      imageURL: [null],
+      plantName: ['', [Validators.required, Validators.minLength(4)]],
+      plantType: [''],
+      imageURL: [''],
+      image: [null, [Validators.required]],
       care: this.formBuilder.group({
         watering: this.formBuilder.group({
           frequency: [''],
@@ -62,14 +65,12 @@ export class PlantNewComponent implements OnInit {
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0] as File;
-    console.log(this.selectedFile);
   }
 
   upload() {
     if (this.selectedFile) {
       const fd = new FormData();
       fd.append('file', this.selectedFile, this.selectedFile.name);
-
 
       const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
       this.http.post(URL, fd).subscribe((res: {photo_url: string}) => {
@@ -82,6 +83,7 @@ export class PlantNewComponent implements OnInit {
 
   onSubmit(imageURL: string|null){
     this.newPlantForm.patchValue({
+      image: null,
       imageURL,
     });
 

@@ -1,7 +1,7 @@
 export interface JournalEntry {
   id?: number;
   plantID: string;
-  eventType: string;
+  entryType: string;
   timestamp?: string;
   info: {
     imgUrl?: string,

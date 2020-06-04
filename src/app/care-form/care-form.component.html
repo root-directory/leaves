@@ -8,9 +8,11 @@
         <label for="water">Frequency:</label>
         <div>
           <select formControlName="frequency" name="water" id="water">
+            <option value=".5">Twice a week</option>
             <option value="1">Once a week</option>
-            <option value="2">Twice a week</option>
-            <option value="3">Once a month</option>
+            <option value="2">Once every other week</option>
+            <option value="3">Once every three weeks</option>
+            <option value="4">Once a month</option>
           </select>
         </div>
         <div class="flex-row">
@@ -20,7 +22,8 @@
         </div>
         <div class="flex-row">
           <label>Notes:</label>
-          <input formControlName="notes" class="input" #plantNotes />
+          <input formControlName="notes" class="input" #plantNotes 
+         />
         </div>
       </div>
 
@@ -80,7 +83,9 @@
     </div>
     <div>
       <button class="add" (click)="goBack()">Back</button>
-      <button class="add">Submit</button>
+        <div *ngIf= "changed">
+          <button class="add">Submit Changes</button>
+        </div>
     </div>
   </div>
 </form>

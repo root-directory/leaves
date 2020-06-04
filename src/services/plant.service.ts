@@ -11,14 +11,13 @@ import * as PlantActions from '../Rx/plants.actions';
   providedIn: 'root',
 })
 export class PlantService {
-  public ROOT_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/';
+  public ROOT_URL =
+    'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/';
   public PLANTS_URL = 'plants';
   private JOURNAL_URL = '/journal';
-  public ROOT_SERVER_URL = 'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
+  public ROOT_SERVER_URL =
+    'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
 
-
-  private plantsUrl = 'api/plants'; // URL to web api
-  private journalUrl = 'api/journals';
   public result$: Observable<any> = null;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -27,8 +26,7 @@ export class PlantService {
   constructor(private http: HttpClient) {}
 
   getPlants(): Observable<Plant[]> {
-    const URL =  this.ROOT_URL + this.PLANTS_URL;
-    console.log('PlantURL:', URL);
+    const URL = this.ROOT_URL + this.PLANTS_URL;
     return this.http.get<Plant[]>(URL);
   }
 
@@ -38,57 +36,41 @@ export class PlantService {
   }
 
   getJournal(plantId: string): Observable<Journal> {
-    const URL = this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL;
-    return this.http
-        .get<Journal>(URL);
+    const URL =
+      this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL;
+    return this.http.get<Journal>(URL);
   }
 
-  addJournalEntry(journalEntry: any, plantId: string): Observable<JournalEntry> {
-
-    // const url = `${this.journalUrl}/${plantId}/journalEntries`;
-    // return this.http.post<JournalEntry>(url, journalEntry, this.httpOptions).pipe(
-    //   catchError(this.handleError<JournalEntry>('addJournal'))
-    // );
-    const URL = this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL;
-    console.log(URL);
+  addJournalEntry(
+    journalEntry: any,
+    plantId: string
+  ): Observable<JournalEntry> {
+    const URL =
+      this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL;
     return this.http.post<JournalEntry>(URL, journalEntry);
   }
 
   getPlant(id: number): Observable<Plant> {
-
-
     return this.getPlants().pipe(
-      map(plants => plants.find(plant => plant.id === id))
+      map((plants) => plants.find((plant) => plant.id === id))
     );
-
-    // const url = `${this.plantsUrl}/${id}`;
-    // return this.http
-    //   .get<Plant>(url)
-    //   .pipe(catchError(this.handleError<Plant>(`getPlant id=${id}`)));
   }
 
   /** POST: add a new plant to the server */
   addPlant(plant: Plant): Observable<Plant> {
     const URL = this.ROOT_URL + this.PLANTS_URL;
-
-    return this.http
-      .post<Plant>(URL, plant);
+    return this.http.post<Plant>(URL, plant);
   }
 
   /** DELETE: delete the plant from the server */
-  deletePlant({plant}: any): Observable<{}> {
-    console.log('deletePlant API', plant.id);
-    const URL =  this.ROOT_URL + this.PLANTS_URL + '/' + plant.id;
-
+  deletePlant({ plant }: any): Observable<{}> {
+    const URL = this.ROOT_URL + this.PLANTS_URL + '/' + plant.id;
     return this.http.delete<Plant>(URL);
   }
 
-
-
-  uploadImage(url: string, fd: any): Observable<any>{
+  uploadImage(url: string, fd: any): Observable<any> {
     return this.http.post(url, fd);
   }
-
 
   /**
    * Handle Http operation that failed.

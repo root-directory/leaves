@@ -38,7 +38,6 @@ export class PlantEffects {
       ofType('[Journal] Load Journal'),
       mergeMap(({payload}) =>
         {
-          console.log('journalAction', payload);
           return this.service.getJournal(payload).pipe(
             map((journal: Journal) => ({
               type: '[Journal] Load Journal Success',
@@ -54,7 +53,6 @@ export class PlantEffects {
     this.actions$.pipe(
       ofType('[Plants] Delete Plants'),
       mergeMap(action => {
-        console.log('deletePlantAction', action);
         return this.service.deletePlant(action).pipe(
           map(() => {console.log('dataPlantAction', action); return deletePlantSuccess({plant: action}); }),
 

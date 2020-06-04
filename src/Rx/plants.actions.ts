@@ -36,6 +36,10 @@ export const addJournalEntry = createAction(
   '[JournalEntry] Add JournalEntry',
   props<{ payload: JournalEntry }>()
 );
+export const updateCare = createAction(
+  '[Care] Update Care',
+  props<{ plant: Plant }>()
+);
 export const addJournalEntryFail = createAction(
   '[JournalEntry] Add JournalEntry Fail',
   props<{ error: any }>()
