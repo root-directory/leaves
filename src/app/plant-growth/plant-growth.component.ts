@@ -59,7 +59,7 @@ export class PlantGrowthComponent implements OnInit {
       return entry.entryType === 'water';
     });
     if (lastWateredDate.length){
-      lastWateredDate = lastWateredDate[lastWateredDate.length - 1].timestamp;
+      lastWateredDate = lastWateredDate[0].timestamp;
     }else{
       lastWateredDate = Date.now();
     }
@@ -67,7 +67,7 @@ export class PlantGrowthComponent implements OnInit {
     const dates: number = Date.now() - lastWateredDate;
     const daysDiff: number = Math.floor(dates / (1000 * 60 * 60  * 24));
     const wateringFrequencyDays: number = parseInt(this.plant.care.watering.frequency, 10) * 7;
-
+    console.log(daysDiff)
     if (daysDiff > wateringFrequencyDays){
       this.alert = `It has been about ${daysDiff} since you watered last. Your care states you should water it every:${wateringFrequencyDays}days!`;
       this.color = 'red';
