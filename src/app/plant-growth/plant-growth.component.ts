@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { PlantService } from '../../services/plant.service';
@@ -29,6 +29,7 @@ export class PlantGrowthComponent implements OnInit {
     private route: ActivatedRoute,
     private plantService: PlantService,
     private location: Location,
+    private router: Router,
     private store: Store<fromRoot.State>,
     private titleService: TitleService
   ) { }
@@ -67,7 +68,7 @@ export class PlantGrowthComponent implements OnInit {
     const dates: number = Date.now() - lastWateredDate;
     const daysDiff: number = Math.floor(dates / (1000 * 60 * 60  * 24));
     const wateringFrequencyDays: number = parseInt(this.plant.care.watering.frequency, 10) * 7;
-    console.log(daysDiff)
+    console.log(daysDiff);
     if (daysDiff > wateringFrequencyDays){
       this.alert = `It has been about ${daysDiff} since you watered last. Your care states you should water it every:${wateringFrequencyDays}days!`;
       this.color = 'red';
@@ -80,6 +81,6 @@ export class PlantGrowthComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/forest', this.id, 'plant-overview']);
   }
 }
