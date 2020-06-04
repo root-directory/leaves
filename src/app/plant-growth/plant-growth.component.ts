@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { PlantService } from '../../services/plant.service';
@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../Rx/rx.index';
 import { TitleService } from '../title.service';
 import * as selectors from '../../Rx/plants.selector';
+
 
 @Component({
   selector: 'app-plant-growth',
@@ -20,6 +21,7 @@ export class PlantGrowthComponent implements OnInit {
   journalEntries$: Observable<JournalEntry[]>;
   id: string;
   lastWateredEntry;
+  journalTest;
   timeSinceWatered;
   alert: string;
   color: string;
@@ -27,6 +29,7 @@ export class PlantGrowthComponent implements OnInit {
     private route: ActivatedRoute,
     private plantService: PlantService,
     private location: Location,
+    private router: Router,
     private store: Store<fromRoot.State>,
     private titleService: TitleService
   ) { }
@@ -36,7 +39,8 @@ export class PlantGrowthComponent implements OnInit {
     this.store.dispatch({type: '[Journal] Load Journal', payload: this.id});
     this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries);
     this.store.select(state => state.plants.journal.journalEntries).subscribe(
-      res => this.lastWateredEntry = res
+      res => {this.lastWateredEntry = res; }
+
     );
 
     this.getPlant();
@@ -56,7 +60,7 @@ export class PlantGrowthComponent implements OnInit {
       return entry.entryType === 'water';
     });
     if (lastWateredDate.length){
-      lastWateredDate = lastWateredDate[lastWateredDate.length - 1].timestamp;
+      lastWateredDate = lastWateredDate[0].timestamp;
     }else{
       lastWateredDate = Date.now();
     }
@@ -64,7 +68,7 @@ export class PlantGrowthComponent implements OnInit {
     const dates: number = Date.now() - lastWateredDate;
     const daysDiff: number = Math.floor(dates / (1000 * 60 * 60  * 24));
     const wateringFrequencyDays: number = parseInt(this.plant.care.watering.frequency, 10) * 7;
-
+    console.log(daysDiff);
     if (daysDiff > wateringFrequencyDays){
       this.alert = `It has been about ${daysDiff} since you watered last. Your care states you should water it every:${wateringFrequencyDays}days!`;
       this.color = 'red';
@@ -77,6 +81,6 @@ export class PlantGrowthComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/forest', this.id, 'plant-overview']);
   }
 }

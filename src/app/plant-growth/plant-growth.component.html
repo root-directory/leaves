@@ -8,7 +8,7 @@
     <span>-{{ "New Journal Entry" | uppercase }}-</span>
   </a>
   <div class="card-container">
-    <div *ngFor="let entry of journalEntries$ | async" class="card {{entry.entryType}}">
+    <div *ngFor="let entry of journalEntries$ | async " class="card {{entry.entryType}}">
       <div *ngIf="entry.entryType">
         {{ entry.entryType }}
       </div>

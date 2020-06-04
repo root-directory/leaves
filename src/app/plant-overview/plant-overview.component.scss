@@ -42,6 +42,7 @@ p {
 }
 
 .card-container {
+  flex-direction: column;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -142,11 +143,6 @@ a:hover {
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
-
-  .card-container > *:not(.circle-link) ,
-  .terminal {
-    width: 100%;
-  }
 
   .card:not(.highlight-card) {
     height: 200px;

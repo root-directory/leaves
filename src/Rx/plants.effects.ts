@@ -39,7 +39,7 @@ export class PlantEffects {
       mergeMap(({payload}) =>
         {
           return this.service.getJournal(payload).pipe(
-            map((journal: Journal) => ({
+            map((journal: Journal) => (journal.journalEntries = journal.journalEntries.reverse(), {
               type: '[Journal] Load Journal Success',
               payload: journal,
             })),
