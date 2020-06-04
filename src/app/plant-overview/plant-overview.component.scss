@@ -42,6 +42,7 @@ p {
 }
 
 .card-container {
+  flex-direction: column;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
