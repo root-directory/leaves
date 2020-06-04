@@ -22,7 +22,7 @@ export class PlantGrowthComponent implements OnInit {
   lastWateredEntry;
   timeSinceWatered;
   alert: string;
-  color:string
+  color: string;
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
@@ -36,9 +36,9 @@ export class PlantGrowthComponent implements OnInit {
     this.store.dispatch({type: '[Journal] Load Journal', payload: this.id});
     this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries);
     this.store.select(state => state.plants.journal.journalEntries).subscribe(
-      res=>this.lastWateredEntry=res
-    )
-    
+      res => this.lastWateredEntry = res
+    );
+
     this.getPlant();
     this.titleService.setTitle('My growth');
   }
@@ -47,33 +47,33 @@ export class PlantGrowthComponent implements OnInit {
     this.store
       .select(selectors.getItemById(this.id))
       .subscribe((plant) => (this.plant = plant));
-    console.log(this.plant.care.watering)
-    this.lastWatered()
+    console.log(this.plant.care.watering);
+    this.lastWatered();
   }
 
   lastWatered(){
-    let lastWateredDate = this.lastWateredEntry.filter(entry=>{
-      return entry.entryType === "water"
-    })
-    if(lastWateredDate.length){
-      lastWateredDate = lastWateredDate[lastWateredDate.length-1].timestamp;
+    let lastWateredDate = this.lastWateredEntry.filter(entry => {
+      return entry.entryType === 'water';
+    });
+    if (lastWateredDate.length){
+      lastWateredDate = lastWateredDate[lastWateredDate.length - 1].timestamp;
     }else{
       lastWateredDate = Date.now();
     }
 
-    var dates:number = Date.now() - lastWateredDate;
-    var daysDiff:number = Math.floor(dates/(1000 * 60 * 60  * 24));
-    let wateringFrequencyDays:number = parseInt(this.plant.care.watering.frequency)*7
+    const dates: number = Date.now() - lastWateredDate;
+    const daysDiff: number = Math.floor(dates / (1000 * 60 * 60  * 24));
+    const wateringFrequencyDays: number = parseInt(this.plant.care.watering.frequency, 10) * 7;
 
-    if(daysDiff>wateringFrequencyDays){
-      this.alert = `It has been about ${daysDiff} since you watered last. Your care states you should water it every:${wateringFrequencyDays}days!`
-      this.color = 'red'
+    if (daysDiff > wateringFrequencyDays){
+      this.alert = `It has been about ${daysDiff} since you watered last. Your care states you should water it every:${wateringFrequencyDays}days!`;
+      this.color = 'red';
     }else{
       this.color = 'green';
-      this.alert = `You have ${wateringFrequencyDays-daysDiff}days, until you need to water this plant!`;
+      this.alert = `You have ${wateringFrequencyDays - daysDiff}days, until you need to water this plant!`;
     }
     this.timeSinceWatered = daysDiff;
-  
+
   }
 
   goBack(): void {
