@@ -19,7 +19,7 @@ export class ForestComponent implements OnInit {
   constructor(private plantService: PlantService, private store: Store<fromRoot.State>, private titleService: TitleService) {
     this.plants$ = this.store.select(state => state.plants.entities);
   }
-
+  
   ngOnInit() {
     this.store.dispatch({ type: '[Plants] Load Plants' });
     this.titleService.setTitle('My Forest');

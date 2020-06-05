@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
 import { TitleService } from '../title.service';
@@ -17,23 +17,29 @@ import * as selectors from '../../Rx/plants.selector';
 export class PlantOverviewComponent implements OnInit {
   plant: Plant;
   plants$: Observable<Plant[]> = this.store.select(state => state.plants);
+  subscription: Subscription;
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService,
     private titleService: TitleService,
     private location: Location,
     private store: Store<{ plants: Plant[] }>
-  ) { }
-
+    ) {};
+    
   ngOnInit(): void {
-    this.getPlant();
+    this.getPlant() 
+  };
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   getPlant(): void {
-      const id = this.route.snapshot.paramMap.get('id');
-      this.store.select(selectors.getItemById(id)).subscribe((plant) => {
-        this.plant = plant,
-        this.titleService.setTitle(`${this.plant.plantName} the ${this.plant.plantType} plant`);
+    const id = this.route.snapshot.paramMap.get('id');
+    const observable = this.store.select(selectors.getItemById(id));
+    this.subscription = observable.subscribe((plant) => {
+      this.plant = plant,
+      this.titleService.setTitle(`${this.plant.plantName} the ${this.plant.plantType} plant`);
     });
-  }
-}
+  };
+};
