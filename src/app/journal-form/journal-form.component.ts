@@ -81,6 +81,6 @@ export class JournalFormComponent implements OnInit {
       (err) => console.log(err)
     );
 
-    // this.router.navigate(['/forest',this.id,'plant-growth'])
+    this.router.navigate(['/forest', this.id, 'plant-growth']);
   }
 }

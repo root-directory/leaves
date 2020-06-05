@@ -36,9 +36,12 @@
           <label for="soil">Type:</label>
           <div>
             <select formControlName="type" name="soil" id="soil">
-              <option value="1">Once a week</option>
-              <option value="2">Twice a week</option>
-              <option value="3">Once a month</option>
+              <option value="dirt">Dirt</option>
+              <option value="sand">Sandy</option>
+              <option value="clay">Clay</option>
+              <option value="loam">Loam</option>
+              <option value="chalk">Chalky</option>
+              <option value="silt">Silt</option>
             </select>
           </div>
           <div class="flex-row">
@@ -58,12 +61,17 @@
           <h2>Sunlight</h2>
         </div>
         <div formGroupName="sunlight" class="flex-row">
-          <label for="sunlight">Duration:</label>
+          <label for="sunlight">Duration(hrs):</label>
           <div>
             <select formControlName="duration" name="sunlight" id="sunlight">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
             </select>
           </div>
           <label for="sunlight">Direction:</label>
@@ -72,6 +80,7 @@
               <option value="West">West</option>
               <option value="South">South</option>
               <option value="North">North</option>
+              <option value="East">East</option>
             </select>
           </div>
           <div class="flex-row">
