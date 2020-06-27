@@ -20,33 +20,17 @@
 }
 
 .water{
-  background-color:lightblue !important;
+  background-color:#3B5998 !important;
 }
 .repotting{
   background-color:tan !important;
 }
 .location{
-  background-color:lightgoldenrodyellow !important;
+  background-color:#F5A624 !important;
 }
-
-
-
-
-.content {
-  display: flex;
-  margin: 82px auto 32px;
-  padding: 0 16px;
-  max-width: 960px;
-  flex-direction: column;
-  align-items: center;
+.image{
+  background-color:grey !important;
 }
-
-
-.entry-type{
-  flex-grow:1;
-}
-
-
 
 a,
 a:visited,
@@ -57,6 +41,10 @@ a:hover {
 
 a:hover {
   color: #125699;
+}
+
+.card-body{
+  color:white;
 }
 
 .circle-link {
@@ -79,30 +67,10 @@ a:hover {
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Styles */
-// @media screen and (max-width: 767px) {
-
-//   .card:not(.highlight-card) {
-//     height: 200px;
-//     margin: 8px 0;
-//   }
-
-//   .card.highlight-card span {
-//     margin-left: 72px;
-//   }
-
-// }
-
-@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
-
-* {
-  font-family: 'Amatic SC', cursive;
-}
 
 button {
   margin-top: 0px;
   background-color: #bdde77;
-  border-radius: 100px;
   border: 1px solid lightgrey;
   font-weight: bold;
   font-size: 15px;

@@ -9,11 +9,11 @@
     <div class="row">
       <button
         [routerLink]="['/forest', id, 'plant-growth', 'new']"
-        class="col-sm"
+        class="col-sm col-6"
       >
-        <span>-{{ "New Journal Entry" | uppercase }}-</span>
+       {{ "New Entry" | uppercase }}
       </button>
-      <button (click)="goBack()" class="col-sm">Back</button>
+      <button (click)="goBack()" class="col-sm col-6">Back</button>
     </div>
     <div class="row">
       <div
@@ -30,8 +30,9 @@
         </ng-template>
 
         <div class="card-body">
-          <h5 class="card-title" *ngIf="entry.entryType">Type of Event:{{ entry.entryType }}</h5>
-          <h5>Notes:</h5>
+          <h6 class="card-title" *ngIf="entry.entryType">Type of Event:</h6>
+          <p class="card-title" *ngIf="entry.entryType">{{ entry.entryType }}</p>
+          <h6>Notes:</h6>
           <p *ngIf="entry.info.notes" class="card-text">
             {{ entry.info.notes }}
           </p>
