@@ -31,7 +31,7 @@ export class PlantNewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.titleService.setTitle('New member of the forest');
+    this.titleService.setTitle('New plant');
 
     this.newPlantForm = this.formBuilder.group({
       plantName: ['', [Validators.required, Validators.minLength(4)]],
