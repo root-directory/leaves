@@ -26,6 +26,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { PlantEffects } from '../Rx/plants.effects';
 import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
 import { HeaderComponent } from './header/header.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { HeaderComponent } from './header/header.component';
       },
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

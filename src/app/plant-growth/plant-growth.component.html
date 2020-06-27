@@ -1,35 +1,44 @@
 <div *ngIf="journalEntries$" class="content" role="main">
   <div *ngIf="alert">
-    <div class = "{{color}} alert">
-      {{alert}}
+    <div class="{{ color }} alert">
+      {{ alert }}
     </div>
   </div>
-  <a [routerLink]="['/forest', id, 'plant-growth', 'new']">
-    <span>-{{ "New Journal Entry" | uppercase }}-</span>
-  </a>
-  <div class="card-container">
-    <div *ngFor="let entry of journalEntries$ | async " class="card {{entry.entryType}}">
-      <div *ngIf="entry.entryType">
-        {{ entry.entryType }}
-      </div>
-      <div class="entry-type">
-        <div class="image-container">
-          <ng-template
-            *ngIf="entry.info.imgUrl; then thenBlock; else elseBlock"
-          >
-          </ng-template>
-        </div>
+
+  <div class="container">
+    <div class="row">
+      <button
+        [routerLink]="['/forest', id, 'plant-growth', 'new']"
+        class="col-sm"
+      >
+        <span>-{{ "New Journal Entry" | uppercase }}-</span>
+      </button>
+      <button (click)="goBack()" class="col-sm">Back</button>
+    </div>
+    <div class="row">
+      <div
+        *ngFor="let entry of journalEntries$ | async"
+        class="card {{ entry.entryType }}"
+      >
+        <ng-template *ngIf="entry.info.imgUrl; then thenBlock; else elseBlock">
+        </ng-template>
         <ng-template #thenBlock>
-          <img src="{{ entry.info.imgUrl }}" />
+          <img src="{{ entry.info.imgUrl }}" class="card-img-top" alt="..." />
         </ng-template>
         <ng-template #elseBlock>
-          <img src="https://cdn.hswstatic.com/gif/water-life-crop.jpg" />
+          <img src="https://cdn.hswstatic.com/gif/water-life-crop.jpg" class="card-img-top" alt="..." />
         </ng-template>
-      </div>
-      <div *ngIf="entry.info.notes">
-        {{ entry.info.notes }}
+
+        <div class="card-body">
+          <h5 class="card-title" *ngIf="entry.entryType">Type of Event:{{ entry.entryType }}</h5>
+          <h5>Notes:</h5>
+          <p *ngIf="entry.info.notes" class="card-text">
+            {{ entry.info.notes }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
-  <button (click)="goBack()">Back</button>
+
+  
 </div>
