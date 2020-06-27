@@ -65,6 +65,13 @@ export class PlantNewComponent implements OnInit {
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0] as File;
+    console.log(this.selectedFile)
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        console.log(reader.result);
+    };
   }
 
   upload() {
@@ -94,4 +101,5 @@ export class PlantNewComponent implements OnInit {
       (err) => console.log(err)
     );
   }
+
 }

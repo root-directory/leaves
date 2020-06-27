@@ -75,7 +75,7 @@ describe('JournalFormComponent', () => {
     const hostElement = fixture.nativeElement;
     const notesInput: HTMLInputElement = hostElement.querySelector('input');
     notesInput.value = 'quick BROWN fOx';
-    const spy = spyOn(component, 'onUpload');
+    const spy = spyOn(component, 'upload');
     // component.onUpload()
     const button = fixture.debugElement.nativeElement.querySelector('button');
     button.click();
