@@ -12,8 +12,9 @@ export class HeaderComponent implements OnInit {
   constructor(private titleService: TitleService) { }
 
   ngOnInit(): void {
-    this.titleService.title.subscribe((title) => {
-      this.title = title;
+    this.titleService.getTitle().subscribe((appTitle) => {
+      this.title = appTitle;
+      
     });
   }
 }

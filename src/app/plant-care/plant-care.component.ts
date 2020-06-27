@@ -17,9 +17,12 @@ export class PlantCareComponent implements OnInit {
     private route: ActivatedRoute,
     private plantService: PlantService,
     private location: Location,
+    private titleService: TitleService
   ) { }
 
   ngOnInit(): void {
+
+    this.titleService.setTitle('Plant Care');
     this.getPlant();
   }
 

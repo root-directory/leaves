@@ -27,13 +27,13 @@ export class PlantOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlant();
+    this.titleService.setTitle(`${this.plant.plantName} the ${this.plant.plantType} plant`);
   }
 
   getPlant(): void {
       const id = this.route.snapshot.paramMap.get('id');
       this.store.select(selectors.getItemById(id)).subscribe((plant) => {
-        this.plant = plant,
-        this.titleService.setTitle(`${this.plant.plantName} the ${this.plant.plantType} plant`);
+        this.plant = plant
     });
   }
 }
