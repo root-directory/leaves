@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.getTitle().subscribe((appTitle) => {
       this.title = appTitle;
-      
+
     });
   }
 }

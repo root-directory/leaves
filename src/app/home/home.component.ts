@@ -11,7 +11,7 @@ import { TitleService } from '../title.service';
 })
 
 export class HomeComponent implements OnInit {
-  constructor(private plantService: PlantService,private titleService: TitleService,) { }
+  constructor(private plantService: PlantService, private titleService: TitleService, ) { }
   userName = 'Cassie';
 
   ngOnInit(): void {

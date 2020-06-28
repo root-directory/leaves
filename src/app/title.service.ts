@@ -11,7 +11,7 @@ export class TitleService {
   setTitle(title: string) {
     this.title.next(title);
   }
-  getTitle():Observable<string>{
+  getTitle(): Observable<string>{
     return this.title$;
   }
   constructor() { }

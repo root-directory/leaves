@@ -69,7 +69,7 @@ export class PlantGrowthComponent implements OnInit {
     const daysDiff: number = Math.floor(dates / (1000 * 60 * 60 * 24));
     const wateringFrequencyDays: number =
       parseInt(this.plant.care.watering.frequency, 10) * 7;
-   if(!wateringFrequencyDays) {
+    if (!wateringFrequencyDays) {
     this.alert = {
       title: `No watering events in your journal!`,
       lastWatered: `Add a new Journal Event`,
@@ -78,7 +78,7 @@ export class PlantGrowthComponent implements OnInit {
     this.color = 'green';
     }
     else if (daysDiff > wateringFrequencyDays) {
-      
+
       this.alert = {
         title: `Your Plant is Thirsty!`,
         lastWatered: `Last Watered:${daysDiff} days ago. `,
@@ -86,7 +86,7 @@ export class PlantGrowthComponent implements OnInit {
       };
       this.color = 'red';
     } else {
-      console.log(wateringFrequencyDays)
+      console.log(wateringFrequencyDays);
       this.alert = {
         title: `Nice Watering!`,
         lastWatered: `Last Watered:${daysDiff} days ago. `,

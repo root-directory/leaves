@@ -111,13 +111,13 @@ export class PlantNewComponent implements OnInit {
       // }).subscribe(response=>{
       //   console.log(response)
       //   this.suggestions=response;
-      //   this.suggestions=this.suggestions.suggestions; 
+      //   this.suggestions=this.suggestions.suggestions;
       // })
     };
   }
 
   updatePlantType(value){
-    this.newPlantForm.patchValue({plantType:value})
+    this.newPlantForm.patchValue({plantType: value});
   }
 
   upload() {
