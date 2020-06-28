@@ -1,54 +1,75 @@
 <form [formGroup]="newPlantForm">
   <div class="content">
-    <div class="care-div upload all">
-      <div class="flex-row header">
-        <h2>General Information</h2>
-        <label for="plantName">Plant Name:</label>
-      </div>
-      <input class="input" formControlName="plantName" required minlength="4" />
-      <div class="flex-row header">
-        <label for="plantName">Plant Type:</label>
-      </div>
-      <input class="input" formControlName="plantType" />
-
-      <div class="flex-row">
-        <div class="flex-row header">
-          <label for="plantName">Plant Image:</label>
-        </div>
+    <div class="form-group row col-12">
+      <label class="col-sm-4 col-form-label" for="plantName">Plant Name:</label>
+      <div class="col-sm-8">
         <input
-          class="input file"
+          class="form-control"
+          formControlName="plantName"
+          required
+          minlength="4"
+        />
+      </div>
+      <label class="col-sm-4 col-form-label" for="plantImage"
+        >Plant Image:</label
+      >
+      <div class="col-sm-8">
+        <input
+          class="form-control-file"
           type="file"
           (change)="onFileSelected($event)"
           required
           formControlName="image"
         />
       </div>
-    </div>
-    <h2>Care log</h2>
-    <div formGroupName="care" class="care-div all">
-      <div class="flex-row header">
-        <h2>Watering</h2>
-      </div>
-      <div formGroupName="watering" class="flex-row">
-        <label for="water">Frequency:</label>
-        <div>
+
+      <label class="col-sm-4 col-form-label" for="plantType">Plant Type:</label>
+      <div class="col-sm-8">
+        <input class="form-control" formControlName="plantType" />
+        <div *ngIf="suggestions">
+          <label class="col-sm-4 col-form-label" for="plantType">Plant Suggestions:</label>
           <select
-            class="input"
+            class="form-control"
+            formControlName="suggestions"
+            name="water"
+            id="water"
+            (change)="updatePlantType($event.target.value)"
+          >
+            <option
+              *ngFor="let suggestion of suggestions"
+              [value]="suggestion.plant_name"
+              >{{ suggestion.plant_name }} | Confidence:
+              {{ suggestion.probability | percent }}</option
+            >
+          </select>
+        </div>
+      </div>
+
+      
+    </div>
+    <div formGroupName="care" class="row col-12">
+      <h2 class="col-12">Watering</h2>
+      
+      <div formGroupName="watering" class="row col-12 collapse" id="watering-collapse">
+        <label class="col-sm-4 col-form-label" for="water">Frequency:</label>
+        <div class="col-sm-8">
+          <select
+            class="form-control"
             formControlName="frequency"
             name="water"
             id="water"
           >
-          <option value=".5">Twice a week</option>
-          <option value="1">Once a week</option>
-          <option value="2">Once every other week</option>
-          <option value="3">Once every three weeks</option>
-          <option value="4">Once a month</option>
+            <option value=".5">Twice a week</option>
+            <option value="1">Once a week</option>
+            <option value="2">Once every other week</option>
+            <option value="3">Once every three weeks</option>
+            <option value="4">Once a month</option>
           </select>
         </div>
-        <div class="flex-row">
-          <label for="start">Last:</label>
+        <label class="col-sm-4 col-form-label" for="start">Last Watered:</label>
+        <div class="col-sm-8">
           <input
-            class="input"
+            class="form-control"
             formControlName="last"
             type="date"
             id="start"
@@ -58,61 +79,63 @@
             max="2020-12-31"
           />
         </div>
-        <div class="flex-row">
-          <label>Notes:</label>
-          <input formControlName="notes" class="input" #plantNotes />
+        <label class="col-sm-4 col-form-label">Notes:</label>
+        <div class="col-sm-8">
+          <input formControlName="notes" class="form-control" #plantNotes />
         </div>
       </div>
 
-      <div class="care-div">
-        <div class="flex-row header">
-          <h2>Soil</h2>
+      <h2 class="col-12">Soil</h2>
+      <div formGroupName="soil" class="row col-12">
+        <label class="col-sm-4 col-form-label" for="soil">Type:</label>
+        <div class="col-sm-8">
+          <select
+            class="form-control"
+            formControlName="type"
+            name="soil"
+            id="soil"
+          >
+            <option value="dirt">Dirt</option>
+            <option value="sand">Sandy</option>
+            <option value="clay">Clay</option>
+            <option value="loam">Loam</option>
+            <option value="chalk">Chalky</option>
+            <option value="silt">Silt</option>
+          </select>
         </div>
-        <div formGroupName="soil" class="flex-row">
-          <label for="soil">Type:</label>
-          <div>
-            <select class="input" formControlName="type" name="soil" id="soil">
-              <option value="dirt">Dirt</option>
-              <option value="sand">Sandy</option>
-              <option value="clay">Clay</option>
-              <option value="loam">Loam</option>
-              <option value="chalk">Chalky</option>
-              <option value="silt">Silt</option>
-            </select>
-          </div>
-          <div class="flex-row">
-            <label for="start">Last:</label>
-            <input
-              class="input"
-              formControlName="last"
-              type="date"
-              id="start"
-              name="water-start"
-              value="2020-07-22"
-              min="2020-01-01"
-              max="2020-12-31"
-            />
-          </div>
-          <div class="flex-row">
-            <label>Notes:</label>
-            <input formControlName="notes" class="input" #plantNotes />
-          </div>
+        <label class="col-sm-4 col-form-label" for="start"
+          >Last Repotted:</label
+        >
+        <div class="col-sm-8">
+          <input
+            class="form-control"
+            formControlName="last"
+            type="date"
+            id="start"
+            name="water-start"
+            value="2020-07-22"
+            min="2020-01-01"
+            max="2020-12-31"
+          />
+        </div>
+        <label class="col-sm-4 col-form-label">Notes:</label>
+        <div class="col-sm-8">
+          <input formControlName="notes" class="form-control" #plantNotes />
         </div>
       </div>
 
-      <div class="care-div">
-        <div class="flex-row header">
-          <h2>Sunlight</h2>
-        </div>
-        <div formGroupName="sunlight" class="flex-row">
-          <label for="sunlight">Duration(hrs):</label>
-          <div>
-            <select
-              class="input"
-              formControlName="duration"
-              name="sunlight"
-              id="sunlight"
-            >
+      <h2 class="col-12">Sunlight</h2>
+      <div formGroupName="sunlight" class="row col-12">
+        <label class="col-sm-4 col-form-label" for="sunlight"
+          >Duration(hrs):</label
+        >
+        <div class="col-sm-8">
+          <select
+            class="form-control"
+            formControlName="duration"
+            name="sunlight"
+            id="sunlight"
+          >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -121,32 +144,31 @@
             <option value="6">6</option>
             <option value="7">7</option>
             <option value="8">8</option>
-            </select>
-          </div>
-          <label for="sunlight">Direction:</label>
-          <div class="flex-row">
-            <select
-              class="input"
-              formControlName="direction"
-              name="sunlight"
-              id="sunlight"
-            >
-              <option value="West">West</option>
-              <option value="South">South</option>
-              <option value="North">North</option>
-              <option value="East">East</option>
-            </select>
-          </div>
-          <div class="flex-row">
-            <label>Notes:</label>
-            <input formControlName="notes" class="input" #plantNotes />
-          </div>
+          </select>
+        </div>
+        <label class="col-sm-4 col-form-label" for="sunlight">Direction:</label>
+        <div class="col-sm-8">
+          <select
+            class="form-control"
+            formControlName="direction"
+            name="sunlight"
+            id="sunlight"
+          >
+            <option value="West">West</option>
+            <option value="South">South</option>
+            <option value="North">North</option>
+            <option value="East">East</option>
+          </select>
+        </div>
+        <label class="col-sm-4 col-form-label">Notes:</label>
+        <div class="col-sm-8">
+          <input formControlName="notes" class="form-control" #plantNotes />
         </div>
       </div>
     </div>
 
     <div class="buttons">
-      <button class="add" (click)="goBack()">Back</button>
+      <button class="add" (click)="goBack()">Discard</button>
       <div *ngIf="newPlantForm.valid">
         <button class="add" (click)="upload()">Submit</button>
       </div>

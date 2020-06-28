@@ -4,7 +4,9 @@ import { TitleService } from '../title.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: [
+    './header.component.scss'
+  ]
 })
 export class HeaderComponent implements OnInit {
   title = '';
@@ -12,8 +14,9 @@ export class HeaderComponent implements OnInit {
   constructor(private titleService: TitleService) { }
 
   ngOnInit(): void {
-    this.titleService.title.subscribe((title) => {
-      this.title = title;
+    this.titleService.getTitle().subscribe((appTitle) => {
+      this.title = appTitle;
+
     });
   }
 }

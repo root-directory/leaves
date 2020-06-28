@@ -1,39 +1,13 @@
-:host {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
-  color: #333;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-$background-primary: #BDDE77;
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 8px 0;
-}
-
-p {
-  margin: 0;
-}
-
-.spacer {
-  flex: 1;
-}
+@import '../app.component.scss';
 .alert{
-
   color: white;
-  font-size: 1.5em;
- 
+  // font-size: 1.5em;
   padding: 1em;
-
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  
+
 }
 
 
@@ -46,92 +20,16 @@ p {
 }
 
 .water{
-  background-color:lightblue !important;
+  background-color:#3B5998 !important;
 }
 .repotting{
   background-color:tan !important;
 }
 .location{
-  background-color:lightgoldenrodyellow !important;
+  background-color:#F5A624 !important;
 }
-
-
-
-
-.content {
-  display: flex;
-  margin: 82px auto 32px;
-  padding: 0 16px;
-  max-width: 960px;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 16px;
-}
-
-.card {
-  border-radius: 4px;
-  border: 1px solid #eee;
-  background-color: lightgray;
-  margin: 0 8px 16px;
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s ease-in-out;
-  line-height: 24px;
-}
-
-.entry-type{
-  flex-grow:1;
-}
-.image-container{
-  overflow: hidden;
-  height:200px;
-  width:200px;
-}
-
-
-.card-container .card:not(:last-child) {
-  margin-right: 0;
-}
-
-.card.card-small {
-  height: 16px;
-  width: 168px;
-}
-
-.card-container .card:not(.highlight-card) {
-  cursor: pointer;
-}
-
-.card-container .card:not(.highlight-card):hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-}
-
-.card-container .card:not(.highlight-card):hover .material-icons path {
-  fill: rgb(105, 103, 103);
-}
-
-.card.highlight-card {
-  background-color: $background-primary;
-  color: white;
-  font-weight: 600;
-  border: none;
-  width: auto;
-  min-width: 30%;
-  position: relative;
-}
-
-.card.card.highlight-card span {
-  margin-left: 60px;
+.image{
+  background-color:grey !important;
 }
 
 a,
@@ -144,6 +42,7 @@ a:hover {
 a:hover {
   color: #125699;
 }
+
 
 .circle-link {
   height: 40px;
@@ -165,40 +64,14 @@ a:hover {
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 767px) {
-
-  .card:not(.highlight-card) {
-    height: 200px;
-    margin: 8px 0;
-  }
-
-  .card.highlight-card span {
-    margin-left: 72px;
-  }
-
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
-
-* {
-  font-family: 'Amatic SC', cursive;
-}
 
 button {
-  margin-top: 15px;
+  margin-top: 0px;
   background-color: #bdde77;
-  border-radius: 100px;
   border: 1px solid lightgrey;
-  font-family: 'Amatic SC', cursive;
   font-weight: bold;
   font-size: 15px;
   box-shadow: 2px 2px 2px lightgray;
-  width: 60px;
+  min-width: 60px;
 }
 
-img {
-  width:250px;
-  height:270px;
-  object-fit: cover;
-}

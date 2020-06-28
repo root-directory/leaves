@@ -10,11 +10,10 @@ import * as fromRoot from '../../Rx/rx.index';
 import { TitleService } from '../title.service';
 import * as selectors from '../../Rx/plants.selector';
 
-
 @Component({
   selector: 'app-plant-growth',
   templateUrl: './plant-growth.component.html',
-  styleUrls: ['./plant-growth.component.scss']
+  styleUrls: ['./plant-growth.component.scss'],
 })
 export class PlantGrowthComponent implements OnInit {
   plant: Plant;
@@ -23,7 +22,7 @@ export class PlantGrowthComponent implements OnInit {
   lastWateredEntry;
   journalTest;
   timeSinceWatered;
-  alert: string;
+  alert;
   color: string;
   constructor(
     private route: ActivatedRoute,
@@ -32,16 +31,18 @@ export class PlantGrowthComponent implements OnInit {
     private router: Router,
     private store: Store<fromRoot.State>,
     private titleService: TitleService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.store.dispatch({type: '[Journal] Load Journal', payload: this.id});
-    this.journalEntries$ = this.store.select(state => state.plants.journal.journalEntries);
-    this.store.select(state => state.plants.journal.journalEntries).subscribe(
-      res => {this.lastWateredEntry = res; }
-
+    this.journalEntries$ = this.store.select(
+      (state) => state.plants.journal.journalEntries
     );
+    this.store
+      .select((state) => state.plants.journal.journalEntries)
+      .subscribe((res) => {
+        this.lastWateredEntry = res;
+      });
 
     this.getPlant();
     this.titleService.setTitle('My growth');
@@ -51,36 +52,55 @@ export class PlantGrowthComponent implements OnInit {
     this.store
       .select(selectors.getItemById(this.id))
       .subscribe((plant) => (this.plant = plant));
-    console.log(this.plant.care.watering);
     this.lastWatered();
   }
 
-  lastWatered(){
-    let lastWateredDate = this.lastWateredEntry.filter(entry => {
+  lastWatered() {
+    let lastWateredDate = this.lastWateredEntry.filter((entry) => {
       return entry.entryType === 'water';
     });
-    if (lastWateredDate.length){
+    if (lastWateredDate.length) {
       lastWateredDate = lastWateredDate[0].timestamp;
-    }else{
+    } else {
       lastWateredDate = Date.now();
     }
 
     const dates: number = Date.now() - lastWateredDate;
-    const daysDiff: number = Math.floor(dates / (1000 * 60 * 60  * 24));
-    const wateringFrequencyDays: number = parseInt(this.plant.care.watering.frequency, 10) * 7;
-    console.log(daysDiff);
-    if (daysDiff > wateringFrequencyDays){
-      this.alert = `It has been about ${daysDiff} since you watered last. Your care states you should water it every:${wateringFrequencyDays}days!`;
+    const daysDiff: number = Math.floor(dates / (1000 * 60 * 60 * 24));
+    const wateringFrequencyDays: number =
+      parseInt(this.plant.care.watering.frequency, 10) * 7;
+    if (!wateringFrequencyDays) {
+    this.alert = {
+      title: `No watering events in your journal!`,
+      lastWatered: `Add a new Journal Event`,
+      daysUntil: `and be sure to update your plant care with intervals`,
+    };
+    this.color = 'green';
+    }
+    else if (daysDiff > wateringFrequencyDays) {
+
+      this.alert = {
+        title: `Your Plant is Thirsty!`,
+        lastWatered: `Last Watered:${daysDiff} days ago. `,
+        daysUntil: ` Past Due by: ${daysDiff - wateringFrequencyDays}days!`,
+      };
       this.color = 'red';
-    }else{
+    } else {
+      console.log(wateringFrequencyDays);
+      this.alert = {
+        title: `Nice Watering!`,
+        lastWatered: `Last Watered:${daysDiff} days ago. `,
+        daysUntil: ` ${
+          wateringFrequencyDays - daysDiff
+        }days, until you need to water this plant!`,
+      };
       this.color = 'green';
-      this.alert = `You have ${wateringFrequencyDays - daysDiff}days, until you need to water this plant!`;
     }
     this.timeSinceWatered = daysDiff;
-
   }
 
   goBack(): void {
     this.router.navigate(['/forest', this.id, 'plant-overview']);
   }
+
 }
