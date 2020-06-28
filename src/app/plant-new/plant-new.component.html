@@ -10,12 +10,6 @@
           minlength="4"
         />
       </div>
-
-      <label class="col-sm-4 col-form-label" for="plantType">Plant Type:</label>
-      <div class="col-sm-8">
-        <input class="form-control" formControlName="plantType" />
-      </div>
-
       <label class="col-sm-4 col-form-label" for="plantImage"
         >Plant Image:</label
       >
@@ -28,10 +22,35 @@
           formControlName="image"
         />
       </div>
+
+      <label class="col-sm-4 col-form-label" for="plantType">Plant Type:</label>
+      <div class="col-sm-8">
+        <input class="form-control" formControlName="plantType" />
+        <div *ngIf="suggestions">
+          <label class="col-sm-4 col-form-label" for="plantType">Plant Suggestions:</label>
+          <select
+            class="form-control"
+            formControlName="suggestions"
+            name="water"
+            id="water"
+            (change)="updatePlantType($event.target.value)"
+          >
+            <option
+              *ngFor="let suggestion of suggestions"
+              [value]="suggestion.plant_name"
+              >{{ suggestion.plant_name }} | Confidence:
+              {{ suggestion.probability | percent }}</option
+            >
+          </select>
+        </div>
+      </div>
+
+      
     </div>
     <div formGroupName="care" class="row col-12">
       <h2 class="col-12">Watering</h2>
-      <div formGroupName="watering" class="row col-12">
+      
+      <div formGroupName="watering" class="row col-12 collapse" id="watering-collapse">
         <label class="col-sm-4 col-form-label" for="water">Frequency:</label>
         <div class="col-sm-8">
           <select

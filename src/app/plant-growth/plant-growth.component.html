@@ -1,20 +1,29 @@
 <div *ngIf="journalEntries$" class="content" role="main">
-  <div *ngIf="alert">
-    <div class="{{ color }} alert">
-      {{ alert }}
-    </div>
-  </div>
-
   <div class="container">
     <div class="row">
       <button
         [routerLink]="['/forest', id, 'plant-growth', 'new']"
         class="col-sm col-6"
       >
-       {{ "New Entry" | uppercase }}
+        {{ "New Entry" | uppercase }}
       </button>
       <button (click)="goBack()" class="col-sm col-6">Back</button>
     </div>
+
+    <div *ngIf="alert" class="row p-0 mx-auto">
+      <ngb-toast class="{{ color }} alert">
+        <h4>
+          {{ alert.title }}
+        </h4>
+        <p>
+          {{ alert.lastWatered }}
+        </p>
+        <p>
+          {{ alert.daysUntil }}
+        </p>
+      </ngb-toast>
+    </div>
+
     <div class="row">
       <div
         *ngFor="let entry of journalEntries$ | async"
@@ -26,12 +35,18 @@
           <img src="{{ entry.info.imgUrl }}" class="card-img-top" alt="..." />
         </ng-template>
         <ng-template #elseBlock>
-          <img src="https://cdn.hswstatic.com/gif/water-life-crop.jpg" class="card-img-top" alt="..." />
+          <img
+            src="https://cdn.hswstatic.com/gif/water-life-crop.jpg"
+            class="card-img-top"
+            alt="..."
+          />
         </ng-template>
 
         <div class="card-body">
           <h6 class="card-title" *ngIf="entry.entryType">Type of Event:</h6>
-          <p class="card-title" *ngIf="entry.entryType">{{ entry.entryType }}</p>
+          <p class="card-title" *ngIf="entry.entryType">
+            {{ entry.entryType }}
+          </p>
           <h6>Notes:</h6>
           <p *ngIf="entry.info.notes" class="card-text">
             {{ entry.info.notes }}
@@ -40,6 +55,4 @@
       </div>
     </div>
   </div>
-
-  
 </div>
