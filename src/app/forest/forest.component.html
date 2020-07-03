@@ -1,23 +1,32 @@
-<section class="content" role="main">
-  <div class="container">
-    <div class="row">
-      <button [routerLink]="['/forest/new-plant']" class="col-sm col-12 btn">
-        {{ "Add a new plant" | uppercase }}
-      </button>
-    </div>
-    <div class="row">
-      <div *ngFor="let plant of plants$ | async" class="card overlay-div">
-        <img src="{{ plant.imageURL }}" class="card-img" alt="..." />
 
-        <a [routerLink]="['/forest', plant.id, 'plant-overview']">
-          <div class="card-img-overlay">
-            <h5 class="card-title">{{ plant.plantName }}</h5>
+    <div class="container">
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="text-white">Forest</h1>
+        <p class="lead text-white">Welcome to your Forest. Here you can view your plants, add and delete!</p>
+        <p>
+          <a [routerLink]="['/forest/new-plant']" class="btn btn-primary my-2">Add a Plant</a>
+        </p>
+      </div>
+    </section>
+    <div class="album py-5 bg-light">
+
+      <div class="container">
+    
+        <div class="row">
+          
+          <div *ngFor="let plant of plants$ | async" class="card overlay-div col-md-4 shadow-sm">
+            <img src="{{ plant.imageURL }}" class="card-img-top" alt="..." />
+            
+            <a [routerLink]="['/forest', plant.id, 'plant-overview']">
+              <div class="card-img-overlay">
+                <h5 class="card-title">{{ plant.plantName }}</h5>
+              </div>
+            </a>
+            <a class="delete" title="delete plant" (click)="delete(plant)">
+              <img class="icons" src="assets/icons8-multiply-100.png" />
+            </a>
           </div>
-        </a>
-        <a class="delete" title="delete plant" (click)="delete(plant)">
-          <img class="icons" src="assets/icons8-multiply-100.png" />
-        </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>

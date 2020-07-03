@@ -1,45 +1,51 @@
 <form [formGroup]="uploadForm">
   <div class="content">
-    <div class="care-div">
-      <div class="flex-row header">
-        <h2>Type of Journal Event</h2>
+    <div class="container">
+      <div class="row">
+        <button class="col-sm col-6" (click)="goBack()">Back</button>
+   
+          <button *ngIf="uploadForm.valid"class="col-sm col-6" (click)="upload()">Submit</button>
+     
       </div>
-      <div class="flex-row">
-        <label for="water">Journal Entry Type:</label>
-        <select
-          class="input"
-          name="water"
-          id="water"
-          formControlName="entryType"
-          required
+      <div class="row form-group col-12">
+        <label class="col-sm-4 col-form-label" for="water"
+          >Journal Entry Type:</label
         >
-          <option value="water">Watering</option>
-          <option value="image">Image</option>
-          <option value="repotting">Repotting</option>
-          <option value="location">Location</option>
-        </select>
-      </div>
-
-      <div class="flex-row">
-        <label>Image Update:</label>
-        <input
-          class="input"
-          type="file"
-          id="file"
-          (change)="onFileSelected($event)"
-          formControlName="image"
-        />
-      </div>
-      <div class="flex-row" formGroupName="info">
-        <label>Notes:</label>
-        <input class="input" formControlName="notes" />
-      </div>
-    </div>
-    <div>
-      <button class="add" (click)="goBack()">Back</button>
-        <div *ngIf="uploadForm.valid">
-          <button class="add" (click)="upload()">Submit</button>
+        <div class="col-sm-8">
+          <select
+            class="form-control"
+            name="water"
+            id="water"
+            formControlName="entryType"
+            required
+          >
+            <option value="water">Watering</option>
+            <option value="image">Image</option>
+            <option value="repotting">Repotting</option>
+            <option value="location">Location</option>
+          </select>
         </div>
+
+        <label class="col-sm-4 col-form-label">Image Update:</label>
+        <div class="col-sm-8">
+          <input
+            class="form-control-file"
+            type="file"
+            id="file"
+            (change)="onFileSelected($event)"
+            formControlName="image"
+          />
+        </div>
+        <label class="col-sm-4 col-form-label">Notes:</label>
+        <div class="col-sm-12" formGroupName="info">
+          <textarea
+            class="input"
+            rows="3"
+            style="width: 100%;"
+            formControlName="notes"
+          ></textarea>
+        </div>
+      </div>
     </div>
   </div>
 </form>

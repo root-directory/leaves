@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Plant } from '../app/types/plant';
 import { JournalEntry, Journal } from '../app/types/journalEntry';
-import { Observable, of } from 'rxjs';
+import { Observable, of, EMPTY } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, retry } from 'rxjs/operators';
 import * as PlantActions from '../Rx/plants.actions';
 
 @Injectable({
@@ -27,7 +27,12 @@ export class PlantService {
 
   getPlants(): Observable<Plant[]> {
     const URL = this.ROOT_URL + this.PLANTS_URL;
-    return this.http.get<Plant[]>(URL);
+    return this.http.get<Plant[]>(URL).pipe(
+      retry(5),
+      catchError(()=>{
+        return EMPTY
+      })
+    );
   }
 
   postCareForm(id: string, data: any) {

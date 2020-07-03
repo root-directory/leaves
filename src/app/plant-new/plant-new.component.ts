@@ -76,43 +76,43 @@ export class PlantNewComponent implements OnInit {
     reader.onload = () => {
       this.selectedFileB64 = reader.result;
       // console.log(this.selectedFileB64);
-      const temp = [
-        {
-          id: 25350163,
-          plant_name: 'Plantago major',
-          probability: 0.13732277678748092,
-          confirmed: false,
-        },
-        {
-          id: 25350164,
-          plant_name: 'Ictodes foetidus',
-          probability: 0.11510913345976831,
-          confirmed: false,
-        },
-        {
-          id: 25350165,
-          plant_name: 'Hosta',
-          probability: 0.09877065862991363,
-          confirmed: false,
-        },
-        {
-          id: 25350166,
-          plant_name: 'Balsamorhiza sagittata',
-          probability: 0.03445042204960642,
-          confirmed: false,
-        },
-      ];
+      // const temp = [
+      //   {
+      //     id: 25350163,
+      //     plant_name: 'Plantago major',
+      //     probability: 0.13732277678748092,
+      //     confirmed: false,
+      //   },
+      //   {
+      //     id: 25350164,
+      //     plant_name: 'Ictodes foetidus',
+      //     probability: 0.11510913345976831,
+      //     confirmed: false,
+      //   },
+      //   {
+      //     id: 25350165,
+      //     plant_name: 'Hosta',
+      //     probability: 0.09877065862991363,
+      //     confirmed: false,
+      //   },
+      //   {
+      //     id: 25350166,
+      //     plant_name: 'Balsamorhiza sagittata',
+      //     probability: 0.03445042204960642,
+      //     confirmed: false,
+      //   },
+      // ];
 
-      this.suggestions = temp;
+      // this.suggestions = temp;
 
-      // this.http.post(plantAIURL,{
-      //   api_key:"HVypPAWwh4uyfACFIXxduzTIxzRSVZJetEiBKkCrN98DSSIYjA",
-      //   images:[this.selectedFileB64],
-      // }).subscribe(response=>{
-      //   console.log(response)
-      //   this.suggestions=response;
-      //   this.suggestions=this.suggestions.suggestions;
-      // })
+      this.http.post(plantAIURL,{
+        api_key:"HVypPAWwh4uyfACFIXxduzTIxzRSVZJetEiBKkCrN98DSSIYjA",
+        images:[this.selectedFileB64],
+      }).subscribe(response=>{
+        console.log(response)
+        this.suggestions=response;
+        this.suggestions=this.suggestions.suggestions;
+      })
     };
   }
 
