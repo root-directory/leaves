@@ -10,8 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ForestComponent } from './forest/forest.component';
 import { HomeComponent } from './home/home.component';
-import { PlantOverviewComponent } from './plant-overview/plant-overview.component';
-import { PlantCareComponent } from './plant-care/plant-care.component';
 import { PlantGrowthComponent } from './plant-growth/plant-growth.component';
 import { PlantUploadComponent } from './plant-upload/plant-upload.component';
 import { PlantNewComponent } from './plant-new/plant-new.component';
@@ -27,19 +25,19 @@ import { PlantEffects } from '../Rx/plants.effects';
 import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
 import { HeaderComponent } from './header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
     ForestComponent,
     HomeComponent,
-    PlantOverviewComponent,
-    PlantCareComponent,
     PlantGrowthComponent,
     PlantUploadComponent,
     PlantNewComponent,
     CareFormComponent,
     HeaderComponent,
     JournalFormComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

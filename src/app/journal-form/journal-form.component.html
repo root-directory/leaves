@@ -1,8 +1,8 @@
+<div class="container">
 <form [formGroup]="uploadForm">
   <div class="content">
     <div class="container">
       <div class="row">
-        <button class="col-sm col-6" (click)="goBack()">Back</button>
    
           <button *ngIf="uploadForm.valid"class="col-sm col-6" (click)="upload()">Submit</button>
      
@@ -49,3 +49,4 @@
     </div>
   </div>
 </form>
+</div>

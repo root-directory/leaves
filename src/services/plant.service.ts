@@ -29,8 +29,8 @@ export class PlantService {
     const URL = this.ROOT_URL + this.PLANTS_URL;
     return this.http.get<Plant[]>(URL).pipe(
       retry(5),
-      catchError(()=>{
-        return EMPTY
+      catchError(() => {
+        return EMPTY;
       })
     );
   }

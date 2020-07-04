@@ -54,20 +54,11 @@ export class PlantGrowthComponent implements OnInit {
     this.store
       .select(selectors.getItemById(this.id))
       .subscribe((plant) => (this.plant = plant));
-   
+
   }
 
   lastWatered() {
-    let lastWateredDate = this.lastWateredEntry.filter((entry) => {
-      return entry.entryType === 'water';
-    });
-    if (lastWateredDate.length) {
-      lastWateredDate = lastWateredDate[0].timestamp;
-    } else {
-      lastWateredDate = Date.now();
-    }
-
-    const dates: number = Date.now() - lastWateredDate;
+    const dates: number = Date.now() - parseInt(this.plant.lastWatered, 10);
     const daysDiff: number = Math.floor(dates / (1000 * 60 * 60 * 24));
     const wateringFrequencyDays: number =
       parseInt(this.plant.care.watering.frequency, 10) * 7;

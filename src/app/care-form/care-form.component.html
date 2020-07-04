@@ -1,3 +1,4 @@
+<div class="container">
 <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
   <div class="content">
     <div class="content">
@@ -126,10 +127,10 @@
       </div>
     </div>
     <div>
-      <button class="add" (click)="goBack()">Back</button>
       <div *ngIf="changed">
         <button class="add">Submit Changes</button>
       </div>
     </div>
   </div>
 </form>
+</div>

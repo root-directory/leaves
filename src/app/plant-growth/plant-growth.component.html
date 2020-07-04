@@ -1,56 +1,69 @@
-<div *ngIf="journalEntries$" class="content" role="main">
-  <div class="container">
+<div class="container">
+  <div *ngIf="journalEntries$" class="content" role="main">
     <div class="row">
-      <button
-        [routerLink]="['/forest', id, 'plant-growth', 'new']"
-        class="col-sm col-6"
-      >
-        {{ "New Entry" | uppercase }}
-      </button>
-      <button (click)="goBack()" class="col-sm col-6">Back</button>
+
+      <div class="btn-group custom-buttons">
+ 
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-secondary"
+          [routerLink]="['/forest', plant.id, 'care-form']"
+        >
+          Care
+          <img class="icons" src="assets/icons8-heart-64.png" />
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-secondary"
+          [routerLink]="['/forest', plant.id,'plant-growth','new']"
+        >
+        New Entry
+          <img class="icons" src="assets/icons8-photo-gallery-64.png" />
+        </button>
+      </div>
+
     </div>
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row">
+          <div
+            *ngFor="let entry of journalEntries$ | async"
+            class=" col-md-4"
+          >
+            <div class="card mb-4 shadow-sm {{ entry.entryType }}">
+              <ng-template
+                *ngIf="entry.info.imgUrl; then thenBlock; else elseBlock"
+              >
+              </ng-template>
+              <ng-template #thenBlock>
+                <img
+                  src="{{ entry.info.imgUrl }}"
+                  class="card-img-top"
+                  alt="..."
+                />
+              </ng-template>
+              <ng-template #elseBlock>
+                <img
+                  src="https://cdn.hswstatic.com/gif/water-life-crop.jpg"
+                  class="card-img-top"
+                  alt="..."
+                />
+              </ng-template>
 
-    <div *ngIf="alert" class="row p-0 mx-auto">
-      <ngb-toast class="{{ color }} alert">
-        <h4>
-          {{ alert.title }}
-        </h4>
-        <p>
-          {{ alert.lastWatered }}
-        </p>
-        <p>
-          {{ alert.daysUntil }}
-        </p>
-      </ngb-toast>
-    </div>
-
-    <div class="row">
-      <div
-        *ngFor="let entry of journalEntries$ | async"
-        class="card {{ entry.entryType }}"
-      >
-        <ng-template *ngIf="entry.info.imgUrl; then thenBlock; else elseBlock">
-        </ng-template>
-        <ng-template #thenBlock>
-          <img src="{{ entry.info.imgUrl }}" class="card-img-top" alt="..." />
-        </ng-template>
-        <ng-template #elseBlock>
-          <img
-            src="https://cdn.hswstatic.com/gif/water-life-crop.jpg"
-            class="card-img-top"
-            alt="..."
-          />
-        </ng-template>
-
-        <div class="card-body">
-          <h6 class="card-title" *ngIf="entry.entryType">Type of Event:</h6>
-          <p class="card-title" *ngIf="entry.entryType">
-            {{ entry.entryType }}
-          </p>
-          <h6>Notes:</h6>
-          <p *ngIf="entry.info.notes" class="card-text">
-            {{ entry.info.notes }}
-          </p>
+              <div class="card-body">
+                <h6 class="card-title" *ngIf="entry.entryType">
+                  Type of Event:
+                </h6>
+                <p class="card-title" *ngIf="entry.entryType">
+                  {{ entry.entryType }}
+                </p>
+                <h6>Notes:</h6>
+                <p *ngIf="entry.info.notes" class="card-text">
+                  {{ entry.info.notes }}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

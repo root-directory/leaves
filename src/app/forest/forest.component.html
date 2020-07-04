@@ -21,9 +21,19 @@
             <img src="{{ plant.imageURL }}" class="card-img-top" />
             <div class="card-body">
               <h5 class="card-title">{{ plant.plantName }}</h5>
-              <p class="card-text">Plant Type: {{ plant.plantType }}</p>
-              <p class="card-text">Last Watered:{{ lastWatered(plant.lastWatered) }} Days ago.</p>
-              <p class="card-text">Your recommended Schedule: Every{{ plant.care.watering.frequency * 7 }} Days</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <p class="card-text">Plant Type: {{ plant.plantType }}</p>
+                </li>
+                <div *ngIf = "lastWatered(plant) as wateringAlert" >
+                  <li class="list-group-item {{wateringAlert.alert.color}}">
+                    <p class="card-text">Last Watered: {{wateringAlert.daysSinceLastWatered }} Days ago.</p>
+                    <p class="card-text">Recommended: Every {{ plant.care.watering.frequency * 7 }} Days</p>
+                    <div></div>
+                  </li>
+                  
+                </div>
+              </ul>
 
               <div class="btn-group custom-buttons">
                 <button

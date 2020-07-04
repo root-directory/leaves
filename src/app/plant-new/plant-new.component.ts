@@ -105,14 +105,14 @@ export class PlantNewComponent implements OnInit {
 
       // this.suggestions = temp;
 
-      this.http.post(plantAIURL,{
-        api_key:"HVypPAWwh4uyfACFIXxduzTIxzRSVZJetEiBKkCrN98DSSIYjA",
-        images:[this.selectedFileB64],
-      }).subscribe(response=>{
-        console.log(response)
-        this.suggestions=response;
-        this.suggestions=this.suggestions.suggestions;
-      })
+      this.http.post(plantAIURL, {
+        api_key: 'HVypPAWwh4uyfACFIXxduzTIxzRSVZJetEiBKkCrN98DSSIYjA',
+        images: [this.selectedFileB64],
+      }).subscribe(response => {
+        console.log(response);
+        this.suggestions = response;
+        this.suggestions = this.suggestions.suggestions;
+      });
     };
   }
 
