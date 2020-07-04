@@ -8,6 +8,7 @@ export interface Plant {
   imageURL?: string;
   plantName?: string;
   userId?: string;
+  lastWatered?:string;
   care?: {soil: Soil, watering: Watering, sunlight: Sunlight};
 }
 

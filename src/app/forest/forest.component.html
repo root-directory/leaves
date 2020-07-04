@@ -21,7 +21,9 @@
             <img src="{{ plant.imageURL }}" class="card-img-top" />
             <div class="card-body">
               <h5 class="card-title">{{ plant.plantName }}</h5>
-              <p class="card-text">{{ plant.plantType }}</p>
+              <p class="card-text">Plant Type: {{ plant.plantType }}</p>
+              <p class="card-text">Last Watered:{{ lastWatered(plant.lastWatered) }} Days ago.</p>
+              <p class="card-text">Your recommended Schedule: Every{{ plant.care.watering.frequency * 7 }} Days</p>
 
               <div class="btn-group custom-buttons">
                 <button
@@ -43,7 +45,7 @@
                 <button
                   type="button"
                   class="btn btn-sm btn-outline-secondary"
-                  [routerLink]="['/forest', plant.id]"
+                  [routerLink]="['/forest', plant.id,'plant-growth','new']"
                 >
                   Journal
                   <img class="icons" src="assets/icons8-photo-gallery-64.png" />

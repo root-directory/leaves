@@ -28,4 +28,12 @@ export class ForestComponent implements OnInit {
   delete(plant: Plant): void {
     this.store.dispatch(PlantActions.deletePlant({ plant }));
   }
+
+  lastWatered(date){
+    const datesDiff = Date.now() - date
+    const daysDiff = Math.floor(datesDiff/(1000*60*60*24))
+    return daysDiff
+  }
+
+
 }
