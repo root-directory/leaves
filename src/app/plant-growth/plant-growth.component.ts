@@ -35,6 +35,7 @@ export class PlantGrowthComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.store.dispatch({ type: '[Journal] Load Journal', payload: this.id });
     this.journalEntries$ = this.store.select(
       (state) => state.plants.journal.journalEntries
     );
@@ -45,6 +46,7 @@ export class PlantGrowthComponent implements OnInit {
       });
 
     this.getPlant();
+    this.lastWatered();
     this.titleService.setTitle('My growth');
   }
 
@@ -52,7 +54,7 @@ export class PlantGrowthComponent implements OnInit {
     this.store
       .select(selectors.getItemById(this.id))
       .subscribe((plant) => (this.plant = plant));
-    this.lastWatered();
+   
   }
 
   lastWatered() {

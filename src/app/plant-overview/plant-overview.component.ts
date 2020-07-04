@@ -37,6 +37,6 @@ export class PlantOverviewComponent implements OnInit {
     this.store.select(selectors.getItemById(id)).subscribe((plant) => {
       this.plant = plant;
     });
-    this.store.dispatch({ type: '[Journal] Load Journal', payload: id });
+    
   }
 }

@@ -30,9 +30,6 @@ a {
 .icons {
   width: 40px;
   height: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .card-heading-wrapper {
@@ -50,6 +47,11 @@ a {
 }
 .delete:hover {
   background-color: red !important;
+}
+.card{
+  padding:0;
+  padding-bottom: 85px;
+  min-height:450px;
 }
 
 button {
@@ -70,3 +72,16 @@ article{
   background-image: url("../../assets/jumbotronimage.jpg");
   background-size: cover;
 }
+
+.card-img-top{
+  height:225px;
+  width:100%;
+  object-fit:cover;
+}
+.custom-buttons{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+}
+

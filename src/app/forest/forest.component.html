@@ -1,32 +1,61 @@
-
+<div class="container">
+  <section class="jumbotron text-center">
     <div class="container">
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="text-white">Forest</h1>
-        <p class="lead text-white">Welcome to your Forest. Here you can view your plants, add and delete!</p>
-        <p>
-          <a [routerLink]="['/forest/new-plant']" class="btn btn-primary my-2">Add a Plant</a>
-        </p>
-      </div>
-    </section>
-    <div class="album py-5 bg-light">
+      <h1 class="text-white">Forest</h1>
+      <p class="lead text-white">
+        Welcome to your Forest. Here you can view your plants, add and delete!
+      </p>
+      <p>
+        <a [routerLink]="['/forest/new-plant']" class="btn btn-primary my-2"
+          >Add a Plant</a
+        >
+      </p>
+    </div>
+  </section>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-md-4" *ngFor="let plant of plants$ | async">
+          <div class="card overlay-div mb-4 shadow-sm">
+            <img src="{{ plant.imageURL }}" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">{{ plant.plantName }}</h5>
+              <p class="card-text">{{ plant.plantType }}</p>
 
-      <div class="container">
-    
-        <div class="row">
-          
-          <div *ngFor="let plant of plants$ | async" class="card overlay-div col-md-4 shadow-sm">
-            <img src="{{ plant.imageURL }}" class="card-img-top" alt="..." />
-            
-            <a [routerLink]="['/forest', plant.id, 'plant-overview']">
-              <div class="card-img-overlay">
-                <h5 class="card-title">{{ plant.plantName }}</h5>
+              <div class="btn-group custom-buttons">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                  [routerLink]="['/forest', plant.id, 'plant-growth']"
+                >
+                  Growth
+                  <img class="icons" src="assets/icons8-plant-48.png" />
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                  [routerLink]="['/forest', plant.id, 'care-form']"
+                >
+                  Care
+                  <img class="icons" src="assets/icons8-heart-64.png" />
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                  [routerLink]="['/forest', plant.id]"
+                >
+                  Journal
+                  <img class="icons" src="assets/icons8-photo-gallery-64.png" />
+                </button>
               </div>
-            </a>
-            <a class="delete" title="delete plant" (click)="delete(plant)">
-              <img class="icons" src="assets/icons8-multiply-100.png" />
-            </a>
+              <a class="delete" title="delete plant" (click)="delete(plant)">
+                <img class="icons" src="assets/icons8-multiply-100.png" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
