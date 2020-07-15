@@ -9,7 +9,7 @@ export const loadPlantsFail = createAction(
 );
 export const loadPlantsSuccess = createAction(
   '[Plants] Load Plants Success',
-  props<{ payload: {plants: Plant[]} }>()
+  props<{ payload:  Plant[]  }>()
 );
 export const deletePlant = createAction(
   '[Plants] Delete Plants',
@@ -23,7 +23,10 @@ export const deletePlantSuccess = createAction(
   '[Plants] Delete Plants Success',
   props<{ plant: Plant }>()
 );
-export const loadJournal = createAction('[Journal] Load Journal');
+export const loadJournal = createAction(
+  '[Journal] Load Journal',
+  props<{ plantId: String }>()
+);
 export const loadJournalFail = createAction(
   '[Journal] Load Journal Fail',
   props<{ payload: Journal }>()
