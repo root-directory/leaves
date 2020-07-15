@@ -10,6 +10,7 @@ export interface Plant {
   userId?: string;
   lastWatered?: string;
   care?: {soil: Soil, watering: Watering, sunlight: Sunlight};
+  alert?:{color: string, title: string, lastWatered: string, daysUntil: string}
 }
 
 interface Soil {

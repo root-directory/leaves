@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Plant } from '../app/types/plant';
 import { JournalEntry, Journal } from '../app/types/journalEntry';
 import { Observable, of, EMPTY } from 'rxjs';
-import { Store } from '@ngrx/store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap, retry } from 'rxjs/operators';
 import * as PlantActions from '../Rx/plants.actions';
@@ -27,12 +26,60 @@ export class PlantService {
 
   getPlants(): Observable<Plant[]> {
     const URL = this.ROOT_URL + this.PLANTS_URL;
-    return this.http.get<Plant[]>(URL).pipe(
+    const result$ = this.http.get<{plants:Plant[]}>(URL).pipe(
       retry(5),
+      map(({ plants }) => {
+        plants = this.addWateringAlert(plants);
+        return plants;
+      }),
       catchError(() => {
         return EMPTY;
       })
     );
+    return result$;
+  }
+
+  addWateringAlert(plants: Plant[]) {
+    const newResult = plants.map((plant) => {
+      const datesDiff = Date.now() - parseInt(plant.lastWatered);
+      const daysDiff = Math.floor(datesDiff / (1000 * 60 * 60 * 24));
+      let alert = {
+        color: 'white',
+        title: '',
+        lastWatered: '',
+        daysUntil: '',
+      };
+
+      const wateringFrequencyDays = parseInt(plant.care.watering.frequency) * 7;
+      if (!wateringFrequencyDays) {
+        alert = {
+          title: `No watering events in your journal!`,
+          lastWatered: `Add a new Journal Event`,
+          daysUntil: `and be sure to update your plant care with intervals`,
+          color: 'green',
+        };
+      } else if (daysDiff > wateringFrequencyDays) {
+        alert = {
+          title: `Your Plant is Thirsty!`,
+          lastWatered: `Last Watered:${daysDiff} days ago. `,
+          daysUntil: ` Past Due by: ${daysDiff - wateringFrequencyDays}days!`,
+          color: 'red',
+        };
+      } else {
+        alert = {
+          title: `Nice Watering!`,
+          lastWatered: `Last Watered:${daysDiff} days ago. `,
+          daysUntil: ` ${
+            wateringFrequencyDays - daysDiff
+          }days, until you need to water this plant!`,
+          color: 'green',
+        };
+      }
+      plant.alert = alert;
+
+      return plant;
+    });
+    return newResult;
   }
 
   postCareForm(id: string, data: any) {
