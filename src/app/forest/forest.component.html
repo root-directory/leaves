@@ -15,7 +15,6 @@
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
-        
         <div class="col-md-4" *ngFor="let plant of plants$ | async">
           <div class="card overlay-div mb-4 shadow-sm">
             <img src="{{ plant.imageURL }}" class="card-img-top" />
@@ -25,14 +24,17 @@
                 <li class="list-group-item">
                   <p class="card-text">Plant Type: {{ plant.plantType }}</p>
                 </li>
-                <div *ngIf = "lastWatered(plant) as wateringAlert" >
-                  <li class="list-group-item {{wateringAlert.alert.color}}">
-                    <p class="card-text">Last Watered: {{wateringAlert.daysSinceLastWatered }} Days ago.</p>
-                    <p class="card-text">Recommended: Every {{ plant.care.watering.frequency * 7 }} Days</p>
-                    <div></div>
-                  </li>
-                  
-                </div>
+
+                <li class="list-group-item {{ plant.alert.color }}">
+                  <p class="card-text">
+                    Last Watered: {{ plant.daysSinceLastWatered }} Days ago.
+                  </p>
+                  <p class="card-text">
+                    Recommended: Every
+                    {{ plant.care.watering.frequency * 7 }} Days
+                  </p>
+                  <div></div>
+                </li>
               </ul>
 
               <div class="btn-group custom-buttons">
@@ -55,7 +57,7 @@
                 <button
                   type="button"
                   class="btn btn-sm btn-outline-secondary"
-                  [routerLink]="['/forest', plant.id,'plant-growth','new']"
+                  [routerLink]="['/forest', plant.id, 'plant-growth', 'new']"
                 >
                   Journal
                   <img class="icons" src="assets/icons8-photo-gallery-64.png" />
