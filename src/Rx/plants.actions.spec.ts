@@ -33,7 +33,7 @@ describe('loadPlants', () => {
     expect(fromPlant.loadPlants().type).toBe('[Plants] Load Plants');
   });
   it('load plants success', () => {
-    expect(fromPlant.loadPlantsSuccess({payload: {plants: mockPlants}}).type).toBe('[Plants] Load Plants Success');
+    expect(fromPlant.loadPlantsSuccess({payload:  mockPlants}).type).toBe('[Plants] Load Plants Success');
   });
   it('load plants fail', () => {
     expect(fromPlant.loadPlantsFail({payload: mockPlants}).type).toBe('[Plants] Load Plants Fail');

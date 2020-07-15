@@ -53,6 +53,7 @@ export class PlantEffects {
     this.actions$.pipe(
       ofType('[Plants] Delete Plants'),
       mergeMap(action => {
+        
         return this.service.deletePlant(action).pipe(
           map(() => {console.log('dataPlantAction', action); return deletePlantSuccess({plant: action}); }),
 
