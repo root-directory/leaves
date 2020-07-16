@@ -41,7 +41,7 @@ export class PlantService {
 
   addWateringAlert(plants: Plant[]) {
     const newResult = plants.map((plant) => {
-      const datesDiff = Date.now() - parseInt(plant.lastWatered);
+      const datesDiff = Date.now() - parseInt(plant.lastWatered, 10);
       const daysDiff = Math.floor(datesDiff / (1000 * 60 * 60 * 24));
       let alert = {
         color: 'white',
@@ -50,7 +50,7 @@ export class PlantService {
         daysUntil: '',
       };
 
-      const wateringFrequencyDays = parseInt(plant.care.watering.frequency) * 7;
+      const wateringFrequencyDays = parseInt(plant.care.watering.frequency, 10) * 7;
       if (!wateringFrequencyDays) {
         alert = {
           title: `No watering events in your journal!`,

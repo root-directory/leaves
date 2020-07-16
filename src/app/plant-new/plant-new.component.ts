@@ -122,7 +122,7 @@ export class PlantNewComponent implements OnInit {
 
   upload() {
 
-  
+
       this.plantService.uploadImage(this.selectedFile).subscribe((res: { photo_url: string }) => {
         this.onSubmit(res.photo_url);
       });
