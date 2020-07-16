@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
 import { HttpClient } from '@angular/common/http';
-import { TitleService } from '../title.service';
+import { TitleService } from '../../services/title.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -121,17 +121,12 @@ export class PlantNewComponent implements OnInit {
   }
 
   upload() {
-    if (this.selectedFile) {
-      const fd = new FormData();
-      fd.append('file', this.selectedFile, this.selectedFile.name);
 
-      const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
-      this.http.post(URL, fd).subscribe((res: { photo_url: string }) => {
+  
+      this.plantService.uploadImage(this.selectedFile).subscribe((res: { photo_url: string }) => {
         this.onSubmit(res.photo_url);
       });
-    } else {
-      this.onSubmit(null);
-    }
+
   }
 
   onSubmit(imageURL: string | null) {

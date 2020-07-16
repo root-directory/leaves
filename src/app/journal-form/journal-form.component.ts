@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PlantService } from 'src/services/plant.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TitleService } from '../title.service';
+import { TitleService } from '../../services/title.service';
 import {Validators} from '@angular/forms';
 
 @Component({

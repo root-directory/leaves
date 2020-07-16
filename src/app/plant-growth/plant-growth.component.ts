@@ -7,7 +7,7 @@ import { Plant } from '../types/plant';
 import { JournalEntry } from '../types/journalEntry';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../Rx/rx.index';
-import { TitleService } from '../title.service';
+import { TitleService } from '../../services/title.service';
 import * as selectors from '../../Rx/plants.selector';
 
 @Component({

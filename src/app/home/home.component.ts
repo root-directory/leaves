@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // FORM STUFF
 import { PlantService } from '../../services/plant.service';
-import { TitleService } from '../title.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-home',

@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as PlantActions from '../../Rx/plants.actions';
 import * as fromRoot from '../../Rx/rx.index';
-import { TitleService } from '../title.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-forest',

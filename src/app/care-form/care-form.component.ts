@@ -4,7 +4,7 @@ import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TitleService } from '../title.service';
+import { TitleService } from '../../services/title.service';
 import * as selectors from '../../Rx/plants.selector';
 import { Store, select } from '@ngrx/store';
 import { updateCare } from 'src/Rx/plants.actions';

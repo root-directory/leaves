@@ -26,7 +26,7 @@ export class PlantService {
 
   getPlants(): Observable<Plant[]> {
     const URL = this.ROOT_URL + this.PLANTS_URL;
-    const result$ = this.http.get<{plants:Plant[]}>(URL).pipe(
+    const result$ = this.http.get<{ plants: Plant[] }>(URL).pipe(
       retry(5),
       map(({ plants }) => {
         plants = this.addWateringAlert(plants);
@@ -120,8 +120,12 @@ export class PlantService {
     return this.http.delete<Plant>(URL);
   }
 
-  uploadImage(url: string, fd: any): Observable<any> {
-    return this.http.post(url, fd);
+  uploadImage(selectedFile): Observable<any> {
+    const fd = new FormData();
+    fd.append('file', selectedFile, selectedFile.name);
+
+    const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
+    return this.http.post(URL, fd);
   }
 
   /**
