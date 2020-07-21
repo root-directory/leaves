@@ -17,8 +17,8 @@ describe('PlantService', () => {
       providers: [PlantService],
     });
     injector = getTestBed();
-    service = injector.get(PlantService);
-    httpMock = injector.get(HttpTestingController);
+    service = TestBed.inject(PlantService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
@@ -99,7 +99,7 @@ describe('PlantService', () => {
     req.flush(dummyPlantsResponse);
   });
   it('addWateringAlert() should return modified data', () => {
-    let returnedVal = service.addWateringAlert(dummyPlantsResponse);
+    const returnedVal = service.addWateringAlert(dummyPlantsResponse);
     expect(returnedVal).toEqual(dummyPlantsModified);
   });
 });

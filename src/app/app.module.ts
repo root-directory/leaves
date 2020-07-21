@@ -26,9 +26,9 @@ import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
 import { HeaderComponent } from './header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './footer/footer.component';
-import { MultiplierPipe } from 'src/CustomPipes/multiplier.pipe';
-import { DateConversionPipe } from 'src/CustomPipes/dateConversion.pipe';
-import { DateFormatPipe } from '../CustomPipes/dateFormat.pipe';
+import { MultiplierPipe } from 'src/custom-pipes/multiplier.pipe';
+import { DateConversionPipe } from 'src/custom-pipes/dateConversion.pipe';
+import { DateFormatPipe } from '../custom-pipes/dateFormat.pipe';
 @NgModule({
   declarations: [
     AppComponent,

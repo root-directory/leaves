@@ -7,8 +7,8 @@ import { DatePipe } from '@angular/common';
 })
 export class DateFormatPipe extends DatePipe implements PipeTransform {
   transform(value: any, args?: any): any {
-    const _value = parseInt(value);
-    const secDiff = Math.floor((Date.now() - _value) / 1000);
+    value = parseInt(value, 10);
+    const secDiff = Math.floor((Date.now() - value) / 1000);
     const dayDiff = Math.floor(secDiff / 86400);
 
     if (dayDiff < 30) {
@@ -19,9 +19,9 @@ export class DateFormatPipe extends DatePipe implements PipeTransform {
   }
 
   convertToPrettyDate(secDiff: number, dayDiff: number) {
-    if (isNaN(dayDiff) || dayDiff < 0 || dayDiff >= 31) return '';
+    if (isNaN(dayDiff) || dayDiff < 0 || dayDiff >= 31) { return ''; }
 
-    if (dayDiff == 0) {
+    if (dayDiff === 0) {
       return (
         (secDiff < 60 && 'Just now') ||
         (secDiff < 120 && '1 minute ago') ||
@@ -31,7 +31,7 @@ export class DateFormatPipe extends DatePipe implements PipeTransform {
       );
     } else {
       return (
-        (dayDiff == 1 && 'Yesterday') ||
+        (dayDiff === 1 && 'Yesterday') ||
         (dayDiff < 7 && dayDiff + ' days ago') ||
         (dayDiff < 31 && Math.ceil(dayDiff / 7) + ' week(s) ago')
       );

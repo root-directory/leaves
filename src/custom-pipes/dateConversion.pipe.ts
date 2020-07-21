@@ -9,7 +9,7 @@ export class DateConversionPipe implements PipeTransform {
     originalFormat: string,
     newFormat: string
   ): number {
-    let conversionLookup = {
+    const conversionLookup = {
       week: 1000 * 60 * 60 * 24 * 7,
       day: 1000 * 60 * 60 * 24,
       hr: 1000 * 60 * 60,

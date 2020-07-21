@@ -50,10 +50,10 @@ export class PlantService {
   /** Sanatize: Add an alert onto the plant as it comes in. */
   addWateringAlert(plants: Plant[]) {
     const newPlants = plants.map((plant) => {
-      let alert: Alert = {
+      const alert: Alert = {
         color: '',
         title: '',
-        
+
         dayDelta: '',
       };
       const frequency = plant.care.watering.frequency;
@@ -65,16 +65,16 @@ export class PlantService {
       }
       const datesDiff = Date.now() - parseInt(plant.lastWatered, 10);
       const daysDiff = Math.floor(datesDiff / (1000 * 60 * 60 * 24));
-      let frequencyDays: number = parseInt(frequency, 10) * 7 || undefined;
+      const frequencyDays: number = parseInt(frequency, 10) * 7 || undefined;
 
       if (daysDiff > frequencyDays) {
         alert.title = `Your Plant is Thirsty!`;
-       
+
         alert.dayDelta = `Past Due by: ${daysDiff - frequencyDays} days!`;
         alert.color = 'red';
       } else {
         alert.title = `Nice Watering!`;
-    
+
         alert.dayDelta = `${
           frequencyDays - daysDiff
         } days until you need to water this plant!`;

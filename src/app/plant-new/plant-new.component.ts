@@ -74,7 +74,7 @@ export class PlantNewComponent implements OnInit {
           api_key: 'HVypPAWwh4uyfACFIXxduzTIxzRSVZJetEiBKkCrN98DSSIYjA',
           images: [this.selectedFileB64],
         })
-        .subscribe((response:{suggestions}) => {
+        .subscribe((response: {suggestions}) => {
           this.suggestions = response.suggestions;
         });
     };

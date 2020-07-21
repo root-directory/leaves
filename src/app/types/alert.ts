@@ -1,5 +1,5 @@
 export interface Alert {
-  color: string,
-  title: string,
-  dayDelta: string,
+  color: string;
+  title: string;
+  dayDelta: string;
 }
