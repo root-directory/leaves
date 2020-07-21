@@ -27,7 +27,7 @@
 
                 <li class="list-group-item {{ plant.alert.color }}">
                   <h5>{{ plant.alert.title }}</h5>
-                  <p *ngIf="plant.lastWatered" class="card-text">Last Watered: {{ plant.lastWatered|DateFormat }}</p>
+                  <p *ngIf="plant.lastWatered" class="card-text">Last Watered: {{ plant.lastWatered|LastUpdatedFormat }}</p>
                   <p *ngIf="plant.care.watering.frequency" class="card-text">
                     Recommended: Every
                     {{ plant.care.watering.frequency |DateConversion:'week':'day'}} Days

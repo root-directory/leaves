@@ -3,9 +3,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Pipe({
-  name: 'DateFormat',
+  name: 'LastUpdatedFormat',
 })
-export class DateFormatPipe extends DatePipe implements PipeTransform {
+/*Custom Pipe | Extends Datepipe to add prettier formatting to our dates */
+export class LastUpdatedDatePipe extends DatePipe implements PipeTransform {
   transform(value: any, args?: any): any {
     value = parseInt(value, 10);
     const secDiff = Math.floor((Date.now() - value) / 1000);
@@ -17,7 +18,7 @@ export class DateFormatPipe extends DatePipe implements PipeTransform {
       return super.transform(value, Constants.DATE_FMT);
     }
   }
-
+  /* Helper| modifies the formatting to add curated information instead of DD/MM/YYYY */
   convertToPrettyDate(secDiff: number, dayDiff: number) {
     if (isNaN(dayDiff) || dayDiff < 0 || dayDiff >= 31) { return ''; }
 
