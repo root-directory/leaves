@@ -73,11 +73,7 @@ article{
   background-size: cover;
 }
 
-.card-img-top{
-  height:225px;
-  width:100%;
-  object-fit:cover;
-}
+
 .custom-buttons{
   position:absolute;
   bottom:0;
@@ -87,10 +83,17 @@ article{
 
 .red{
   background-color: red;
+  color:white;
 }
 
 .green{
   background-color:lightblue;
+}
+
+.card-img-top {
+  width: 100%;
+  // height: 15vw;
+  // object-fit: cover;
 }
 
 

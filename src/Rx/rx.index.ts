@@ -1,5 +1,4 @@
 import {
-  createSelector,
   createFeatureSelector,
   ActionReducer,
   MetaReducer,

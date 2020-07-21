@@ -26,6 +26,9 @@ import { metaReducers, ROOT_REDUCERS } from '../Rx/rx.index';
 import { HeaderComponent } from './header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './footer/footer.component';
+import { MultiplierPipe } from 'src/custom-pipes/multiplier.pipe';
+import { DateConversionPipe } from 'src/custom-pipes/dateConversion.pipe';
+import { LastUpdatedDatePipe } from '../custom-pipes/lastUpdatedFormat.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +41,9 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     JournalFormComponent,
     FooterComponent,
+    MultiplierPipe,
+    DateConversionPipe,
+    LastUpdatedDatePipe,
   ],
   imports: [
     BrowserModule,

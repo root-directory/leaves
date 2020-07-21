@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PlantService } from 'src/services/plant.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TitleService } from '../title.service';
+import { TitleService } from '../../services/title.service';
 import {Validators} from '@angular/forms';
 
 @Component({
@@ -53,19 +53,9 @@ export class JournalFormComponent implements OnInit {
   }
 
   upload() {
-    if (this.selectedFile) {
-      const fd = new FormData();
-      fd.append('file', this.selectedFile, this.selectedFile.name);
-      console.log(fd);
-      const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
-
-      this.service.uploadImage(URL, fd).subscribe((res: {photo_url: string}) => {
-        console.log(res);
-        this.onSubmit(res.photo_url);
-      });
-    }else {
-      this.onSubmit('');
-    }
+    this.service.uploadImage(this.selectedFile).subscribe((res: { photo_url: string }) => {
+      this.onSubmit(res.photo_url);
+    });
   }
 
   onSubmit(imgUrl: string) {
@@ -76,7 +66,7 @@ export class JournalFormComponent implements OnInit {
       },
     });
 
-    this.service.addJournalEntry(this.uploadForm.value, this.id).subscribe(
+    this.service.postJournalEntry(this.uploadForm.value, this.id).subscribe(
       (res) => console.log('journal entry success', res),
       (err) => console.log(err)
     );

@@ -1,3 +1,4 @@
+import { Alert } from './alert';
 export interface Plant {
   id: string|number;
   name?: string;
@@ -10,6 +11,7 @@ export interface Plant {
   userId?: string;
   lastWatered?: string;
   care?: {soil: Soil, watering: Watering, sunlight: Sunlight};
+  alert?: Alert;
 }
 
 interface Soil {

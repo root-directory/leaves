@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '../types/plant';
-import { TitleService } from '../title.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-plant-upload',

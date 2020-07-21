@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Plant } from '../app/types/plant';
 import { JournalEntry, Journal } from '../app/types/journalEntry';
 import { Observable, of, EMPTY } from 'rxjs';
-import { Store } from '@ngrx/store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap, retry } from 'rxjs/operators';
 import * as PlantActions from '../Rx/plants.actions';
+import { Alert } from '../app/types/alert';
 
 @Injectable({
   providedIn: 'root',
@@ -14,51 +14,25 @@ export class PlantService {
   public ROOT_URL =
     'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/';
   public PLANTS_URL = 'plants';
-  private JOURNAL_URL = '/journal';
-  public ROOT_SERVER_URL =
-    'https://root-directory-server.herokuapp.com/api/v1/users/5ed2a8ad338bcf64692b07ac/plants';
+  public JOURNAL_URL = '/journal';
 
-  public result$: Observable<any> = null;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
   constructor(private http: HttpClient) {}
 
+  /** GET: Retrive Plants from Server and modify to add watering alert. */
   getPlants(): Observable<Plant[]> {
     const URL = this.ROOT_URL + this.PLANTS_URL;
-    return this.http.get<Plant[]>(URL).pipe(
+    const result$ = this.http.get<{ plants: Plant[] }>(URL).pipe(
       retry(5),
-      catchError(() => {
-        return EMPTY;
+      map(({ plants }) => {
+        plants = this.addWateringAlert(plants);
+        return plants;
       })
     );
-  }
-
-  postCareForm(id: string, data: any) {
-    const URL = this.ROOT_SERVER_URL + '/' + id;
-    return this.http.patch<any>(URL, data);
-  }
-
-  getJournal(plantId: string): Observable<Journal> {
-    const URL =
-      this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL;
-    return this.http.get<Journal>(URL);
-  }
-
-  addJournalEntry(
-    journalEntry: any,
-    plantId: string
-  ): Observable<JournalEntry> {
-    const URL =
-      this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL;
-    return this.http.post<JournalEntry>(URL, journalEntry);
-  }
-
-  getPlant(id: number): Observable<Plant> {
-    return this.getPlants().pipe(
-      map((plants) => plants.find((plant) => plant.id === id))
-    );
+    return result$;
   }
 
   /** POST: add a new plant to the server */
@@ -73,26 +47,74 @@ export class PlantService {
     return this.http.delete<Plant>(URL);
   }
 
-  uploadImage(url: string, fd: any): Observable<any> {
-    return this.http.post(url, fd);
+  /** Sanatize: Add an alert onto the plant as it comes in. */
+  addWateringAlert(plants: Plant[]) {
+    const newPlants = plants.map((plant) => {
+      const alert: Alert = {
+        color: '',
+        title: '',
+
+        dayDelta: '',
+      };
+      const frequency = plant.care.watering.frequency;
+      if (!frequency) {
+        alert.title = `No Watering Frequency Found! Please update plant care form.`;
+        alert.color = 'white';
+        plant.alert = alert;
+        return plant;
+      }
+      const datesDiff = Date.now() - parseInt(plant.lastWatered, 10);
+      const daysDiff = Math.floor(datesDiff / (1000 * 60 * 60 * 24));
+      const frequencyDays: number = parseInt(frequency, 10) * 7 || undefined;
+
+      if (daysDiff > frequencyDays) {
+        alert.title = `Your Plant is Thirsty!`;
+
+        alert.dayDelta = `Past Due by: ${daysDiff - frequencyDays} days!`;
+        alert.color = 'red';
+      } else {
+        alert.title = `Nice Watering!`;
+
+        alert.dayDelta = `${
+          frequencyDays - daysDiff
+        } days until you need to water this plant!`;
+        alert.color = 'green';
+      }
+      plant.alert = alert;
+      return plant;
+    });
+    return newPlants;
   }
 
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+  /** Post: Send Care back to server */
+  postCareForm(id: string, data: any) {
+    const URL = this.ROOT_URL + this.PLANTS_URL + '/' + id;
+    return this.http.patch<any>(URL, data);
+  }
 
-      // TODO: better job of transforming error for user consumption
-      // this.log(`${operation} failed: ${error.message}`);
+  /** Get: Retrieve all Journals */
+  getJournal(plantId: string): Observable<Journal> {
+    const URL =
+      this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL;
+    return this.http.get<Journal>(URL);
+  }
 
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  /** Post: Add new journal entry */
+  postJournalEntry(
+    journalEntry: any,
+    plantId: string
+  ): Observable<JournalEntry> {
+    const URL =
+      this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL;
+    return this.http.post<JournalEntry>(URL, journalEntry);
+  }
+
+  /** Upload Image: Get initial URL from Server (Routed through BE Hosted on AWS) */
+  uploadImage(selectedFile): Observable<any> {
+    const fd = new FormData();
+    fd.append('file', selectedFile, selectedFile.name);
+
+    const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
+    return this.http.post(URL, fd);
   }
 }
