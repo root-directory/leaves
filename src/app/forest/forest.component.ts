@@ -6,6 +6,7 @@ import * as PlantActions from '../../Rx/plants.actions';
 import * as fromRoot from '../../Rx/rx.index';
 import { TitleService } from '../../services/title.service';
 
+
 @Component({
   selector: 'app-forest',
   templateUrl: './forest.component.html',

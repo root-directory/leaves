@@ -53,19 +53,9 @@ export class JournalFormComponent implements OnInit {
   }
 
   upload() {
-    if (this.selectedFile) {
-      const fd = new FormData();
-      fd.append('file', this.selectedFile, this.selectedFile.name);
-      console.log(fd);
-      const URL = 'https://root-directory-server.herokuapp.com/api/v1/photos';
-
-      this.service.uploadImage(URL, fd).subscribe((res: {photo_url: string}) => {
-        console.log(res);
-        this.onSubmit(res.photo_url);
-      });
-    }else {
-      this.onSubmit('');
-    }
+    this.service.uploadImage(this.selectedFile).subscribe((res: { photo_url: string }) => {
+      this.onSubmit(res.photo_url);
+    });
   }
 
   onSubmit(imgUrl: string) {

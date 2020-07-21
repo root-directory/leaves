@@ -26,13 +26,14 @@
                 </li>
 
                 <li class="list-group-item {{ plant.alert.color }}">
+                  <h5>{{ plant.alert.title }}</h5>
                   <p class="card-text">{{ plant.alert.lastWatered }}</p>
-                  <p class="card-text">
+                  <p *ngIf="plant.care.watering.frequency" class="card-text">
                     Recommended: Every
                     {{ plant.care.watering.frequency * 7 }} Days
                   </p>
                   <p class="card-text">
-                    {{ plant.alert.daysUntil }}
+                    {{ plant.alert.dayDelta }}
                   </p>
                   <div></div>
                 </li>
