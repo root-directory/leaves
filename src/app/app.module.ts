@@ -28,6 +28,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './footer/footer.component';
 import { MultiplierPipe } from 'src/CustomPipes/multiplier.pipe';
 import { DateConversionPipe } from 'src/CustomPipes/dateConversion.pipe';
+import { DateFormatPipe } from '../CustomPipes/dateFormat.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,9 +43,10 @@ import { DateConversionPipe } from 'src/CustomPipes/dateConversion.pipe';
     FooterComponent,
     MultiplierPipe,
     DateConversionPipe,
+    DateFormatPipe,
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,

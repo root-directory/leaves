@@ -47,13 +47,13 @@ export class PlantService {
     return this.http.delete<Plant>(URL);
   }
 
+  /** Sanatize: Add an alert onto the plant as it comes in. */
   addWateringAlert(plants: Plant[]) {
-
     const newPlants = plants.map((plant) => {
       let alert: Alert = {
         color: '',
         title: '',
-        lastWatered: '',
+        
         dayDelta: '',
       };
       const frequency = plant.care.watering.frequency;
@@ -69,12 +69,12 @@ export class PlantService {
 
       if (daysDiff > frequencyDays) {
         alert.title = `Your Plant is Thirsty!`;
-        alert.lastWatered = `Last Watered:${daysDiff} days ago. `;
+       
         alert.dayDelta = `Past Due by: ${daysDiff - frequencyDays} days!`;
         alert.color = 'red';
       } else {
         alert.title = `Nice Watering!`;
-        alert.lastWatered = `Last Watered:${daysDiff} days ago. `;
+    
         alert.dayDelta = `${
           frequencyDays - daysDiff
         } days until you need to water this plant!`;
@@ -86,18 +86,21 @@ export class PlantService {
     return newPlants;
   }
 
+  /** Post: Send Care back to server */
   postCareForm(id: string, data: any) {
     const URL = this.ROOT_URL + this.PLANTS_URL + '/' + id;
     return this.http.patch<any>(URL, data);
   }
 
+  /** Get: Retrieve all Journals */
   getJournal(plantId: string): Observable<Journal> {
     const URL =
       this.ROOT_URL + this.PLANTS_URL + '/' + plantId + this.JOURNAL_URL;
     return this.http.get<Journal>(URL);
   }
 
-  addJournalEntry(
+  /** Post: Add new journal entry */
+  postJournalEntry(
     journalEntry: any,
     plantId: string
   ): Observable<JournalEntry> {

@@ -6,7 +6,6 @@ import * as PlantActions from '../../Rx/plants.actions';
 import * as fromRoot from '../../Rx/rx.index';
 import { TitleService } from '../../services/title.service';
 
-import { DateConversionPipe } from '../../CustomPipes/dateConversion.pipe';
 
 @Component({
   selector: 'app-forest',

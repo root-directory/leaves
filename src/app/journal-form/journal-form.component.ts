@@ -66,7 +66,7 @@ export class JournalFormComponent implements OnInit {
       },
     });
 
-    this.service.addJournalEntry(this.uploadForm.value, this.id).subscribe(
+    this.service.postJournalEntry(this.uploadForm.value, this.id).subscribe(
       (res) => console.log('journal entry success', res),
       (err) => console.log(err)
     );
