@@ -48,13 +48,14 @@ export class PlantService {
   }
 
   addWateringAlert(plants: Plant[]) {
-    let alert: Alert = {
-      color: '',
-      title: '',
-      lastWatered: '',
-      dayDelta: '',
-    };
+
     const newPlants = plants.map((plant) => {
+      let alert: Alert = {
+        color: '',
+        title: '',
+        lastWatered: '',
+        dayDelta: '',
+      };
       const frequency = plant.care.watering.frequency;
       if (!frequency) {
         alert.title = `No Watering Frequency Found! Please update plant care form.`;
@@ -69,7 +70,7 @@ export class PlantService {
       if (daysDiff > frequencyDays) {
         alert.title = `Your Plant is Thirsty!`;
         alert.lastWatered = `Last Watered:${daysDiff} days ago. `;
-        alert.dayDelta = `Past Due by: ${daysDiff - frequencyDays}days!`;
+        alert.dayDelta = `Past Due by: ${daysDiff - frequencyDays} days!`;
         alert.color = 'red';
       } else {
         alert.title = `Nice Watering!`;
